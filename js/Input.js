@@ -37,17 +37,16 @@ function setKeyHoldState(thisKey, thisPlayer, setTo) {
 function keyPressed(evt) {
   setKeyHoldState(evt.keyCode, p1, true);
   if(evt.key == "q"){
-    healthDisplay.health-=1;
+    hudDisplay.health-=1;
   }
   if(evt.key == "w"){
-    healthDisplay.health+=1;
+    hudDisplay.health+=1;
   }
   if(evt.key == " "){
     p1.swordAttack();
   }
   if(evt.key == "1"){
-    loadLevel(level[0])
-    p1.reset();
+    
   }
   if(evt.key == "2"){
     loadLevel(level[1])

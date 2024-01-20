@@ -3,6 +3,7 @@ function HudClass() {
 
     this.maxHealth = 99;
     this.currentHealth = 90;
+
     this.maxAmmo = 9;
     this.currentAmmo = 9;
 
@@ -28,12 +29,36 @@ function HudClass() {
     this.inventoryX = 300;
     this.inventoryY = 490;
 
-	this.pickups = {
-		0: "empty",
-		1: "potion",
-		2: "ammo",
-		3: "pick",
-		4: "key",
+    this.restoreHealth = function() {
+        console.log("Player has used a potion");
+    };
+
+    this.restoreAmmo = function() {
+    console.log("Player has used an ammo box");
+    };
+
+
+	this.pickupTypes = {
+		0: {empty: function() {
+                console.log("This inventory slot is EMPTY");
+            }
+        },
+		1: {potion: function() {
+                this.restoreHealth();
+            }
+        },
+		2: {ammo: function() {
+                this.restoreAmmo();
+            }
+        },
+		3: {pick: function() {
+                console.log("You have a Pick");
+            }
+        },
+		4: {key: function() {
+                console.log("You have the Key")
+            }
+        },
 	}
 
     this.inventory = [ 
@@ -52,16 +77,18 @@ function HudClass() {
     
     this.checkInvisibility = function() {
         console.log(this.isInvincible,this.invincibilityFrames)
-        if(healthDisplay.isInvincible){
-            if(healthDisplay.invincibilityFrames < 1){
-              healthDisplay.isInvincible = false;
-              healthDisplay.invincibilityFrames = healthDisplay.maxInvincibilityFrames;
+        if(hudDisplay.isInvincible){
+            if(hudDisplay.invincibilityFrames < 1){
+              hudDisplay.isInvincible = false;
+              hudDisplay.invincibilityFrames = hudDisplay.maxInvincibilityFrames;
             }
             else {
-              healthDisplay.invincibilityFrames--;
+              hudDisplay.invincibilityFrames--;
             }
         }
     }
+
+   
     
     this.draw = function() {
 
@@ -77,8 +104,6 @@ function HudClass() {
 		drawBitmapCenteredAtLocationWithRotation(swordIcon, this.swordX+spacing*2, this.swordY, 0 );
 		printText("[space]", this.printAmmoX+spacing*1+50, this.printAmmoY-64, 16, "yellow");
 
-		
-
 		for( i=0; i<3; i++ ) {
 			for( j=0; j<2; j++ ) {
 				var xPosition = this.inventoryX + ((this.boxSize + this.boxGap) * i);
@@ -86,25 +111,21 @@ function HudClass() {
 
 				// draw Inventory Boxes
 				drawRect(xPosition, yPosition, this.boxSize, this.boxSize, 2, 'grey')
+
 				// draw pickup Icons
 				canvasContext.drawImage(pickupIcons, 32*i, 32*j, 32, 32, xPosition+5, yPosition+5, 32,32)
+
 				// draw key numbers
 				printText( (1+i)+(j*3) , xPosition, yPosition+6, 20, "cyan" )
 			}
 		}
 		
-
-
 		drawRect(this.messageWindowX, this.messageWindowY, this.messageWindowWidth, this.messageWindowHeight, 4, 'white');
-
-
-        // for(i=0; i<this.currentHealth;i++) {
-        //     drawBitmapCenteredAtLocationWithRotation(healthUnit, this.originX+this.unitSpacing*i, this.originY, 0);    
-        // }
-        
     }
+
+	
 
 };
 
-var healthDisplay = new HudClass();
+var hudDisplay = new HudClass();
 

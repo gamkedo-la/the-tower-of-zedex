@@ -24,11 +24,11 @@ function loadingDoneSoStartGame() {
 
 function moveEverything() {
   
-  if(healthDisplay.currentHealth < 1){
+  if(hudDisplay.currentHealth < 1){
     p1.reset();
   }
 
-  healthDisplay.checkInvisibility();
+  hudDisplay.checkInvisibility();
   p1.move();
 }
 
@@ -38,5 +38,5 @@ function drawEverything() {
   
   p1.draw();
 
-  healthDisplay.draw();
+  hudDisplay.draw();
 }

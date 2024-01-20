@@ -31,7 +31,7 @@ function warriorClass() {
   }
   
   this.reset = function() {
-    healthDisplay.currentHealth = healthDisplay.maxHealth;
+    hudDisplay.currentHealth = hudDisplay.maxHealth;
     this.keysHeld = 0;
     if(this.homeX == undefined) {
       for(var i=0; i<roomGrid.length; i++) {
@@ -136,9 +136,9 @@ function warriorClass() {
         this.x = nextX;
         this.y = nextY;
         
-        if(!healthDisplay.isInvincible){
-          healthDisplay.currentHealth -= 5;
-          healthDisplay.isInvincible=true;
+        if(!hudDisplay.isInvincible){
+          hudDisplay.currentHealth -= 5;
+          hudDisplay.isInvincible=true;
         }
         else{
           console.log("walking through spikes when you're invincible!")
