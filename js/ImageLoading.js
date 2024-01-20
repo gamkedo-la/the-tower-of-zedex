@@ -8,6 +8,7 @@ var boomstickIcon=document.createElement("img");
 var swordIcon=document.createElement("img");
 
 var keyPickup=document.createElement("img");
+var pickupIcons=document.createElement("img");
 
 var tilePics = [];
 
@@ -45,6 +46,8 @@ function loadImages() {
     {varName:healthIcon, theFile:"health_icon.png"},
     {varName:boomstickIcon, theFile:"boomstick_icon.png"},
     {varName:swordIcon, theFile:"sword_icon.png"},
+
+    {varName:pickupIcons, theFile:"pickupIcons.png"},
     
     {tileType:TILE_GROUND, theFile:"world_ground.png"},
     {tileType:TILE_WALL, theFile:"world_wall.png"},

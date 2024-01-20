@@ -28,12 +28,18 @@ function HudClass() {
     this.inventoryX = 300;
     this.inventoryY = 490;
 
-    this.slot1 = 'potion';
-    this.slot2 = 'ammo';
-    this.slot3 = 'pick';
-    this.slot4 = 'key';
-    this.slot5 = '';
-    this.slot6 = '';
+	this.pickups = {
+		0: "empty",
+		1: "potion",
+		2: "ammo",
+		3: "pick",
+		4: "key",
+	}
+
+    this.inventory = [ 
+		1, 2, 3, 
+		4, 0, 0,
+	];
 
     this.messageWindowX = 485;
     this.messageWindowY = 490;
@@ -71,12 +77,19 @@ function HudClass() {
 		drawBitmapCenteredAtLocationWithRotation(swordIcon, this.swordX+spacing*2, this.swordY, 0 );
 		printText("[space]", this.printAmmoX+spacing*1+50, this.printAmmoY-64, 16, "yellow");
 
+		
 
 		for( i=0; i<3; i++ ) {
 			for( j=0; j<2; j++ ) {
 				var xPosition = this.inventoryX + ((this.boxSize + this.boxGap) * i);
 				var yPosition = this.inventoryY + ((this.boxSize + this.boxGap) * j);
-				drawRect(xPosition, yPosition, this.boxSize, this.boxSize, 3, 'white')
+
+				// draw Inventory Boxes
+				drawRect(xPosition, yPosition, this.boxSize, this.boxSize, 2, 'grey')
+				// draw pickup Icons
+				canvasContext.drawImage(pickupIcons, 32*i, 32*j, 32, 32, xPosition+5, yPosition+5, 32,32)
+				// draw key numbers
+				printText( (1+i)+(j*3) , xPosition, yPosition+6, 20, "cyan" )
 			}
 		}
 		
