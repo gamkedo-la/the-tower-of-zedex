@@ -4,8 +4,8 @@ var playerFacingRight=document.createElement("img");
 var playerFacingUp=document.createElement("img");
 
 var healthIcon=document.createElement("img");
-var magicIcon=document.createElement("img");
-var keyIcon=document.createElement("img");
+var boomstickIcon=document.createElement("img");
+var swordIcon=document.createElement("img");
 
 var keyPickup=document.createElement("img");
 
@@ -43,8 +43,8 @@ function loadImages() {
     // {varName:keyPickup, theFile:"world_key.png"},
 
     {varName:healthIcon, theFile:"health_icon.png"},
-    {varName:magicIcon, theFile:"magic_icon.png"},
-    {varName:keyIcon, theFile:"key_icon.png"},
+    {varName:boomstickIcon, theFile:"boomstick_icon.png"},
+    {varName:swordIcon, theFile:"sword_icon.png"},
     
     {tileType:TILE_GROUND, theFile:"world_ground.png"},
     {tileType:TILE_WALL, theFile:"world_wall.png"},

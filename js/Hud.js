@@ -3,34 +3,42 @@ function HudClass() {
 
     this.maxHealth = 99;
     this.currentHealth = 90;
-    this.maxMagic = 99;
-    this.currentMagic = 90;
-
-    this.keysHeld = 0;
+    this.maxAmmo = 9;
+    this.currentAmmo = 9;
 
     this.hudX=0;
     this.hudY=450;
     this.hudElementSpacingWidth = 80;
 
     this.heartX = 50;
-    this.heartY = 500;
+    this.heartY = 538;
     this.printHealthX = 36;
-    this.printHealthY = 555;
+    this.printHealthY = 546;
+    
+    this.boomstickX = 50;
+    this.boomstickY = 538;
+    this.printAmmoX = 56;
+    this.printAmmoY = 566;
 
-    this.magicX = 50;
-    this.magicY = 500;
-    this.printMagicX = 36;
-    this.printMagicY = 555;
+    this.swordX = 50;
+    this.swordY = 538;
 
-    this.keyX = 50;
-    this.keyY = 490;
-    this.printKeyX = 36;
-    this.printKeyY = 555
+    this.boxSize = 42;
+    this.boxGap = 10;
+    this.inventoryX = 300;
+    this.inventoryY = 490;
+
+    this.slot1 = 'potion';
+    this.slot2 = 'ammo';
+    this.slot3 = 'pick';
+    this.slot4 = 'key';
+    this.slot5 = '';
+    this.slot6 = '';
 
     this.messageWindowX = 485;
-    this.messageWindowY = 458;
+    this.messageWindowY = 490;
     this.messageWindowWidth = 300;
-    this.messageWindowHeight = 130
+    this.messageWindowHeight = 98
 
     this.isInvincible = false;
     this.maxInvincibilityFrames = 30
@@ -51,25 +59,31 @@ function HudClass() {
     
     this.draw = function() {
 
-            var spacing = this.hudElementSpacingWidth;
+		var spacing = this.hudElementSpacingWidth;
 
-            drawBitmapCenteredAtLocationWithRotation(healthIcon, this.heartX+spacing*0, this.heartY, 0 );
-            printText(this.currentHealth, this.printHealthX+spacing*0, this.printHealthY, 24, "white");
+		drawBitmapCenteredAtLocationWithRotation(healthIcon, this.heartX+spacing*0, this.heartY, 0 );
+		printText(this.currentHealth, this.printHealthX+spacing*0, this.printHealthY, 24, "white");
 
-            drawBitmapCenteredAtLocationWithRotation(magicIcon, this.heartX+spacing*1, this.heartY, 0 );
-            printText(this.currentMagic, this.printHealthX+spacing*1, this.printHealthY, 24, "white");
+		drawBitmapCenteredAtLocationWithRotation(boomstickIcon, this.heartX+spacing*1, this.heartY, 0 );
+		printText(this.currentAmmo, this.printAmmoX+spacing*1, this.printAmmoY, 24, "white");
+		printText("[ x ]", 120, this.printAmmoY-64, 16, "yellow");
 
-            drawBitmapCenteredAtLocationWithRotation(keyIcon, this.keyX+spacing*2, this.keyY, 0 );
-            printText(this.keysHeld, this.printKeyX+spacing*2, this.printKeyY, 24, "white");
-        
-        
+		drawBitmapCenteredAtLocationWithRotation(swordIcon, this.swordX+spacing*2, this.swordY, 0 );
+		printText("[space]", this.printAmmoX+spacing*1+50, this.printAmmoY-64, 16, "yellow");
 
-        canvasContext.beginPath();
-        canvasContext.strokeStyle = "white";
-        canvasContext.lineJoin = "round";
-        canvasContext.lineWidth = "6";
-        canvasContext.rect( this.messageWindowX, this.messageWindowY, this.messageWindowWidth, this.messageWindowHeight )
-        canvasContext.stroke();
+
+		for( i=0; i<3; i++ ) {
+			for( j=0; j<2; j++ ) {
+				var xPosition = this.inventoryX + ((this.boxSize + this.boxGap) * i);
+				var yPosition = this.inventoryY + ((this.boxSize + this.boxGap) * j);
+				drawRect(xPosition, yPosition, this.boxSize, this.boxSize, 3, 'white')
+			}
+		}
+		
+
+
+		drawRect(this.messageWindowX, this.messageWindowY, this.messageWindowWidth, this.messageWindowHeight, 4, 'white');
+
 
         // for(i=0; i<this.currentHealth;i++) {
         //     drawBitmapCenteredAtLocationWithRotation(healthUnit, this.originX+this.unitSpacing*i, this.originY, 0);    

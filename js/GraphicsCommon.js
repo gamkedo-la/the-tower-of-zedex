@@ -23,3 +23,12 @@ function printText( message, xPosition, yPosition, textSize, color ) {
   canvasContext.font = textSize + "px Arial";
   canvasContext.fillText( message, xPosition, yPosition );
 }
+
+function drawRect( topLeftX, topLeftY, width, height, lineWidth, color ) {
+  canvasContext.beginPath();
+        canvasContext.strokeStyle = color;
+        canvasContext.lineJoin = "round";
+        canvasContext.lineWidth = lineWidth;
+        canvasContext.rect( topLeftX, topLeftY, width, height )
+        canvasContext.stroke();
+}
