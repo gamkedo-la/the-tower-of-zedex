@@ -29,35 +29,38 @@ function HudClass() {
     this.inventoryX = 300;
     this.inventoryY = 490;
 
+
     this.restoreHealth = function() {
         console.log("Player has used a potion");
+        this.currentHealth += 30;
     };
 
     this.restoreAmmo = function() {
     console.log("Player has used an ammo box");
+    this.currentAmmo = this.maxAmmo;
     };
 
 
 	this.pickupTypes = {
-		0: {empty: function() {
+		0: function() {
                 console.log("This inventory slot is EMPTY");
-            }
+
         },
-		1: {potion: function() {
-                this.restoreHealth();
-            }
+		1: function() {
+            this.restoreHealth();
+        
         },
-		2: {ammo: function() {
+		2: function() {
                 this.restoreAmmo();
-            }
+            
         },
-		3: {pick: function() {
+		3: function() {
                 console.log("You have a Pick");
-            }
+            
         },
-		4: {key: function() {
+		4: function() {
                 console.log("You have the Key")
-            }
+            
         },
 	}
 
@@ -65,6 +68,8 @@ function HudClass() {
 		1, 2, 3, 
 		4, 0, 0,
 	];
+
+    
 
     this.messageWindowX = 485;
     this.messageWindowY = 490;

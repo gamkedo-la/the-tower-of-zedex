@@ -31,7 +31,7 @@ function warriorClass() {
   }
   
   this.reset = function() {
-    hudDisplay.currentHealth = hudDisplay.maxHealth;
+    hudDisplay.currentHealth = hudDisplay.maxHealth - 50; // Testing Feature
     this.keysHeld = 0;
     if(this.homeX == undefined) {
       for(var i=0; i<roomGrid.length; i++) {
