@@ -5,6 +5,8 @@ function warriorClass() {
   // variables to keep track of position
   this.x = 75;
   this.y = 75;
+  this.myShotList = [];
+  this.totalShots = 1;
 
   this.facingDirection = "down";
 
@@ -21,8 +23,6 @@ function warriorClass() {
     this.controlKeyForSouth = southKey;
     this.controlKeyForWest = westKey;
   }
-
-  
 
   this.init = function(whichGraphic,whichName) {
     this.myBitmap = whichGraphic;
@@ -51,7 +51,6 @@ function warriorClass() {
 
   } // end of reset
 
-
   this.swordAttack = function() {
     console.log("sword attack initiated");
 
@@ -79,7 +78,21 @@ function warriorClass() {
     
   }
 
-
+  this.boomStickShot = function(){
+		if(this.myShotList.length < this.totalShots){
+			let tempShot = new BoomStickClass();
+			tempShot.shootFrom(this);
+			this.myShotList.push(tempShot);
+		}
+	}
+	
+	this.removeBullet = function (){
+		for(var i = this.myShotList.length - 1; i >= 0 ; i--){
+			if(this.myShotList[i].readyToRemove){
+				this.myShotList.splice(i,1);
+			}
+		}
+	}
   
   this.move = function() {
     var nextX = this.x;
@@ -151,10 +164,17 @@ function warriorClass() {
         break;
       
     }
+
+    for (var i=0; i < this.myShotList.length ; i++){
+			this.myShotList[i].movement();
+		}
   }
   
   this.draw = function() {
     drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
+    for (var i=0; i < this.myShotList.length ; i++){
+			this.myShotList[i].draw();
+		}
   }
 
 } // end of class

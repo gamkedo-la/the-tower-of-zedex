@@ -7,6 +7,7 @@ const KEY_LETTER_W = 87;
 const KEY_LETTER_A = 65;
 const KEY_LETTER_S = 83;
 const KEY_LETTER_D = 68;
+const KEY_LETTER_X = 88;
 
 function initInput() {
     document.addEventListener("keydown", keyPressed);
@@ -40,6 +41,10 @@ function keyPressed(evt) {
     if(evt.key == " "){
         p1.swordAttack();
     }
+
+    if(evt.keyCode == KEY_LETTER_X){
+		p1.boomStickShot();
+	}	
 
     if(evt.key == "1"){
         //check inventory slot one for pickupType and return function

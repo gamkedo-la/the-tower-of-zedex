@@ -81,7 +81,7 @@ function HudClass() {
     this.invincibilityFrames = 10;
     
     this.checkInvisibility = function() {
-        console.log(this.isInvincible,this.invincibilityFrames)
+     //   console.log(this.isInvincible,this.invincibilityFrames)
         if(hudDisplay.isInvincible){
             if(hudDisplay.invincibilityFrames < 1){
               hudDisplay.isInvincible = false;
