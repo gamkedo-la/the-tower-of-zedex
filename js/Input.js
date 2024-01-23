@@ -10,59 +10,59 @@ const KEY_LETTER_D = 68;
 const KEY_LETTER_X = 88;
 
 function initInput() {
-    document.addEventListener("keydown", keyPressed);
-    document.addEventListener("keyup", keyReleased);
+	document.addEventListener("keydown", keyPressed);
+	document.addEventListener("keyup", keyReleased);
 
-p1.setupControls(KEY_UP_ARROW,KEY_RIGHT_ARROW,KEY_DOWN_ARROW,KEY_LEFT_ARROW);
+	p1.setupControls(KEY_UP_ARROW,KEY_RIGHT_ARROW,KEY_DOWN_ARROW,KEY_LEFT_ARROW);
 }
 
 function setKeyHoldState(thisKey, thisPlayer, setTo) {
-if(thisKey == thisPlayer.controlKeyForNorth) {
-    thisPlayer.keyHeld_North = setTo;
-    thisPlayer.facingDirection = "up";
-}
-if(thisKey == thisPlayer.controlKeyForEast) {
-    thisPlayer.keyHeld_East = setTo;
-    thisPlayer.facingDirection = "right";
-}
-if(thisKey == thisPlayer.controlKeyForSouth) {
-    thisPlayer.keyHeld_South = setTo;
-    thisPlayer.facingDirection = "down";
-}
-if(thisKey == thisPlayer.controlKeyForWest) {
-    thisPlayer.keyHeld_West = setTo;
-    thisPlayer.facingDirection = "left";
-}
+	if(thisKey == thisPlayer.controlKeyForNorth) {
+		thisPlayer.keyHeld_North = setTo;
+		thisPlayer.facingDirection = "up";
+	}
+	if(thisKey == thisPlayer.controlKeyForEast) {
+		thisPlayer.keyHeld_East = setTo;
+		thisPlayer.facingDirection = "right";
+	}
+	if(thisKey == thisPlayer.controlKeyForSouth) {
+		thisPlayer.keyHeld_South = setTo;
+		thisPlayer.facingDirection = "down";
+	}
+	if(thisKey == thisPlayer.controlKeyForWest) {
+		thisPlayer.keyHeld_West = setTo;
+		thisPlayer.facingDirection = "left";
+	}
 }
 
 function keyPressed(evt) {
-    setKeyHoldState(evt.keyCode, p1, true);
+	setKeyHoldState(evt.keyCode, p1, true);
 
-    if(evt.key == " "){
-        p1.swordAttack();
-    }
+	if(evt.key == " "){
+		p1.swordAttack();
+	}
 
-    if(evt.keyCode == KEY_LETTER_X){
+	if(evt.keyCode == KEY_LETTER_X){
 		p1.boomStickShot();
 	}	
 
-    if(evt.key == "1"){
-        //check inventory slot one for pickupType and return function
-        console.log("Key 1 has been pressed")
+	if(evt.key == "1"){
+		//check inventory slot one for pickupType and return function
+		console.log("Key 1 has been pressed")
 
-        hudDisplay.pickupTypes[hudDisplay.inventory[0]].call(hudDisplay);
+		hudDisplay.pickupTypes[hudDisplay.inventory[0]].call(hudDisplay);
 
-    }
-    if(evt.key == "2"){
+	}
+	if(evt.key == "2"){
 
-    }
-    if(evt.key == "3"){
-        
-    }
+	}
+	if(evt.key == "3"){
+		
+	}
 
-    evt.preventDefault(); // without this, arrow keys scroll the browser!
+	evt.preventDefault(); // without this, arrow keys scroll the browser!
 }
 
 function keyReleased(evt) {
-    setKeyHoldState(evt.keyCode, p1, false);
+	setKeyHoldState(evt.keyCode, p1, false);
 }
