@@ -1,6 +1,3 @@
-// init commit by Hums (to be removed)
-
-
 // save the canvas for dimensions, and its 2d context for drawing to it
 var canvas, canvasContext;
 
