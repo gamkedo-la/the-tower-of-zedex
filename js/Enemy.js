@@ -4,7 +4,7 @@ function enemyClass() {
 	
 	this.x = 0;
 	this.y = 0;
-	this.speed = 32.0;
+	this.speed = 3.0;
 	
 	// Stats
 	this.isAlive =    false;
@@ -21,7 +21,7 @@ function enemyClass() {
 
 	// Move frequency
 	this.ticksFromLastMovement =	0;
-	this.ticksUntilNextMovement =	60;
+	this.ticksUntilNextMovement =	5;
 
 	// Animation stuff
 	this.frameIndex =      0;

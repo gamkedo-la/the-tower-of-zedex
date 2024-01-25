@@ -5,8 +5,8 @@ const SHOT_DISPLAY_RADIUS = 2.0;
 function BoomStickClass() {
     this.x;
 	this.y;
+
 	this.readyToRemove = false;
-	
 	this.graphic = document.createElement("img");
 	
 	this.reset = function() {
@@ -19,9 +19,9 @@ function BoomStickClass() {
 		this.readyToRemove = true;
 	}
 
-    this.isShotReadyToFire = function(){
-		return (this.shotLife <= 0);
-	}
+    // this.isShotReadyToFire = function(){
+	// 	return (this.shotLife <= 0);
+	// }
 
     this.shootFrom = function(entityFiring){
 		this.x = entityFiring.x;
@@ -45,12 +45,17 @@ function BoomStickClass() {
 	}
 
     this.movement = function() {
+		console.log(this.shotLife);
         if(this.shotLife > 0){
 			this.shotLife--;
             this.x += this.xv;
             this.y += this.yv;	
             console.log("x: " + this.x +" y: " + this.y)	
         }
+		else {
+			this.readyToRemove = true
+		}
+
 	}	
 
 	this.hitTest = function(thisEnemy) { 
