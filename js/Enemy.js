@@ -4,7 +4,7 @@ function enemyClass() {
 	
 	this.x = 0;
 	this.y = 0;
-	this.speed = 3.0;
+	this.speed = 2.0;
 	
 	// Stats
 	this.readyToRemove =    false;
@@ -21,7 +21,9 @@ function enemyClass() {
 
 	// Move frequency
 	this.ticksFromLastMovement =	0;
-	this.ticksUntilNextMovement =	5;
+	this.ticksUntilNextMovement =	2;
+	this.ticksFromLastDirectionChange = 0;
+	this.ticksUntilDirectionChange = 60;
 
 	// Animation stuff
 	this.frameIndex =      0;
@@ -71,13 +73,19 @@ function enemyClass() {
 	this.move = function() {		
 
 		this.ticksFromLastMovement++;
+		this.ticksFromLastDirectionChange++;
+	
+		if ( this.ticksFromLastDirectionChange >= this.ticksUntilDirectionChange ) {
+			this.changeDirection();
+			this.ticksFromLastDirectionChange = 0;
+		}
 		if ( this.ticksFromLastMovement >= this.ticksUntilNextMovement ) {
 			var nextX = this.x;
 			var nextY = this.y;
 
 			// randomly choose direction
-			this.changeDirection();
-
+			//this.changeDirection()
+				
 			// next X/Y depending on direction
 			if(this.direction == 'north') {
 				nextY -= this.speed;
