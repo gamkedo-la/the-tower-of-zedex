@@ -2,7 +2,25 @@
 var canvas, canvasContext;
 
 var p1 = new warriorClass();
-var zombie1 = new enemyClass();
+
+var enemyList = [];
+
+function moveEnemies() {
+	for( var i = 0; i<enemyList.length; i++ ) {
+		enemyList[i].move();
+	}
+	for(var i = enemyList.length - 1; i >= 0 ; i--){
+		if(enemyList[i].readyToRemove){
+			enemyList.splice(i,1);
+		}
+	}
+}
+
+function drawEnemies() {
+	for( var i = 0; i<enemyList.length; i++ ) {
+		enemyList[i].draw();
+	}
+}
 
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
@@ -20,8 +38,15 @@ function loadingDoneSoStartGame() {
 		}, 1000/framesPerSecond);
 	
 	p1.init(playerFacingDown, "Blue");
+
+	var zombie1 = new enemyClass();
 	zombie1.init( zombieSprites );
-	
+	enemyList.push(zombie1);
+
+	var zombie1 = new enemyClass();
+	zombie1.init( zombieSprites );
+	enemyList.push(zombie1);
+
 	initInput();  
 }
 
@@ -33,7 +58,7 @@ function moveEverything() {
 
 	hudDisplay.checkInvisibility();
 	p1.move();
-	zombie1.move();
+	moveEnemies();
 }
 
 function drawEverything() {
@@ -41,7 +66,7 @@ function drawEverything() {
 	drawRoom();
 	
 	p1.draw();
-	zombie1.draw();
+	drawEnemies();
 
 	hudDisplay.draw();
 }

@@ -7,7 +7,7 @@ function enemyClass() {
 	this.speed = 3.0;
 	
 	// Stats
-	this.isAlive =    false;
+	this.readyToRemove =    false;
 	this.maxHealth =      1;
 	this.health =         0;
 	this.attackDamage =   3;
@@ -31,7 +31,7 @@ function enemyClass() {
 
 	this.init = function( enemyPic ) {
 		this.health = this.maxHealth;
-		this.isAlive = true;
+		this.readyToRemove = false;
 		this.sprite = zombieSprites;
 		this.reset();
 	}
@@ -52,7 +52,7 @@ function enemyClass() {
 		this.y = this.homeY;
 
 		this.health =   this.maxHealth;
-		this.isAlive =  true;
+		this.readyToRemove =  false;
 	}
 
 	this.changeDirection = function() {
