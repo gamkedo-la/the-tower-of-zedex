@@ -39,13 +39,15 @@ function loadingDoneSoStartGame() {
 	
 	p1.init(playerFacingDown, "Blue");
 
-	var zombie1 = new enemyClass();
-	zombie1.init( zombieSprites );
-	enemyList.push(zombie1);
-
-	var zombie1 = new enemyClass();
-	zombie1.init( zombieSprites );
-	enemyList.push(zombie1);
+	var enemyTypeFound = false;
+	do { 
+		enemyTypeFound = levelHasValue(	TILE_ZOMBIE);
+		if( enemyTypeFound ) {
+			var zombie1 = new enemyClass();
+			zombie1.init( zombieSprites );
+			enemyList.push(zombie1);
+		}
+	} while (enemyTypeFound);
 
 	initInput();  
 }
