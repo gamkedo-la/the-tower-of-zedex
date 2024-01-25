@@ -92,7 +92,6 @@ function warriorClass() {
 		for(var i = this.myShotList.length - 1; i >= 0 ; i--){
 			if(this.myShotList[i].readyToRemove){
 				this.myShotList.splice(i,1);
-				console.log("bullet removed", this.myShotList)
 			}
 		}
 	}
@@ -100,7 +99,7 @@ function warriorClass() {
 	this.move = function() {
 		var nextX = this.x;
 		var nextY = this.y;
-		
+
 		this.removeBullet()
 
 		if(this.keyHeld_North) {

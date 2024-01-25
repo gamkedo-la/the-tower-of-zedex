@@ -45,12 +45,11 @@ function BoomStickClass() {
 	}
 
     this.movement = function() {
-		console.log(this.shotLife);
+	
         if(this.shotLife > 0){
 			this.shotLife--;
             this.x += this.xv;
-            this.y += this.yv;	
-            console.log("x: " + this.x +" y: " + this.y)	
+            this.y += this.yv;		
         }
 		else {
 			this.readyToRemove = true
@@ -68,7 +67,6 @@ function BoomStickClass() {
 	
 	this.draw = function(){
 		if(this.shotLife > 0){
-            console.log("x:" + this.x + "y:" + this.y)
 			colorCircle(this.x, this.y, SHOT_DISPLAY_RADIUS, 'white')
 		}
 	}

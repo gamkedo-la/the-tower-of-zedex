@@ -127,7 +127,6 @@ function enemyClass() {
 	}
 
 	this.draw = function() {
-		console.log("enemey is being drawn")
 		colorRect(this.x, this.y, 32,32, 'green');
 		//drawBitmapCenteredAtLocationWithRotation( this.sprite, this.x, this.y, 0.0 )
 	}
