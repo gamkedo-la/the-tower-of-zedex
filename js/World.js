@@ -35,6 +35,7 @@ const TILE_DOOR = 5;
 const TILE_SPIKE = 6;
 
 const TILE_ZOMBIE = 9;
+const TILE_GHOST = 10;
 
 function levelHasValue(checkValue) {
 	for(var i=0; i<roomGrid.length; i++) {
