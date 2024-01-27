@@ -39,6 +39,7 @@ function loadingDoneSoStartGame() {
 	
 	p1.init(playerFacingDown, "Blue");
 
+		// WORKED OUT WITH CHRIS
 	var enemyTypeFound = false;
 	do { 
 		enemyTypeFound = levelHasValue(	TILE_ZOMBIE);
@@ -47,7 +48,38 @@ function loadingDoneSoStartGame() {
 			zombie1.init( zombieSprites );
 			enemyList.push(zombie1);
 		}
+		if( enemyTypeFound ) {
+			var ghost = new ghostClass();
+			ghost.init( zombieSprites );
+			enemyList.push(ghost);
+		}
 	} while (enemyTypeFound);
+
+
+	// OTHER SOLUTION
+	// for(var i=0; i<roomGrid.length; i++) {
+	// 	console.log("Searching for enemies...");
+
+	// 	if(roomGrid[i] == TILE_ZOMBIE) { 
+	// 		console.log("found ghost at index "+i);
+
+	// 		var zombie = new enemyClass();
+	// 		zombie.init( zombieSprites );
+	//  		enemyList.push(zombie);
+	// 		roomGrid[i] = 0;
+	// 	}
+
+	// 	if(roomGrid[i] == TILE_GHOST) { 
+	// 		console.log("found ghost at index "+i);
+
+	// 		var ghost = new ghostClass();
+	//  		ghost.init();
+	//  		enemyList.push(ghost);
+	// 		roomGrid[i] = 0;
+	// 	}
+	// }
+
+
 
 	initInput();  
 }

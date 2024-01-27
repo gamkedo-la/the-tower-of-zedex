@@ -14,7 +14,7 @@ var roomGrid =
 	  1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1,
 	  1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1,
 	  1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1,
-	  1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+	  1, 0, 0, 0, 1, 8, 9, 8, 9, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
 	  1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
 	  1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1,
 	  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -34,9 +34,11 @@ const TILE_KEY = 4;
 const TILE_DOOR = 5;
 const TILE_SPIKE = 6;
 
+const TILE_GHOST = 8;
 const TILE_ZOMBIE = 9;
-const TILE_GHOST = 10;
 
+
+	//WORKED OUT WITH CHRIS
 function levelHasValue(checkValue) {
 	for(var i=0; i<roomGrid.length; i++) {
 		if( roomGrid[i] == checkValue) {
@@ -45,6 +47,7 @@ function levelHasValue(checkValue) {
 	}
 	return false;
 }
+
 
 function roomTileToIndex(tileCol, tileRow) {
   return (tileCol + ROOM_COLS*tileRow);

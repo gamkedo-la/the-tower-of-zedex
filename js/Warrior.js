@@ -11,6 +11,9 @@ function warriorClass() {
 	this.totalShots = 1;
 
 	this.facingDirection = "down";
+	
+	this.sx = 0;
+	this.sy = 0;
 
 	// keyboard hold state variables, to use keys more like buttons
 	this.keyHeld_North = false;
@@ -105,18 +108,26 @@ function warriorClass() {
 		if(this.keyHeld_North) {
 			nextY -= PLAYER_MOVE_SPEED;
 			this.myBitmap = playerFacingUp;
+			this.sx = 0;
+			
 		}
 		if(this.keyHeld_East) {
 			nextX += PLAYER_MOVE_SPEED;
 			this.myBitmap = playerFacingRight;
+			this.sx = 32;
+			
 		}
 		if(this.keyHeld_South) {
 			nextY += PLAYER_MOVE_SPEED;
 			this.myBitmap = playerFacingDown;
+			this.sx = 64;
+			
 		}
 		if(this.keyHeld_West) {
 			nextX -= PLAYER_MOVE_SPEED;
 			this.myBitmap = playerFacingLeft;
+			this.sx = 96;
+			
 		}
 				
 		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
@@ -177,6 +188,7 @@ function warriorClass() {
 	
 	this.draw = function() {
 		drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
+		//canvasContext.drawImage(playerSprites, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y)
 
 		for (var i=0; i < this.myShotList.length ; i++){
 			this.myShotList[i].draw();

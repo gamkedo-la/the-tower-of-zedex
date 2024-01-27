@@ -2,6 +2,7 @@ var playerFacingDown=document.createElement("img");
 var playerFacingLeft=document.createElement("img");
 var playerFacingRight=document.createElement("img");
 var playerFacingUp=document.createElement("img");
+var playerSprites=document.createElement("img");
 
 var healthIcon=document.createElement("img");
 var boomstickIcon=document.createElement("img");
@@ -40,6 +41,7 @@ function loadImages() {
 	{varName:playerFacingLeft, theFile:"warrior_left.png"},
 	{varName:playerFacingRight, theFile:"warrior_right.png"},
 	{varName:playerFacingUp, theFile:"warrior_up.png"},
+	{varName:playerSprites, theFile:"playerSpriteSheet.png"},
 	/*  
 	  enemy sprites HERE 
 	*/
