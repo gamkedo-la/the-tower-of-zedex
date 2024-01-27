@@ -92,13 +92,21 @@ function drawRoom() {
 	tileLeftEdgeX = 0; // resetting horizontal draw position for tiles to left edge
 	
 	for(var eachCol=0; eachCol<ROOM_COLS; eachCol++) {
-	  var tileTypeHere = roomGrid[ tileIndex ];
-	  if( tileTypeHasTransparency(tileTypeHere) ) {
-		canvasContext.drawImage(tilePics[TILE_GROUND], tileLeftEdgeX, tileTopEdgeY);
-	  }
-	  canvasContext.drawImage(tilePics[tileTypeHere], tileLeftEdgeX, tileTopEdgeY);
-	  tileIndex++;
-	  tileLeftEdgeX += TILE_W;
+		var tileTypeHere = roomGrid[ tileIndex ];
+
+		if(tilePics[tileTypeHere] != null) {
+			if( tileTypeHasTransparency(tileTypeHere) ) {
+				canvasContext.drawImage(tilePics[TILE_GROUND], tileLeftEdgeX, tileTopEdgeY);
+			}
+			canvasContext.drawImage(tilePics[tileTypeHere], tileLeftEdgeX, tileTopEdgeY);
+		} else {
+			canvasContext.fillStyle = "yellow";
+			canvasContext.fillRect(tileLeftEdgeX, tileTopEdgeY, TILE_W, TILE_H);
+			canvasContext.fillStyle = "black";
+			canvasContext.fillText(""+tileTypeHere,tileLeftEdgeX+TILE_W*0.25, tileTopEdgeY+TILE_H*0.5);
+		}
+		tileIndex++;
+		tileLeftEdgeX += TILE_W;
 
 	} 
 	
