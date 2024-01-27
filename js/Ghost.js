@@ -41,7 +41,7 @@ function ghostClass() {
 	this.reset = function(resetX, resetY) {
 
 		for(var i=0; i<roomGrid.length; i++) {
-			if( roomGrid[i] == TILE_ZOMBIE) {
+			if( roomGrid[i] == TILE_GHOST) {
 				var tileRow = Math.floor(i/ROOM_COLS);
 				var tileCol = i%ROOM_COLS;
 				this.homeX = tileCol * TILE_W + 0.5*TILE_W;

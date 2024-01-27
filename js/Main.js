@@ -42,15 +42,19 @@ function loadingDoneSoStartGame() {
 		// WORKED OUT WITH CHRIS
 	var enemyTypeFound = false;
 	do { 
-		enemyTypeFound = levelHasValue(	TILE_ZOMBIE);
+		enemyTypeFound = levelHasValue(TILE_ZOMBIE);
 		if( enemyTypeFound ) {
-			var zombie1 = new enemyClass();
-			zombie1.init( zombieSprites );
-			enemyList.push(zombie1);
+			var zombie = new enemyClass();
+			zombie.init( zombieSprites );
+			enemyList.push(zombie);
 		}
+	} while (enemyTypeFound);
+
+	do {
+		enemyTypeFound = levelHasValue(TILE_GHOST);
 		if( enemyTypeFound ) {
 			var ghost = new ghostClass();
-			ghost.init( zombieSprites );
+			ghost.init( zombieSprites ); // to do: no ghostSprites yet, but those will go here
 			enemyList.push(ghost);
 		}
 	} while (enemyTypeFound);
