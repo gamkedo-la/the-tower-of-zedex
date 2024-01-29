@@ -20,6 +20,7 @@ function warriorClass() {
 	this.keyHeld_East = false;
 	this.keyHeld_South = false;
 	this.keyHeld_West = false;
+	
 
 	// key controls used for this
 	this.setupControls = function(northKey,eastKey,southKey,westKey) {
@@ -61,27 +62,46 @@ function warriorClass() {
 
 		var attackX;
 		var attackY;
+		var attackW = TILE_W
+		var attackH = TILE_H
 
 		if(this.facingDirection == "down") {
-			attackX = this.x;
-			attackY = this.y + TILE_H;
+			attackX = this.x - TILE_W/2;
+			attackY = this.y + TILE_H/2;
+			attackW = TILE_W*1.5;
 		}
 		if(this.facingDirection == "up") {
-			attackX = this.x;
-			attackY = this.y - TILE_H;
+			attackX = this.x - TILE_W/2;
+			attackY = this.y - TILE_H*1.5;
+			attackW = TILE_W*1.5;
 		}
 		if(this.facingDirection == "left") {
-			attackX = this.x - TILE_W;
-			attackY = this.y;
+			attackX = this.x - TILE_W*1.5;
+			attackY = this.y - TILE_H;
+			attackH = TILE_H*1.5;
 		}
 		if(this.facingDirection == "right") {
-			attackX = this.x + TILE_W;
-			attackY = this.y;
+			attackX = this.x + TILE_W/2;
+			attackY = this.y - TILE_H/2;
+			attackH = TILE_H*1.5
 		}
 
-		colorRect(attackX-TILE_W/2, attackY-TILE_H/2, TILE_W,TILE_H, "white");
+		colorRect(attackX, attackY, attackW, attackH, "white");
+
+		// loop through enemy list and check if enemy overlaps hitbox
+		for(var i = 0; i < enemyList.length; i++){
+			if(	enemyList[i].x > attackX-TILE_W && 
+				enemyList[i].x < attackX+TILE_W &&
+				enemyList[i].y > attackY &&
+				enemyList[i].y < attackY+TILE_H ){
+					console.log(enemyList[i]+" has taken 1 damage.");
+					console.log(enemyList[i]+" Health: "+enemyList[i].health);
+					enemyList[i].health -= 1;
+				}
+		}
 		
 	}
+
 
 	this.boomStickShot = function(){
 		if(this.myShotList.length < this.totalShots){
@@ -99,6 +119,7 @@ function warriorClass() {
 		}
 	}
 	
+
 	this.move = function() {
 		var nextX = this.x;
 		var nextY = this.y;
@@ -186,7 +207,42 @@ function warriorClass() {
 
 	}
 	
+
+	this.drawPlayerAttackHitBoxes = function() {
+		var attackX;
+		var attackY;
+		var attackW = TILE_W
+		var attackH = TILE_H
+
+		if(this.facingDirection == "down") {
+			attackX = this.x - TILE_W/2;
+			attackY = this.y + TILE_H/2;
+			attackW = TILE_W*1.5;
+
+		}
+		if(this.facingDirection == "up") {
+			attackX = this.x - TILE_W/2;
+			attackY = this.y - TILE_H*1.5;
+			attackW = TILE_W*1.5;
+		}
+		if(this.facingDirection == "left") {
+			attackX = this.x - TILE_W*1.5;
+			attackY = this.y - TILE_H;
+			attackH = TILE_H*1.5;
+		}
+		if(this.facingDirection == "right") {
+			attackX = this.x + TILE_W/2;
+			attackY = this.y - TILE_H/2;
+			attackH = TILE_H*1.5
+		}
+		canvasContext.strokeStyle = "white";
+		canvasContext.lineWidth = 2;
+		canvasContext.strokeRect(attackX, attackY, attackW, attackH);
+	}
+
+
 	this.draw = function() {
+		this.drawPlayerAttackHitBoxes();
 		drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
 		//canvasContext.drawImage(playerSprites, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y)
 
