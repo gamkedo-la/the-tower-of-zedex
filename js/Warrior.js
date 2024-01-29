@@ -242,7 +242,6 @@ function warriorClass() {
 
 
 	this.draw = function() {
-		this.drawPlayerAttackHitBoxes();
 		drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
 		//canvasContext.drawImage(playerSprites, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y)
 
