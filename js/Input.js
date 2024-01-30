@@ -10,10 +10,41 @@ const KEY_LETTER_D = 68;
 const KEY_LETTER_X = 88;
 
 function initInput() {
+	canvas.addEventListener('mousemove', updateMousePos);
+	canvas.addEventListener('click', mouseButtonClicked);
+	canvas.addEventListener('mousedown', mouseButtonPressed);
+	
 	document.addEventListener("keydown", keyPressed);
 	document.addEventListener("keyup", keyReleased);
 
 	p1.setupControls(KEY_UP_ARROW,KEY_RIGHT_ARROW,KEY_DOWN_ARROW,KEY_LEFT_ARROW);
+}
+
+function updateMousePos(evt) {
+	var rect = canvas.getBoundingClientRect();
+	var root = document.documentElement;
+
+	mouseX = evt.clientX - rect.left - root.scrollLeft;
+	mouseY = evt.clientY - rect.top - root.scrollTop;
+}
+
+
+function mouseButtonClicked(evt) {
+	var rect = canvas.getBoundingClientRect();
+	var root = document.documentElement;
+
+	mouseX = evt.clientX - rect.left - root.scrollLeft;
+	mouseY = evt.clientY - rect.top - root.scrollTop;
+
+	var clickedIndex = getTileIndexAtPixelCoord(mouseX, mouseY);
+
+	console.log(freshMap[clickedIndex], storedTileValue);
+	
+	freshMap[getTileIndexAtPixelCoord(mouseX, mouseY)] = storedTileValue;
+}
+
+function mouseButtonPressed(evt) {
+	console.log('mouse button pressed NOW!')
 }
 
 function setKeyHoldState(thisKey, thisPlayer, setTo) {
