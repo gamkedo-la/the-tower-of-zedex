@@ -38,6 +38,8 @@ const TILE_GHOST = 8;
 const TILE_ZOMBIE = 9;
 
 
+
+
 	//WORKED OUT WITH CHRIS
 function levelHasValue(checkValue) {
 	for(var i=0; i<roomGrid.length; i++) {

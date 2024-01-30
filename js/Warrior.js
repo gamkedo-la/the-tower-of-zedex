@@ -97,6 +97,9 @@ function warriorClass() {
 					console.log(enemyList[i]+" has taken 1 damage.");
 					console.log(enemyList[i]+" Health: "+enemyList[i].health);
 					enemyList[i].health -= 1;
+					if( enemyList[i].health < 1){
+						enemyList[i].readyToRemove = true;
+					}
 				}
 		}
 		
