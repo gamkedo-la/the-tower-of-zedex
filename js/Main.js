@@ -62,33 +62,12 @@ function loadingDoneSoStartGame() {
 		}
 	} while (enemyTypeFound);
 
-
-	// OTHER SOLUTION
-	// for(var i=0; i<roomGrid.length; i++) {
-	// 	console.log("Searching for enemies...");
-
-	// 	if(roomGrid[i] == TILE_ZOMBIE) { 
-	// 		console.log("found ghost at index "+i);
-
-	// 		var zombie = new enemyClass();
-	// 		zombie.init( zombieSprites );
-	//  		enemyList.push(zombie);
-	// 		roomGrid[i] = 0;
-	// 	}
-
-	// 	if(roomGrid[i] == TILE_GHOST) { 
-	// 		console.log("found ghost at index "+i);
-
-	// 		var ghost = new ghostClass();
-	//  		ghost.init();
-	//  		enemyList.push(ghost);
-	// 		roomGrid[i] = 0;
-	// 	}
-	// }
-
-
-
-	initInput();  
+	initInput(); 
+	setupTileButtons();
+	
+	console.log("The Tower of Zedex");
+	console.log("Press -E- to go into Map Editing Mode");
+	console.log("Press -P- to Play");
 }
 
 function moveEverything() {
@@ -113,13 +92,14 @@ function drawEverything() {
 
 		hudDisplay.draw();
 		p1.drawPlayerAttackHitBoxes();
-	} else if (MapEditingMode){
-		
-	} else if (TitleScreen){
-		console.log("The Tower of Zedex");
+	} 
+	else if (MapEditingMode){
+		loadLevel(freshMap)
+		drawRoom();
+	} 
+	else if (TitleScreen){
 		console.log("Title Screen Mode");
-		console.log("Press -E- to go into Map Editing Mode");
-		console.log("Press -P- to Play")
+		
 	}
 	
 }
