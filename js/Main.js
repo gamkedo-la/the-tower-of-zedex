@@ -5,6 +5,9 @@ var p1 = new warriorClass();
 
 var enemyList = [];
 
+var TitleScreen = true;
+var MapEditingMode = false;
+
 function moveEnemies() {
 	for( var i = 0; i<enemyList.length; i++ ) {
 		enemyList[i].move();
@@ -101,11 +104,22 @@ function moveEverything() {
 
 function drawEverything() {
 	colorRect(0,0, canvas.width, canvas.height, "black")
-	drawRoom();
-	
-	p1.draw();
-	drawEnemies();
 
-	hudDisplay.draw();
-	p1.drawPlayerAttackHitBoxes();
+	if(!TitleScreen && !MapEditingMode){
+		drawRoom();
+	
+		p1.draw();
+		drawEnemies();
+
+		hudDisplay.draw();
+		p1.drawPlayerAttackHitBoxes();
+	} else if (MapEditingMode){
+		
+	} else if (TitleScreen){
+		console.log("The Tower of Zedex");
+		console.log("Title Screen Mode");
+		console.log("Press -E- to go into Map Editing Mode");
+		console.log("Press -P- to Play")
+	}
+	
 }

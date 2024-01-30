@@ -44,7 +44,21 @@ function keyPressed(evt) {
 
 	if(evt.keyCode == KEY_LETTER_X){
 		p1.boomStickShot();
-	}	
+	}
+	
+	if(TitleScreen || MapEditingMode){
+		if(evt.key == "p"){
+			TitleScreen = false;
+			MapEditingMode = false;
+		}
+	}
+
+	if(TitleScreen == true && evt.key == "e") {
+		MapEditingMode = true;
+		TitleScreen = false;
+		console.log("Map Editing Mode");
+		console.log("Press -P- to End Map Editing Mode and Play")
+	}
 
 	if(evt.key == "1"){
 		//check inventory slot one for pickupType and return function

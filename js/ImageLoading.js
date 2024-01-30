@@ -60,7 +60,11 @@ function loadImages() {
 	{tileType:TILE_GOAL, theFile:"world_goal.png"},
 	{tileType:TILE_KEY, theFile:"world_key.png"},
 	{tileType:TILE_DOOR, theFile:"world_door.png"},
-	{tileType:TILE_SPIKE, theFile:"world_spike.png"}
+	{tileType:TILE_SPIKE, theFile:"world_spike.png"},
+	{tileType:TILE_CRYPT_WALL1, theFile:"crypt_wall1.png"},
+	{tileType:TILE_CRYPT_WALL2, theFile:"crypt_wall2.png"},
+	{tileType:TILE_CRYPT_WALL3, theFile:"crypt_wall3.png"},
+	{tileType:TILE_CRYPT_DAMAGE_FLOOR, theFile:"crypt_damageFloor.png"},
 	];
 
   	picsToLoad = imageList.length;
