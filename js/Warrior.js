@@ -175,12 +175,14 @@ function warriorClass() {
 				loadLevel(nextLevel)
 				break;
 			case TILE_DOOR:
-				if(this.keysHeld > 0) {
-					this.keysHeld--; // one less key
-					document.getElementById("debugText").innerHTML = "Keys: "+this.keysHeld;
-
-					roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+				for(var i = 0; i<hudDisplay.inventory.length; i++){
+					if(hudDisplay.inventory[i] == 3 || hudDisplay.inventory[i] == 4){
+						hudDisplay.inventory[i] = 0;
+						// roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+						return;
+					}
 				}
+				roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
 				break;
 			case TILE_MASTER_KEY:
 				for(var i = 0; i<hudDisplay.inventory.length; i++){
