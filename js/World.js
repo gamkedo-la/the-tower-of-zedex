@@ -88,7 +88,6 @@ function getTileIndexAtPixelCoord(pixelX,pixelY) {
 // }
 
 function loadLevel(level) {
-  console.log("level is being loaded!");
   roomGrid = level.slice();
 }
 

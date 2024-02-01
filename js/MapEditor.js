@@ -50,44 +50,44 @@ var freshMap = [
     1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,
     1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,
    20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
-]
-
+];
 
 
 let storedTileValue;
 
 function setStoredTileValue(val) {
-storedTileValue = val;
-console.log(storedTileValue)
+    storedTileValue = val;
+    console.log(storedTileValue)
 
-return storedTileValue;
+    return storedTileValue;
 }
 
 var imageList = [
 // {varName: warriorPic, theFile: "warrior.png"},
 
-{varName:playerFacingDown, theFile:"warrior_down.png"},
+    {varName:playerFacingDown, theFile:"warrior_down.png"},
 	{varName:playerFacingLeft, theFile:"warrior_left.png"},
 	{varName:playerFacingRight, theFile:"warrior_right.png"},
 	{varName:playerFacingUp, theFile:"warrior_up.png"},
 	{varName:playerSprites, theFile:"playerSpriteSheet.png"},
 	{varName:healthIcon, theFile:"health_icon.png"},
 	{varName:boomstickIcon, theFile:"boomstick_icon.png"},
-	{varName:swordIcon, theFile:"sword_icon.png"},
-	{varName:pickupIcons, theFile:"pickupIcons.png"},
-	{varName:zombieSprites, theFile:"zombieSprites.png"},
+	// {varName:swordIcon, theFile:"sword_icon.png"},
+	// {varName:pickupIcons, theFile:"pickupIcons.png"},
+	// {varName:zombieSprites, theFile:"zombieSprites.png"},
 	
-	{tileType:TILE_GROUND, theFile:"world_ground.png"},
-	{tileType:TILE_WALL, theFile:"world_wall.png"},
-	{tileType:TILE_GOAL, theFile:"world_goal.png"},
-	{tileType:TILE_KEY, theFile:"world_key.png"},
-	{tileType:TILE_DOOR, theFile:"world_door.png"},
-	{tileType:TILE_SPIKE, theFile:"world_spike.png"},
-	{tileType:TILE_CRYPT_WALL1, theFile:"crypt_wall1.png"},
-	{tileType:TILE_CRYPT_WALL2, theFile:"crypt_wall2.png"},
-	{tileType:TILE_CRYPT_WALL3, theFile:"crypt_wall3.png"},
-	{tileType:TILE_CRYPT_DAMAGE_FLOOR, theFile:"crypt_damageFloor.png"},
+	{tileType:TILE_GROUND,      theFile:"images/world_ground.png",     tileValue: 0 },
+	{tileType:TILE_WALL,        theFile:"images/world_wall.png",       tileValue: 1 },
+	{tileType:TILE_GOAL,        theFile:"images/world_goal.png",       tileValue: 2 },
+	{tileType:TILE_KEY,         theFile:"images/world_key.png",        tileValue: 3 },
+	{tileType:TILE_DOOR,        theFile:"images/world_door.png",       tileValue: 4 },
+	{tileType:TILE_SPIKE,       theFile:"images/world_spike.png",      tileValue: 5 },
+	{tileType:TILE_CRYPT_WALL1, theFile:"images/crypt_wall1.png",      tileValue: 20 },
+	{tileType:TILE_CRYPT_WALL2, theFile:"images/crypt_wall2.png",      tileValue: 21 },
+	{tileType:TILE_CRYPT_WALL3, theFile:"images/crypt_wall3.png",      tileValue: 22 },
+	{tileType:TILE_CRYPT_DAMAGE_FLOOR, theFile:"images/crypt_damageFloor.png",     tileValue: 23 },
 ];
+
 
 function setupTileButtons() {
     let tileButtonContainer = document.getElementById('editor-mode');
