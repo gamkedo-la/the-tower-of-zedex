@@ -54,7 +54,6 @@ const TILE_CRYPT_DAMAGE_FLOOR = 23;
 
 
 
-
 	//WORKED OUT WITH CHRIS
 function levelHasValue(checkValue) {
 	for(var i=0; i<roomGrid.length; i++) {
@@ -94,6 +93,7 @@ function getTileIndexAtPixelCoord(pixelX,pixelY) {
 // 		  checkTileType == TILE_KEY ||
 // 		  checkTileType == TILE_DOOR);
 // }
+
 
 function loadLevel(level) {
   roomGrid = level.slice();

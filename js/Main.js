@@ -8,6 +8,7 @@ var enemyList = [];
 var TitleScreen = true;
 var MapEditingMode = false;
 
+
 function moveEnemies() {
 	for( var i = 0; i<enemyList.length; i++ ) {
 		enemyList[i].move();

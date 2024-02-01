@@ -168,8 +168,7 @@ function warriorClass() {
 				this.y = nextY;
 				break;
 			case TILE_GOAL:
-				document.getElementById("debugText").innerHTML = this.myName + " won";
-				this.reset();
+				loadLevel(nextLevel)
 				break;
 			case TILE_DOOR:
 				if(this.keysHeld > 0) {
@@ -179,17 +178,49 @@ function warriorClass() {
 					roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
 				}
 				break;
-			case TILE_KEY:
+			case TILE_MASTER_KEY:
 				for(var i = 0; i<hudDisplay.inventory.length; i++){
 					if(hudDisplay.inventory[i] == 0){
-						hudDisplay.inventory[i] = 3;
+						hudDisplay.inventory[i] = 4;
+						roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
 						return;
 					}
 				}
 				this.x = nextX;
 				this.y = nextY;
-
-				roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+				break;
+			case TILE_KEY:
+				for(var i = 0; i<hudDisplay.inventory.length; i++){
+					if(hudDisplay.inventory[i] == 0){
+						hudDisplay.inventory[i] = 3;
+						roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+						return;
+					}
+				}
+				this.x = nextX;
+				this.y = nextY;
+				break;
+			case TILE_POTION:
+				for(var i = 0; i<hudDisplay.inventory.length; i++){
+					if(hudDisplay.inventory[i] == 0){
+						hudDisplay.inventory[i] = 1;
+						roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+						return;
+					}
+				}
+				this.x = nextX;
+				this.y = nextY;
+				break;
+			case TILE_AMMO:
+				for(var i = 0; i<hudDisplay.inventory.length; i++){
+					if(hudDisplay.inventory[i] == 0){
+						hudDisplay.inventory[i] = 2;
+						roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+						return;
+					}
+				}
+				this.x = nextX;
+				this.y = nextY;
 				break;
 			case TILE_SPIKE:
 				this.x = nextX;

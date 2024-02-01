@@ -95,30 +95,37 @@ function keyPressed(evt) {
 		console.log("Press -P- to End Map Editing Mode and Play")
 	}
 
+
 	if(evt.key == "1"){
 		//check inventory slot one for pickupType and return function
 		console.log("Key 1 has been pressed")
 		hudDisplay.pickupTypes[hudDisplay.inventory[0]].call(hudDisplay);
+		hudDisplay.inventory[0] = 0;
 	}
 	if(evt.key == "2"){
 		console.log("Key 2 has been pressed")
 		hudDisplay.pickupTypes[hudDisplay.inventory[1]].call(hudDisplay);
+		hudDisplay.inventory[1] = 0;
 	}
 	if(evt.key == "3"){
 		console.log("Key 3 has been pressed")
 		hudDisplay.pickupTypes[hudDisplay.inventory[2]].call(hudDisplay);
+		hudDisplay.inventory[2] = 0;
 	}
 	if(evt.key == "4"){
 		console.log("Key 4 has been pressed")
 		hudDisplay.pickupTypes[hudDisplay.inventory[3]].call(hudDisplay);
+		hudDisplay.inventory[3] = 0;
 	}
 	if(evt.key == "5"){
 		console.log("Key 5 has been pressed")
 		hudDisplay.pickupTypes[hudDisplay.inventory[4]].call(hudDisplay);
+		hudDisplay.inventory[4] = 0;
 	}
 	if(evt.key == "6"){
 		console.log("Key 6 has been pressed")
 		hudDisplay.pickupTypes[hudDisplay.inventory[5]].call(hudDisplay);
+		hudDisplay.inventory[5] = 0;
 	}
 
 	evt.preventDefault(); // without this, arrow keys scroll the browser!
