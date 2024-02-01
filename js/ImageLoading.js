@@ -11,7 +11,7 @@ var swordIcon=document.createElement("img");
 var keyPickup=document.createElement("img");
 var pickupIcons=document.createElement("img");
 
-var zombieSprites=document.createElement("img");
+
 
 var tilePics = [];
 
@@ -42,25 +42,22 @@ function loadImages() {
 	{varName:playerFacingRight, theFile:"warrior_right.png"},
 	{varName:playerFacingUp, theFile:"warrior_up.png"},
 	{varName:playerSprites, theFile:"playerSpriteSheet.png"},
-	/*  
-	  enemy sprites HERE 
-	*/
-	// {varName:keyPickup, theFile:"world_key.png"},
 
 	{varName:healthIcon, theFile:"health_icon.png"},
 	{varName:boomstickIcon, theFile:"boomstick_icon.png"},
 	{varName:swordIcon, theFile:"sword_icon.png"},
-
 	{varName:pickupIcons, theFile:"pickupIcons.png"},
-
-	{varName:zombieSprites, theFile:"zombieSprites.png"},
 	
 	{tileType:TILE_GROUND, theFile:"world_ground.png"},
 	{tileType:TILE_WALL, theFile:"world_wall.png"},
-	{tileType:TILE_GOAL, theFile:"world_goal.png"},
-	{tileType:TILE_KEY, theFile:"world_key.png"},
+	{tileType:TILE_CHEST, theFile:"chest.png"},
+	{tileType:TILE_KEY, theFile:"pickup_key.png"},
 	{tileType:TILE_DOOR, theFile:"world_door.png"},
 	{tileType:TILE_SPIKE, theFile:"world_spike.png"},
+	{tileType:TILE_POTION, theFile:"pickup_potion.png"},
+	{tileType:TILE_AMMO, theFile:"pickup_ammo.png"},
+	{tileType:TILE_MASTER_KEY, theFile:"pickup_masterKey.png"},
+
 	{tileType:TILE_CRYPT_WALL1, theFile:"crypt_wall1.png"},
 	{tileType:TILE_CRYPT_WALL2, theFile:"crypt_wall2.png"},
 	{tileType:TILE_CRYPT_WALL3, theFile:"crypt_wall3.png"},

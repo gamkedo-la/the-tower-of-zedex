@@ -37,7 +37,7 @@ function warriorClass() {
 	}
 	
 	this.reset = function() {
-	hudDisplay.currentHealth = hudDisplay.maxHealth - 50; // Testing Feature
+	hudDisplay.currentHealth = hudDisplay.maxHealth;
 		this.keysHeld = 0;
 		if(this.homeX == undefined) {
 			for(var i=0; i<roomGrid.length; i++) {
@@ -180,8 +180,14 @@ function warriorClass() {
 				}
 				break;
 			case TILE_KEY:
-				this.keysHeld++; // gain key
-				document.getElementById("debugText").innerHTML = "Keys: "+this.keysHeld;
+				for(var i = 0; i<hudDisplay.inventory.length; i++){
+					if(hudDisplay.inventory[i] == 0){
+						hudDisplay.inventory[i] = 3;
+						return;
+					}
+				}
+				this.x = nextX;
+				this.y = nextY;
 
 				roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
 				break;

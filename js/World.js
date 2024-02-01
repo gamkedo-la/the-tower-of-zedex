@@ -31,19 +31,19 @@ const TILE_H = 32;
 const TILE_GROUND = 0;
 const TILE_WALL = 1;
 const TILE_PLAYER = 2;
-const TILE_GOAL = 3;
+const TILE_CHEST = 3;
 const TILE_KEY = 4;
 const TILE_DOOR = 5;
 const TILE_SPIKE = 6;
-//		MASTER_KEY
-//		AMMO_BOX
-//		HEALTH_POTION
+const TILE_MASTER_KEY = 7;
+const TILE_AMMO = 8;
+const TILE_POTION = 9;
 //		CHEST
 //		EMPTY_CHEST
 //		SPIKE_WALL
 
-const TILE_GHOST = 8;
-const TILE_ZOMBIE = 9;
+const TILE_GHOST = 60;
+const TILE_ZOMBIE = 61;
 
 const TILE_CRYPT_WALL1 = 20;
 const TILE_CRYPT_WALL2 = 21;
