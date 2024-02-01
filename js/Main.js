@@ -72,9 +72,6 @@ function loadingDoneSoStartGame() {
 	setupTileButtons();
 	//loadLevel(levelOne)
 	
-	console.log("The Tower of Zedex");
-	console.log("Press -E- to go into Map Editing Mode");
-	console.log("Press -P- to Play");
 }
 
 /*
@@ -133,7 +130,6 @@ function drawEverything() {
 		drawRoom();
 	} 
 	else if (TitleScreen){
-		console.log("Title Screen Mode");
 		printText(" The Tower of Zedex ", canvas.width/4, 300, 40, "white");
 		printText(" press -P- to Play ", canvas.width/4, 360, 16, "grey");
 		printText(" press -E- for Map Editing Mode ", canvas.width/4, 390, 16, "grey");
