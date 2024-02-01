@@ -35,13 +35,14 @@ function mouseButtonClicked(evt) {
 
 	mouseX = evt.clientX - rect.left - root.scrollLeft;
 	mouseY = evt.clientY - rect.top - root.scrollTop;
+	console.log(storedTileValue)
 	if(storedTileValue == -1) {
 		console.log("no tile brush defined")
 		return
 	}
 	var clickedIndex = getTileIndexAtPixelCoord(mouseX, mouseY);
 	
-	freshMap[getTileIndexAtPixelCoord(mouseX, mouseY)] = storedTileValue;
+	roomGrid[getTileIndexAtPixelCoord(mouseX, mouseY)] = storedTileValue;
 }
 
 function mouseButtonPressed(evt) {
