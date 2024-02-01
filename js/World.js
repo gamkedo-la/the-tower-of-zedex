@@ -35,6 +35,12 @@ const TILE_GOAL = 3;
 const TILE_KEY = 4;
 const TILE_DOOR = 5;
 const TILE_SPIKE = 6;
+//		MASTER_KEY
+//		AMMO_BOX
+//		HEALTH_POTION
+//		CHEST
+//		EMPTY_CHEST
+//		SPIKE_WALL
 
 const TILE_GHOST = 8;
 const TILE_ZOMBIE = 9;
@@ -43,6 +49,8 @@ const TILE_CRYPT_WALL1 = 20;
 const TILE_CRYPT_WALL2 = 21;
 const TILE_CRYPT_WALL3 = 22;
 const TILE_CRYPT_DAMAGE_FLOOR = 23;
+
+
 
 
 
@@ -89,6 +97,9 @@ function getTileIndexAtPixelCoord(pixelX,pixelY) {
 
 function loadLevel(level) {
   roomGrid = level.slice();
+  if(MapEditingMode == false) {
+		spawnEnemiesAndPlay();
+  }
 }
 
 function drawRoom() {
