@@ -40,7 +40,7 @@ function loadingDoneSoStartGame() {
 			drawEverything();
 		}, 1000/framesPerSecond);
 	
-	p1.init(playerFacingDown, "Blue");
+	p1.init(playerFacingUp, "Blue");
 
 		// WORKED OUT WITH CHRIS
 	var enemyTypeFound = false;
@@ -121,6 +121,7 @@ function drawEverything() {
 	colorRect(0,0, canvas.width, canvas.height, "black")
 
 	if(!TitleScreen && !MapEditingMode){
+		loadLevel(level[0])
 		drawRoom();
 	
 		p1.draw();
