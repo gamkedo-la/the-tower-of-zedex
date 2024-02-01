@@ -65,8 +65,6 @@ function loadingDoneSoStartGame() {
 			moveEverything();
 			drawEverything();
 		}, 1000/framesPerSecond);
-	
-	spawnEnemiesAndPlay();
 
 	initInput(); 
 	setupTileButtons();
@@ -83,30 +81,6 @@ function nextLevel() {
 	loadLevel(level[levelNow]);
 }
 
-function loadLevel(whichLevel) {	
-	resetEnemyLists();
-	roomGrid = whichLevel.slice();
-	p1.init(playerFacingDown, "Blue");
-	
-	var enemyTypeFound = false;
-		do { 
-			enemyTypeFound = levelHasValue(TILE_ZOMBIE);
-			if( enemyTypeFound ) {
-				var zombie = new enemyClass();
-				zombie.init( zombieSprites );
-				enemyList.push(zombie);
-			}
-		} while (enemyTypeFound);
-
-		do {
-			enemyTypeFound = levelHasValue(TILE_GHOST);
-			if( enemyTypeFound ) {
-				var ghost = new ghostClass();
-				ghost.init( zombieSprites ); // to do: no ghostSprites yet, but those will go here
-				enemyList.push(ghost);
-			}
-		} while (enemyTypeFound);
-	}
 */
 
 function moveEverything() {
@@ -116,7 +90,7 @@ function moveEverything() {
 	if(hudDisplay.currentHealth < 1){
 		p1.reset();
 	}
-
+	console.log("moving everything")
 	hudDisplay.checkInvisibility();
 	p1.move();
 	moveEnemies();

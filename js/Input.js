@@ -35,16 +35,17 @@ function mouseButtonClicked(evt) {
 
 	mouseX = evt.clientX - rect.left - root.scrollLeft;
 	mouseY = evt.clientY - rect.top - root.scrollTop;
-
+	if(storedTileValue == -1) {
+		console.log("no tile brush defined")
+		return
+	}
 	var clickedIndex = getTileIndexAtPixelCoord(mouseX, mouseY);
-
-	console.log(freshMap[clickedIndex], storedTileValue);
 	
 	freshMap[getTileIndexAtPixelCoord(mouseX, mouseY)] = storedTileValue;
 }
 
 function mouseButtonPressed(evt) {
-	console.log('mouse button pressed NOW!')
+
 }
 
 function setKeyHoldState(thisKey, thisPlayer, setTo) {
@@ -81,12 +82,14 @@ function keyPressed(evt) {
 		if(evt.key == "p"){
 			TitleScreen = false;
 			MapEditingMode = false;
+			loadLevel(level[0]);
 		}
 	}
 
 	if(TitleScreen == true && evt.key == "e") {
 		MapEditingMode = true;
 		TitleScreen = false;
+		loadLevel(level[0]);
 		console.log("Map Editing Mode");
 		console.log("Press -P- to End Map Editing Mode and Play")
 	}
