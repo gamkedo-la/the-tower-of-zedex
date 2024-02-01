@@ -90,7 +90,6 @@ function moveEverything() {
 	if(hudDisplay.currentHealth < 1){
 		p1.reset();
 	}
-	console.log("moving everything")
 	hudDisplay.checkInvisibility();
 	p1.move();
 	moveEnemies();
@@ -100,7 +99,6 @@ function drawEverything() {
 	colorRect(0,0, canvas.width, canvas.height, "black")
 
 	if (MapEditingMode){
-		loadLevel(freshMap)
 		drawRoom();
 	} 
 	else if (TitleScreen){
@@ -109,7 +107,6 @@ function drawEverything() {
 		printText(" press -E- for Map Editing Mode ", canvas.width/4, 390, 16, "grey");
 		
 	} else {
-		loadLevel(level[0])
 		drawRoom();
 	
 		p1.draw();

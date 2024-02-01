@@ -89,7 +89,7 @@ function keyPressed(evt) {
 	if(TitleScreen == true && evt.key == "e") {
 		MapEditingMode = true;
 		TitleScreen = false;
-		loadLevel(level[0]);
+		loadLevel(freshMap);
 		console.log("Map Editing Mode");
 		console.log("Press -P- to End Map Editing Mode and Play")
 	}
