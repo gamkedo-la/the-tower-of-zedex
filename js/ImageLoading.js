@@ -8,8 +8,12 @@ var healthIcon=document.createElement("img");
 var boomstickIcon=document.createElement("img");
 var swordIcon=document.createElement("img");
 
-var keyPickup=document.createElement("img");
-var pickupIcons=document.createElement("img");
+//var keyPickup=document.createElement("img");
+//var pickupIcons=document.createElement("img");
+var pickupPotion=document.createElement("img");
+var pickupAmmo=document.createElement("img");
+var pickupKey=document.createElement("img");
+var pickupMasterKey=document.createElement("img");
 
 
 
@@ -46,7 +50,11 @@ function loadImages() {
 	{varName:healthIcon, theFile:"health_icon.png"},
 	{varName:boomstickIcon, theFile:"boomstick_icon.png"},
 	{varName:swordIcon, theFile:"sword_icon.png"},
-	{varName:pickupIcons, theFile:"pickupIcons.png"},
+	//{varName:pickupIcons, theFile:"pickupIcons.png"},
+	{varName:pickupPotion, theFile:"pickup_potion.png"},
+	{varName:pickupAmmo, theFile:"pickup_ammo.png"},
+	{varName:pickupKey, theFile:"pickup_key.png"},
+	{varName:pickupMasterKey, theFile:"pickup_masterKey.png"},
 	
 	{tileType:TILE_GROUND, theFile:"world_ground.png"},
 	{tileType:TILE_WALL, theFile:"world_wall.png"},
