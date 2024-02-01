@@ -8,7 +8,7 @@ function warriorClass() {
 
 	// boomstick shot list
 	this.myShotList = [];
-	this.totalShots = 1;
+	this.totalShots = 3;
 
 	this.facingDirection = "down";
 	
@@ -108,11 +108,15 @@ function warriorClass() {
 
 
 	this.boomStickShot = function(){
-		if(this.myShotList.length < this.totalShots){
-			let tempShot = new BoomStickClass();
-			tempShot.shootFrom(this);
-			this.myShotList.push(tempShot);
+		if(hudDisplay.currentAmmo > 0){
+			if(this.myShotList.length < this.totalShots){
+				let tempShot = new BoomStickClass();
+				tempShot.shootFrom(this);
+				this.myShotList.push(tempShot);
+				hudDisplay.currentAmmo -=1;
+			}
 		}
+		
 	}
 	
 	this.removeBullet = function (){
