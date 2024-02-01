@@ -31,14 +31,14 @@ const TILE_H = 32;
 const TILE_GROUND = 0;
 const TILE_WALL = 1;
 const TILE_PLAYER = 2;
-const TILE_CHEST = 3;
+const TILE_GOAL = 3;
 const TILE_KEY = 4;
 const TILE_DOOR = 5;
 const TILE_SPIKE = 6;
 const TILE_MASTER_KEY = 7;
 const TILE_AMMO = 8;
 const TILE_POTION = 9;
-//		CHEST
+const TILE_CHEST = 10;
 //		EMPTY_CHEST
 //		SPIKE_WALL
 
