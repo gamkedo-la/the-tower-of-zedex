@@ -83,7 +83,7 @@ function keyPressed(evt) {
 		if(evt.key == "p"){
 			TitleScreen = false;
 			MapEditingMode = false;
-			loadLevel(level[0]);
+			loadLevel(level[currentLevel]);
 		}
 	}
 

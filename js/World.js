@@ -96,6 +96,7 @@ function getTileIndexAtPixelCoord(pixelX,pixelY) {
 
 
 function loadLevel(level) {
+	console.log(currentLevel , level);
   roomGrid = level.slice();
   if(MapEditingMode == false) {
 		spawnEnemiesAndPlay();

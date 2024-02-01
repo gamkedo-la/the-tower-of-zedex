@@ -1,5 +1,5 @@
 // tuning constants
-const PLAYER_MOVE_SPEED = 3.0;
+const PLAYER_MOVE_SPEED = 4.0;
 
 function warriorClass() {
 	// variables to keep track of position
@@ -172,7 +172,8 @@ function warriorClass() {
 				this.y = nextY;
 				break;
 			case TILE_GOAL:
-				loadLevel(nextLevel)
+				currentLevel += 1;
+				loadLevel(level[currentLevel]);
 				break;
 			case TILE_DOOR:
 				for(var i = 0; i<hudDisplay.inventory.length; i++){

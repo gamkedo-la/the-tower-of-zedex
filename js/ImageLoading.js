@@ -58,13 +58,14 @@ function loadImages() {
 	
 	{tileType:TILE_GROUND, theFile:"world_ground.png"},
 	{tileType:TILE_WALL, theFile:"world_wall.png"},
-	{tileType:TILE_CHEST, theFile:"chest.png"},
+	{tileType:TILE_GOAL, theFile:"world_stairs.png"},
 	{tileType:TILE_KEY, theFile:"pickup_key.png"},
 	{tileType:TILE_DOOR, theFile:"world_door.png"},
 	{tileType:TILE_SPIKE, theFile:"world_spike.png"},
 	{tileType:TILE_POTION, theFile:"pickup_potion.png"},
 	{tileType:TILE_AMMO, theFile:"pickup_ammo.png"},
 	{tileType:TILE_MASTER_KEY, theFile:"pickup_masterKey.png"},
+	{tileType:TILE_CHEST, theFile:"chest.png"},
 
 	{tileType:TILE_CRYPT_WALL1, theFile:"crypt_wall1.png"},
 	{tileType:TILE_CRYPT_WALL2, theFile:"crypt_wall2.png"},
