@@ -136,7 +136,7 @@ function enemyClass() {
 	}
 
 	this.draw = function() {
-		//colorRect(this.x, this.y, 32,32, 'green');
+		drawRect(this.x, this.y, 32,32, 3, 'green');
 
 		// this.sprite;
 		// this.frameIndex =      0;
