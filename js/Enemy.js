@@ -26,6 +26,7 @@ function enemyClass() {
 	this.ticksUntilDirectionChange = 60;
 
 	// Animation stuff
+	this.sprite;
 	this.frameIndex =      0;
 	this.tickCount =       0;
 	this.ticksPerFrame =  10;
@@ -135,8 +136,8 @@ function enemyClass() {
 	}
 
 	this.draw = function() {
-		colorRect(this.x, this.y, 32,32, 'green');
-		//drawBitmapCenteredAtLocationWithRotation( this.sprite, this.x, this.y, 0.0 )
+		//colorRect(this.x, this.y, 32,32, 'green');
+		drawBitmapCenteredAtLocationWithRotation( this.sprite, this.x, this.y, 0.0 )
 	}
 
 	

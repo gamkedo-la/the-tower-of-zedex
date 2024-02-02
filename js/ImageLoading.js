@@ -4,6 +4,10 @@ var playerFacingRight=document.createElement("img");
 var playerFacingUp=document.createElement("img");
 var playerSprites=document.createElement("img");
 
+var zombieSprite1=document.createElement("img");
+var zombieSprite2=document.createElement("img");
+
+
 var healthIcon=document.createElement("img");
 var boomstickIcon=document.createElement("img");
 var swordIcon=document.createElement("img");
@@ -46,6 +50,9 @@ function loadImages() {
 	{varName:playerFacingRight, theFile:"warrior_right.png"},
 	{varName:playerFacingUp, theFile:"warrior_up.png"},
 	{varName:playerSprites, theFile:"playerSpriteSheet.png"},
+
+	{varName:zombieSprite1, theFile:"zombieSprite_1.png"},
+	{varName:zombieSprite2, theFile:"zombieSprite_2.png"},
 
 	{varName:healthIcon, theFile:"health_icon.png"},
 	{varName:boomstickIcon, theFile:"boomstick_icon.png"},
