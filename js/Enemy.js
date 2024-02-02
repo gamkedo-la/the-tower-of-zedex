@@ -34,7 +34,7 @@ function enemyClass() {
 	this.init = function( enemyPic ) {
 		this.health = this.maxHealth;
 		this.readyToRemove = false;
-		this.sprite = zombieSprites;
+		this.sprite = enemyPic;
 		this.reset();
 	}
 

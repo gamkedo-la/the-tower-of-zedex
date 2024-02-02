@@ -43,7 +43,7 @@ function spawnEnemiesAndPlay() {
 		enemyTypeFound = levelHasValue(TILE_ZOMBIE);
 		if( enemyTypeFound ) {
 			var zombie = new enemyClass();
-			zombie.init( zombieSprites );
+			zombie.init( playerFacingDown );
 			enemyList.push(zombie);
 		}
 	} while (enemyTypeFound);
@@ -52,7 +52,7 @@ function spawnEnemiesAndPlay() {
 		enemyTypeFound = levelHasValue(TILE_GHOST);
 		if( enemyTypeFound ) {
 			var ghost = new ghostClass();
-			ghost.init( zombieSprites ); // to do: no ghostSprites yet, but those will go here
+			ghost.init( playerFacingDown ); // to do: no ghostSprites yet, but those will go here
 			enemyList.push(ghost);
 		}
 	} while (enemyTypeFound);

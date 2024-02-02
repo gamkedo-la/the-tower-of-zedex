@@ -45,7 +45,6 @@ function BoomStickClass() {
 	}
 
     this.movement = function() {
-	
         if(this.shotLife > 0){
 			this.shotLife--;
             this.x += this.xv;
@@ -53,6 +52,23 @@ function BoomStickClass() {
         }
 		else {
 			this.readyToRemove = true
+		}
+
+		for(var i = 0; i < enemyList.length; i++){
+			if(	this.x > enemyList[i].x 		&& 
+				this.x < enemyList[i].x + 32 	&& // 32 is a stand-in for tile width
+				this.y > enemyList[i].y &&
+				this.y < enemyList[i].y + 32 )
+				{
+					this.shotLife = 0;
+					this.readyToRemove = true;
+					console.log(enemyList[i]+" has taken 1 damage.");
+					console.log(enemyList[i]+" Health: "+enemyList[i].health);
+					enemyList[i].health -= 1;
+					if( enemyList[i].health < 1){
+						enemyList[i].readyToRemove = true;
+				}
+			}
 		}
 
 	}	
