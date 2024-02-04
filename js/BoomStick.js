@@ -1,6 +1,6 @@
 const SHOT_SPEED = 6.0;
-const SHOT_LIFE = 30;
-const SHOT_DISPLAY_RADIUS = 2.0;
+const SHOT_LIFE = 40;
+const SHOT_DISPLAY_RADIUS = 4.0;
 
 function BoomStickClass() {
     this.x;
@@ -83,7 +83,8 @@ function BoomStickClass() {
 	
 	this.draw = function(){
 		if(this.shotLife > 0){
-			colorCircle(this.x, this.y, SHOT_DISPLAY_RADIUS, 'white')
+			colorCircle(this.x, this.y, SHOT_DISPLAY_RADIUS+2, 'yellow')
+			colorCircle(this.x, this.y, SHOT_DISPLAY_RADIUS, 'orange')
 		}
 	}
 }
