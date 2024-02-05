@@ -1,6 +1,9 @@
 const SHOT_SPEED = 6.0;
 const SHOT_LIFE = 40;
-const SHOT_DISPLAY_RADIUS = 4.0;
+const SHOT_DISPLAY_RADIUS = 4
+
+
+.0;
 
 function BoomStickClass() {
     this.x;
