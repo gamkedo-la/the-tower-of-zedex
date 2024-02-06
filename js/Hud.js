@@ -32,7 +32,7 @@ function HudClass() {
 
     this.restoreHealth = function() {
         console.log("Player has used a potion");
-        this.currentHealth += 30;
+        this.currentHealth = this.maxHealth;
     };
 
     this.restoreAmmo = function() {
@@ -41,9 +41,11 @@ function HudClass() {
     };
 
 
+
+
 	this.pickupTypes = {
 		0: function() {
-                console.log("This inventory slot is EMPTY");
+            console.log("This inventory slot is EMPTY");
 
         },
 		1: function() {
@@ -51,22 +53,22 @@ function HudClass() {
         
         },
 		2: function() {
-                this.restoreAmmo();
+            this.restoreAmmo();
             
         },
 		3: function() {
-                console.log("You have a Pick");
+            console.log("You have a Pick");
             
         },
 		4: function() {
-                console.log("You have the Key")
+            console.log("You have the Key")
             
         },
 	}
 
     this.inventory = [ 
-		1, 2, 3, 
-		4, 0, 0,
+		1, 1, 2, 
+		0, 3, 0,
 	];
 
     
@@ -118,7 +120,24 @@ function HudClass() {
 				drawRect(xPosition, yPosition, this.boxSize, this.boxSize, 2, 'grey')
 
 				// draw pickup Icons
-				canvasContext.drawImage(pickupIcons, 32*i, 32*j, 32, 32, xPosition+5, yPosition+5, 32,32)
+				//canvasContext.drawImage(pickupIcons, 32*i, 32*j, 32, 32, xPosition+5, yPosition+5, 32,32)
+                var inventoryIndex = 3*j+i;
+                if(this.inventory[inventoryIndex] == 0){
+                    
+                }
+                else if(this.inventory[inventoryIndex] == 1){
+                    canvasContext.drawImage(pickupPotion, xPosition+5, yPosition+5, 32,32)
+                }
+                else if(this.inventory[inventoryIndex] == 2){
+                    canvasContext.drawImage(pickupAmmo, xPosition+5, yPosition+5, 32,32)
+                }
+                else if(this.inventory[inventoryIndex] == 3){
+                    canvasContext.drawImage(pickupKey, xPosition+5, yPosition+5, 32,32)
+                }
+                else if(this.inventory[inventoryIndex] == 4){
+                    canvasContext.drawImage(pickupMasterKey, xPosition+5, yPosition+5, 32,32)
+                }
+                
 
 				// draw key numbers
 				printText( (1+i)+(j*3) , xPosition, yPosition+6, 20, "cyan" )

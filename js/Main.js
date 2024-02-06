@@ -5,6 +5,10 @@ var p1 = new warriorClass();
 
 var enemyList = [];
 
+var TitleScreen = true;
+var MapEditingMode = false;
+
+
 function moveEnemies() {
 	for( var i = 0; i<enemyList.length; i++ ) {
 		enemyList[i].move();
@@ -29,15 +33,9 @@ window.onload = function() {
 	loadImages();
 }
 
-function loadingDoneSoStartGame() {
-	// these next few lines set up our game logic and render to happen 30 times per second
-	var framesPerSecond = 30;
-	setInterval(function() {
-			moveEverything();
-			drawEverything();
-		}, 1000/framesPerSecond);
-	
-	p1.init(playerFacingDown, "Blue");
+function spawnEnemiesAndPlay() {
+	enemyList = [];
+	p1.init(playerFacingUp, "Blue");
 
 		// WORKED OUT WITH CHRIS
 	var enemyTypeFound = false;
@@ -45,7 +43,7 @@ function loadingDoneSoStartGame() {
 		enemyTypeFound = levelHasValue(TILE_ZOMBIE);
 		if( enemyTypeFound ) {
 			var zombie = new enemyClass();
-			zombie.init( zombieSprites );
+			zombie.init( zombieSprite1 );
 			enemyList.push(zombie);
 		}
 	} while (enemyTypeFound);
@@ -54,46 +52,45 @@ function loadingDoneSoStartGame() {
 		enemyTypeFound = levelHasValue(TILE_GHOST);
 		if( enemyTypeFound ) {
 			var ghost = new ghostClass();
-			ghost.init( zombieSprites ); // to do: no ghostSprites yet, but those will go here
+			ghost.init( playerFacingDown ); // to do: no ghostSprites yet, but those will go here
 			enemyList.push(ghost);
 		}
 	} while (enemyTypeFound);
-
-
-	// OTHER SOLUTION
-	// for(var i=0; i<roomGrid.length; i++) {
-	// 	console.log("Searching for enemies...");
-
-	// 	if(roomGrid[i] == TILE_ZOMBIE) { 
-	// 		console.log("found ghost at index "+i);
-
-	// 		var zombie = new enemyClass();
-	// 		zombie.init( zombieSprites );
-	//  		enemyList.push(zombie);
-	// 		roomGrid[i] = 0;
-	// 	}
-
-	// 	if(roomGrid[i] == TILE_GHOST) { 
-	// 		console.log("found ghost at index "+i);
-
-	// 		var ghost = new ghostClass();
-	//  		ghost.init();
-	//  		enemyList.push(ghost);
-	// 		roomGrid[i] = 0;
-	// 	}
-	// }
-
-
-
-	initInput();  
 }
 
-function moveEverything() {
+
+function loadingDoneSoStartGame() {
+	// these next few lines set up our game logic and render to happen 30 times per second
+	var framesPerSecond = 30;
+	setInterval(function() {
+			moveEverything();
+			drawEverything();
+		}, 1000/framesPerSecond);
+
+	initInput(); 
+	setupTileButtons();
+	//loadLevel(levelOne)
 	
+}
+
+/*
+function nextLevel() {
+	levelNow++;
+	if(levelNow > level.length) {
+		levelNow = 0;
+	}
+	loadLevel(level[levelNow]);
+}
+
+*/
+
+function moveEverything() {
+	if(TitleScreen || MapEditingMode){
+		return;
+	}
 	if(hudDisplay.currentHealth < 1){
 		p1.reset();
 	}
-
 	hudDisplay.checkInvisibility();
 	p1.move();
 	moveEnemies();
@@ -101,10 +98,23 @@ function moveEverything() {
 
 function drawEverything() {
 	colorRect(0,0, canvas.width, canvas.height, "black")
-	drawRoom();
-	
-	p1.draw();
-	drawEnemies();
 
-	hudDisplay.draw();
+	if (MapEditingMode){
+		drawRoom();
+	} 
+	else if (TitleScreen){
+		printText(" The Tower of Zedex ", canvas.width/4, 300, 40, "white");
+		printText(" press -P- to Play ", canvas.width/4, 360, 16, "grey");
+		printText(" press -E- for Map Editing Mode ", canvas.width/4, 390, 16, "grey");
+		
+	} else {
+		drawRoom();
+	
+		p1.draw();
+		drawEnemies();
+
+		hudDisplay.draw();
+		p1.drawPlayerAttackHitBoxes();
+	}
+	
 }

@@ -26,15 +26,16 @@ function enemyClass() {
 	this.ticksUntilDirectionChange = 60;
 
 	// Animation stuff
+	this.sprite;
 	this.frameIndex =      0;
 	this.tickCount =       0;
-	this.ticksPerFrame =  10;
+	this.ticksPerFrame =  15;
 
 
 	this.init = function( enemyPic ) {
 		this.health = this.maxHealth;
 		this.readyToRemove = false;
-		this.sprite = zombieSprites;
+		this.sprite = enemyPic;
 		this.reset();
 	}
 
@@ -135,8 +136,21 @@ function enemyClass() {
 	}
 
 	this.draw = function() {
-		colorRect(this.x, this.y, 32,32, 'green');
-		//drawBitmapCenteredAtLocationWithRotation( this.sprite, this.x, this.y, 0.0 )
+		drawRect(this.x, this.y, 32,32, 3, 'green');
+
+		// this.sprite;
+		// this.frameIndex =      0;
+		// this.tickCount =       0;
+		// this.ticksPerFrame =  10;
+
+		this.tickCount++;
+		if(this.tickCount == this.ticksPerFrame){
+			this.tickCount = 0;
+			if(this.sprite == zombieSprite1){
+				this.sprite = zombieSprite2;
+			} else { this.sprite = zombieSprite1 }
+		}
+		drawBitmapCenteredAtLocationWithRotation( this.sprite, this.x, this.y, 0.0 )
 	}
 
 	

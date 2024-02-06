@@ -1,6 +1,9 @@
 const SHOT_SPEED = 6.0;
-const SHOT_LIFE = 30;
-const SHOT_DISPLAY_RADIUS = 2.0;
+const SHOT_LIFE = 40;
+const SHOT_DISPLAY_RADIUS = 4
+
+
+.0;
 
 function BoomStickClass() {
     this.x;
@@ -45,7 +48,6 @@ function BoomStickClass() {
 	}
 
     this.movement = function() {
-	
         if(this.shotLife > 0){
 			this.shotLife--;
             this.x += this.xv;
@@ -53,6 +55,23 @@ function BoomStickClass() {
         }
 		else {
 			this.readyToRemove = true
+		}
+
+		for(var i = 0; i < enemyList.length; i++){
+			if(	this.x > enemyList[i].x 		&& 
+				this.x < enemyList[i].x + 32 	&& // 32 is a stand-in for tile width
+				this.y > enemyList[i].y &&
+				this.y < enemyList[i].y + 32 )
+				{
+					this.shotLife = 0;
+					this.readyToRemove = true;
+					console.log(enemyList[i]+" has taken 1 damage.");
+					console.log(enemyList[i]+" Health: "+enemyList[i].health);
+					enemyList[i].health -= 1;
+					if( enemyList[i].health < 1){
+						enemyList[i].readyToRemove = true;
+				}
+			}
 		}
 
 	}	
@@ -67,7 +86,8 @@ function BoomStickClass() {
 	
 	this.draw = function(){
 		if(this.shotLife > 0){
-			colorCircle(this.x, this.y, SHOT_DISPLAY_RADIUS, 'white')
+			colorCircle(this.x, this.y, SHOT_DISPLAY_RADIUS+2, 'yellow')
+			colorCircle(this.x, this.y, SHOT_DISPLAY_RADIUS, 'orange')
 		}
 	}
 }

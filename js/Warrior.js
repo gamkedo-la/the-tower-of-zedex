@@ -1,5 +1,5 @@
 // tuning constants
-const PLAYER_MOVE_SPEED = 3.0;
+const PLAYER_MOVE_SPEED = 4.0;
 
 function warriorClass() {
 	// variables to keep track of position
@@ -8,7 +8,7 @@ function warriorClass() {
 
 	// boomstick shot list
 	this.myShotList = [];
-	this.totalShots = 1;
+	this.totalShots = 3;
 
 	this.facingDirection = "down";
 	
@@ -20,6 +20,7 @@ function warriorClass() {
 	this.keyHeld_East = false;
 	this.keyHeld_South = false;
 	this.keyHeld_West = false;
+	
 
 	// key controls used for this
 	this.setupControls = function(northKey,eastKey,southKey,westKey) {
@@ -36,7 +37,7 @@ function warriorClass() {
 	}
 	
 	this.reset = function() {
-	hudDisplay.currentHealth = hudDisplay.maxHealth - 50; // Testing Feature
+	hudDisplay.currentHealth = hudDisplay.maxHealth;
 		this.keysHeld = 0;
 		if(this.homeX == undefined) {
 			for(var i=0; i<roomGrid.length; i++) {
@@ -46,6 +47,7 @@ function warriorClass() {
 					this.homeX = tileCol * TILE_W + 0.5*TILE_W;
 					this.homeY = tileRow * TILE_H + 0.5*TILE_H;
 					roomGrid[i] = TILE_GROUND;
+					console.log("removing player tile")
 					break; // found it, so no need to keep searching 
 				} // end of if
 			} // end of for
@@ -61,34 +63,60 @@ function warriorClass() {
 
 		var attackX;
 		var attackY;
+		var attackW = TILE_W
+		var attackH = TILE_H
 
 		if(this.facingDirection == "down") {
-			attackX = this.x;
-			attackY = this.y + TILE_H;
+			attackX = this.x - TILE_W/2;
+			attackY = this.y + TILE_H/2;
+			attackW = TILE_W*1.5;
 		}
 		if(this.facingDirection == "up") {
-			attackX = this.x;
-			attackY = this.y - TILE_H;
+			attackX = this.x - TILE_W/2;
+			attackY = this.y - TILE_H*1.5;
+			attackW = TILE_W*1.5;
 		}
 		if(this.facingDirection == "left") {
-			attackX = this.x - TILE_W;
-			attackY = this.y;
+			attackX = this.x - TILE_W*1.5;
+			attackY = this.y - TILE_H;
+			attackH = TILE_H*1.5;
 		}
 		if(this.facingDirection == "right") {
-			attackX = this.x + TILE_W;
-			attackY = this.y;
+			attackX = this.x + TILE_W/2;
+			attackY = this.y - TILE_H/2;
+			attackH = TILE_H*1.5
 		}
 
-		colorRect(attackX-TILE_W/2, attackY-TILE_H/2, TILE_W,TILE_H, "white");
+		colorRect(attackX, attackY, attackW, attackH, "white");
+
+		// loop through enemy list and check if enemy overlaps hitbox
+		for(var i = 0; i < enemyList.length; i++){
+			if(	enemyList[i].x > attackX-TILE_W && 
+				enemyList[i].x < attackX+TILE_W &&
+				enemyList[i].y > attackY &&
+				enemyList[i].y < attackY+TILE_H ){
+					console.log(enemyList[i]+" has taken 1 damage.");
+					console.log(enemyList[i]+" Health: "+enemyList[i].health);
+					enemyList[i].health -= 1;
+					if( enemyList[i].health < 1){
+						enemyList[i].readyToRemove = true;
+					}
+				}
+		}
 		
 	}
 
+
 	this.boomStickShot = function(){
-		if(this.myShotList.length < this.totalShots){
-			let tempShot = new BoomStickClass();
-			tempShot.shootFrom(this);
-			this.myShotList.push(tempShot);
+		if(hudDisplay.currentAmmo > 0){
+			if(this.myShotList.length < this.totalShots){
+				let tempShot = new BoomStickClass();
+				tempShot.shootFrom(this);
+				this.myShotList.push(tempShot);
+				hudDisplay.currentAmmo -=1;
+			}
 		}
+		
 	}
 	
 	this.removeBullet = function (){
@@ -99,6 +127,7 @@ function warriorClass() {
 		}
 	}
 	
+
 	this.move = function() {
 		var nextX = this.x;
 		var nextY = this.y;
@@ -143,22 +172,62 @@ function warriorClass() {
 				this.y = nextY;
 				break;
 			case TILE_GOAL:
-				document.getElementById("debugText").innerHTML = this.myName + " won";
-				this.reset();
+				currentLevel += 1;
+				loadLevel(level[currentLevel]);
 				break;
 			case TILE_DOOR:
-				if(this.keysHeld > 0) {
-					this.keysHeld--; // one less key
-					document.getElementById("debugText").innerHTML = "Keys: "+this.keysHeld;
-
-					roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+				for(var i = 0; i<hudDisplay.inventory.length; i++){
+					if(hudDisplay.inventory[i] == 3 || hudDisplay.inventory[i] == 4){
+						hudDisplay.inventory[i] = 0;
+						// roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+						return;
+					}
 				}
+				roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+				break;
+			case TILE_MASTER_KEY:
+				for(var i = 0; i<hudDisplay.inventory.length; i++){
+					if(hudDisplay.inventory[i] == 0){
+						hudDisplay.inventory[i] = 4;
+						roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+						return;
+					}
+				}
+				this.x = nextX;
+				this.y = nextY;
 				break;
 			case TILE_KEY:
-				this.keysHeld++; // gain key
-				document.getElementById("debugText").innerHTML = "Keys: "+this.keysHeld;
-
-				roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+				for(var i = 0; i<hudDisplay.inventory.length; i++){
+					if(hudDisplay.inventory[i] == 0){
+						hudDisplay.inventory[i] = 3;
+						roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+						return;
+					}
+				}
+				this.x = nextX;
+				this.y = nextY;
+				break;
+			case TILE_POTION:
+				for(var i = 0; i<hudDisplay.inventory.length; i++){
+					if(hudDisplay.inventory[i] == 0){
+						hudDisplay.inventory[i] = 1;
+						roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+						return;
+					}
+				}
+				this.x = nextX;
+				this.y = nextY;
+				break;
+			case TILE_AMMO:
+				for(var i = 0; i<hudDisplay.inventory.length; i++){
+					if(hudDisplay.inventory[i] == 0){
+						hudDisplay.inventory[i] = 2;
+						roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+						return;
+					}
+				}
+				this.x = nextX;
+				this.y = nextY;
 				break;
 			case TILE_SPIKE:
 				this.x = nextX;
@@ -186,6 +255,40 @@ function warriorClass() {
 
 	}
 	
+
+	this.drawPlayerAttackHitBoxes = function() {
+		var attackX;
+		var attackY;
+		var attackW = TILE_W
+		var attackH = TILE_H
+
+		if(this.facingDirection == "down") {
+			attackX = this.x - TILE_W/2;
+			attackY = this.y + TILE_H/2;
+			attackW = TILE_W*1.5;
+
+		}
+		if(this.facingDirection == "up") {
+			attackX = this.x - TILE_W/2;
+			attackY = this.y - TILE_H*1.5;
+			attackW = TILE_W*1.5;
+		}
+		if(this.facingDirection == "left") {
+			attackX = this.x - TILE_W*1.5;
+			attackY = this.y - TILE_H;
+			attackH = TILE_H*1.5;
+		}
+		if(this.facingDirection == "right") {
+			attackX = this.x + TILE_W/2;
+			attackY = this.y - TILE_H/2;
+			attackH = TILE_H*1.5
+		}
+		canvasContext.strokeStyle = "white";
+		canvasContext.lineWidth = 2;
+		canvasContext.strokeRect(attackX, attackY, attackW, attackH);
+	}
+
+
 	this.draw = function() {
 		drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
 		//canvasContext.drawImage(playerSprites, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y)
