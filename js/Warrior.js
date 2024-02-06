@@ -20,6 +20,10 @@ function warriorClass() {
 	this.keyHeld_East = false;
 	this.keyHeld_South = false;
 	this.keyHeld_West = false;
+
+	this.ticks = 0;
+	this.ticksUntilDamage;
+	this.ticksUntilNextAnimationFrame;
 	
 
 	// key controls used for this
@@ -230,18 +234,29 @@ function warriorClass() {
 				this.y = nextY;
 				break;
 			case TILE_SPIKE:
+			
+				this.ticksUntilDamage = 5;
+				this.ticks += 1;
 				this.x = nextX;
 				this.y = nextY;
 				
-				if(!hudDisplay.isInvincible){
-					hudDisplay.currentHealth -= 5;
-					hudDisplay.isInvincible=true;
+				if(this.ticks >= this.ticksUntilDamage) {
+					this.ticks = 0;
+					hudDisplay.currentHealth -= 1
 				}
-				else{
-					console.log("walking through spikes when you're invincible!")
+				break;
+			case TILE_CRYPT_DAMAGE_FLOOR:
+
+				this.ticksUntilDamage = 5;
+				this.ticks += 1;
+				this.x = nextX;
+				this.y = nextY;
+				
+				if(this.ticks >= this.ticksUntilDamage) {
+					this.ticks = 0;
+					hudDisplay.currentHealth -= 5
 				}
-				
-				
+				break;
 			case TILE_WALL:
 			default:
 				// any other tile type number was found... do nothing, for now
@@ -284,7 +299,7 @@ function warriorClass() {
 			attackH = TILE_H*1.5
 		}
 		canvasContext.strokeStyle = "white";
-		canvasContext.lineWidth = 2;
+		canvasContext.lineWidth = 1;
 		canvasContext.strokeRect(attackX, attackY, attackW, attackH);
 	}
 
