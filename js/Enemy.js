@@ -136,12 +136,7 @@ function enemyClass() {
 	}
 
 	this.draw = function() {
-		drawRect(this.x, this.y, 32,32, 3, 'green');
-
-		// this.sprite;
-		// this.frameIndex =      0;
-		// this.tickCount =       0;
-		// this.ticksPerFrame =  10;
+		// drawRect(this.x, this.y, 32,32, 3, 'green');
 
 		this.tickCount++;
 		if(this.tickCount == this.ticksPerFrame){
@@ -150,7 +145,8 @@ function enemyClass() {
 				this.sprite = zombieSprite2;
 			} else { this.sprite = zombieSprite1 }
 		}
-		drawBitmapCenteredAtLocationWithRotation( this.sprite, this.x, this.y, 0.0 )
+		
+		canvasContext.drawImage( this.sprite, this.x, this.y );
 	}
 
 	

@@ -135,9 +135,8 @@ function ghostClass() {
 	}
 
 	this.draw = function() {
-		colorRect(this.x, this.y, 32,32, 'white');
-		//drawBitmapCenteredAtLocationWithRotation( this.sprite, this.x, this.y, 0.0 )
-
+		//colorRect(this.x, this.y, 32,32, 'white');
+	
 		this.tickCount++;
 		if(this.tickCount == this.ticksPerFrame){
 			this.tickCount = 0;
@@ -145,7 +144,8 @@ function ghostClass() {
 				this.sprite = ghostSprite2;
 			} else { this.sprite = ghostSprite1 }
 		}
-		drawBitmapCenteredAtLocationWithRotation( this.sprite, this.x, this.y, 0.0 )
+	
+		canvasContext.drawImage( this.sprite, this.x, this.y );
 	}
 
 	
