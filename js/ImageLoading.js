@@ -6,6 +6,8 @@ var playerSprites=document.createElement("img");
 
 var zombieSprite1=document.createElement("img");
 var zombieSprite2=document.createElement("img");
+var ghostSprite1=document.createElement("img");
+var ghostSprite2=document.createElement("img");
 
 
 var healthIcon=document.createElement("img");
@@ -53,6 +55,8 @@ function loadImages() {
 
 	{varName:zombieSprite1, theFile:"zombieSprite_1.png"},
 	{varName:zombieSprite2, theFile:"zombieSprite_2.png"},
+	{varName:ghostSprite1, theFile:"ghostSprite_1.png"},
+	{varName:ghostSprite2, theFile:"ghostSprite_2.png"},
 
 	{varName:healthIcon, theFile:"health_icon.png"},
 	{varName:boomstickIcon, theFile:"boomstick_icon.png"},

@@ -26,15 +26,15 @@ function ghostClass() {
 	this.ticksUntilDirectionChange = 60;
 
 	// Animation stuff
+	this.sprite;
 	this.frameIndex =      0;
 	this.tickCount =       0;
 	this.ticksPerFrame =  10;
 
-
-	this.init = function() {
+	this.init = function( enemyPic ) {
 		this.health = this.maxHealth;
 		this.readyToRemove = false;
-		// this.sprite = zombieSprites;
+		this.sprite = enemyPic;
 		this.reset();
 	}
 
@@ -137,6 +137,15 @@ function ghostClass() {
 	this.draw = function() {
 		colorRect(this.x, this.y, 32,32, 'white');
 		//drawBitmapCenteredAtLocationWithRotation( this.sprite, this.x, this.y, 0.0 )
+
+		this.tickCount++;
+		if(this.tickCount == this.ticksPerFrame){
+			this.tickCount = 0;
+			if(this.sprite == ghostSprite1){
+				this.sprite = ghostSprite2;
+			} else { this.sprite = ghostSprite1 }
+		}
+		drawBitmapCenteredAtLocationWithRotation( this.sprite, this.x, this.y, 0.0 )
 	}
 
 	

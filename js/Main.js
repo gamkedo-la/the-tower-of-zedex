@@ -52,7 +52,7 @@ function spawnEnemiesAndPlay() {
 		enemyTypeFound = levelHasValue(TILE_GHOST);
 		if( enemyTypeFound ) {
 			var ghost = new ghostClass();
-			ghost.init( playerFacingDown ); // to do: no ghostSprites yet, but those will go here
+			ghost.init( ghostSprite1 ); 
 			enemyList.push(ghost);
 		}
 	} while (enemyTypeFound);

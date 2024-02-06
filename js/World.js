@@ -94,9 +94,7 @@ function getTileIndexAtPixelCoord(pixelX,pixelY) {
 // 		  checkTileType == TILE_DOOR);
 // }
 
-
 function loadLevel(level) {
-	console.log(currentLevel , level);
   roomGrid = level.slice();
   if(MapEditingMode == false) {
 		spawnEnemiesAndPlay();
@@ -124,9 +122,8 @@ function drawRoom() {
 		}
 		tileIndex++;
 		tileLeftEdgeX += TILE_W;
-
 	} 
-	
+
 	tileTopEdgeY += TILE_H;
 	
   }    
