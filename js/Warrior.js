@@ -123,7 +123,7 @@ function warriorClass() {
 		
 	}
 	
-	this.removeBullet = function (){
+	this.removeBullet = function(){
 		for(var i = this.myShotList.length - 1; i >= 0 ; i--){
 			if(this.myShotList[i].readyToRemove){
 				this.myShotList.splice(i,1);
@@ -131,6 +131,28 @@ function warriorClass() {
 		}
 	}
 	
+	this.handleEnemyCollision = function(){
+		this.ticksUntilDamage = 10;
+		this.ticks += 1;
+
+		// BASIC SINGLE POINT COLLISION CHECK
+		// NEED TO UPGRADE TO CHECK ALL EDGES/SIDES
+		for(var i = 0; i < enemyList.length; i++){
+			// console.log(enemyList[i])
+			if(	this.x > enemyList[i].x &&
+				this.x < enemyList[i].x + TILE_W &&
+				this.y > enemyList[i].y &&
+				this.y < enemyList[i].y + TILE_H ) 
+			{
+				console.log("Player and Enemy in collision")
+				
+				if(this.ticks >= this.ticksUntilDamage) {
+					this.ticks = 0;
+					hudDisplay.currentHealth -= 1;
+				}
+			}
+		}
+	}
 
 	this.move = function() {
 		var nextX = this.x;
@@ -172,6 +194,7 @@ function warriorClass() {
 		
 		switch( walkIntoTileType ) {
 			case TILE_GROUND:
+				this.handleEnemyCollision();
 				this.x = nextX;
 				this.y = nextY;
 				break;
@@ -264,12 +287,14 @@ function warriorClass() {
 			
 		}
 
+		// this.handleEnemyCollision();
+
 		for (var i=0; i < this.myShotList.length ; i++){
 			this.myShotList[i].movement();	
 		}
 
 	}
-	
+
 
 	this.drawPlayerAttackHitBoxes = function() {
 		var attackX;
