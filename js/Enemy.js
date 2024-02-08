@@ -8,7 +8,7 @@ function enemyClass() {
 	
 	// Stats
 	this.readyToRemove =    false;
-	this.maxHealth =      1;
+	this.maxHealth =      3;
 	this.health =         0;
 	this.attackDamage =   3;
 
