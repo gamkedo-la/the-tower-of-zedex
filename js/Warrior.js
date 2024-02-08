@@ -92,6 +92,7 @@ function warriorClass() {
 		}
 
 		colorRect(attackX, attackY, attackW, attackH, "white");
+		swordSwing.play();
 
 		// loop through enemy list and check if enemy overlaps hitbox
 		for(var i = 0; i < enemyList.length; i++){
@@ -118,6 +119,7 @@ function warriorClass() {
 				tempShot.shootFrom(this);
 				this.myShotList.push(tempShot);
 				hudDisplay.currentAmmo -=1;
+				boomstickFire.play();
 			}
 		}
 		
@@ -149,6 +151,7 @@ function warriorClass() {
 				if(this.ticks >= this.ticksUntilDamage) {
 					this.ticks = 0;
 					hudDisplay.currentHealth -= 1;
+					playerHurt.play();
 				}
 			}
 		}
@@ -206,7 +209,7 @@ function warriorClass() {
 				for(var i = 0; i<hudDisplay.inventory.length; i++){
 					if(hudDisplay.inventory[i] == 3 || hudDisplay.inventory[i] == 4){
 						hudDisplay.inventory[i] = 0;
-						// roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+						useKey.play();
 						return;
 					}
 				}
@@ -216,7 +219,8 @@ function warriorClass() {
 				for(var i = 0; i<hudDisplay.inventory.length; i++){
 					if(hudDisplay.inventory[i] == 0){
 						hudDisplay.inventory[i] = 4;
-						roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+						roomGrid[walkIntoTileIndex] = TILE_GROUND;
+						pickup.play();
 						return;
 					}
 				}
@@ -227,7 +231,8 @@ function warriorClass() {
 				for(var i = 0; i<hudDisplay.inventory.length; i++){
 					if(hudDisplay.inventory[i] == 0){
 						hudDisplay.inventory[i] = 3;
-						roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+						roomGrid[walkIntoTileIndex] = TILE_GROUND;
+						pickup.play();
 						return;
 					}
 				}
@@ -238,7 +243,8 @@ function warriorClass() {
 				for(var i = 0; i<hudDisplay.inventory.length; i++){
 					if(hudDisplay.inventory[i] == 0){
 						hudDisplay.inventory[i] = 1;
-						roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+						roomGrid[walkIntoTileIndex] = TILE_GROUND;
+						pickup.play();
 						return;
 					}
 				}
@@ -249,7 +255,8 @@ function warriorClass() {
 				for(var i = 0; i<hudDisplay.inventory.length; i++){
 					if(hudDisplay.inventory[i] == 0){
 						hudDisplay.inventory[i] = 2;
-						roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+						roomGrid[walkIntoTileIndex] = TILE_GROUND;
+						pickup.play();
 						return;
 					}
 				}
@@ -266,6 +273,7 @@ function warriorClass() {
 				if(this.ticks >= this.ticksUntilDamage) {
 					this.ticks = 0;
 					hudDisplay.currentHealth -= 1
+					playerHurt.play();
 				}
 				break;
 			case TILE_CRYPT_DAMAGE_FLOOR:
@@ -278,6 +286,7 @@ function warriorClass() {
 				if(this.ticks >= this.ticksUntilDamage) {
 					this.ticks = 0;
 					hudDisplay.currentHealth -= 5
+					playerHurt.play();
 				}
 				break;
 			case TILE_WALL:
