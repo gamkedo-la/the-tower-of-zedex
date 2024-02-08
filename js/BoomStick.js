@@ -1,16 +1,18 @@
 const SHOT_SPEED = 6.0;
 const SHOT_LIFE = 40;
-const SHOT_DISPLAY_RADIUS = 4
-
-
-.0;
+const SHOT_DISPLAY_RADIUS = 4.0;
 
 function BoomStickClass() {
     this.x;
 	this.y;
 
 	this.readyToRemove = false;
-	this.graphic = document.createElement("img");
+	this.sprite = bullet0;
+
+	this.sprite;
+	this.frameIndex =      0;
+	this.tickCount =       0;
+	this.ticksPerFrame =  3;
 	
 	this.reset = function() {
         this.xv = 0;
@@ -86,9 +88,22 @@ function BoomStickClass() {
 	
 	this.draw = function(){
 		if(this.shotLife > 0){
-			colorCircle(this.x, this.y, SHOT_DISPLAY_RADIUS+2, 'yellow')
-			colorCircle(this.x, this.y, SHOT_DISPLAY_RADIUS, 'orange')
+			
+			this.tickCount++;
+			if(this.tickCount == this.ticksPerFrame){
+				this.tickCount = 0;
+				if(this.sprite == bullet0){
+					this.sprite = bullet1;
+				} else if( this.sprite == bullet1 ){
+					this.sprite = bullet2;
+				} else {
+					this.sprite = bullet0;
+				}
+			}
+			drawBitmapCenteredAtLocationWithRotation( this.sprite, this.x, this.y, 0.0 );
 		}
 	}
+
+
 }
 	

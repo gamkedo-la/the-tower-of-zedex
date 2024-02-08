@@ -14,6 +14,11 @@ var healthIcon=document.createElement("img");
 var boomstickIcon=document.createElement("img");
 var swordIcon=document.createElement("img");
 
+var bullet0=document.createElement("img");
+var bullet1=document.createElement("img");
+var bullet2=document.createElement("img");
+
+
 //var keyPickup=document.createElement("img");
 //var pickupIcons=document.createElement("img");
 var pickupPotion=document.createElement("img");
@@ -61,6 +66,11 @@ function loadImages() {
 	{varName:healthIcon, theFile:"health_icon.png"},
 	{varName:boomstickIcon, theFile:"boomstick_icon.png"},
 	{varName:swordIcon, theFile:"sword_icon.png"},
+
+	{varName:bullet0, theFile:"boomstickBullet_0.png"},
+	{varName:bullet1, theFile:"boomstickBullet_1.png"},
+	{varName:bullet2, theFile:"boomstickBullet_2.png"},
+
 	//{varName:pickupIcons, theFile:"pickupIcons.png"},
 	{varName:pickupPotion, theFile:"pickup_potion.png"},
 	{varName:pickupAmmo, theFile:"pickup_ammo.png"},
