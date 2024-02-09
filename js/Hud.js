@@ -1,4 +1,5 @@
-
+const HUD_INV_COLS= 3;
+const HUD_INV_ROWS= 2; 
 function HudClass() {
 
     this.maxHealth = 99;
@@ -96,7 +97,6 @@ function HudClass() {
     }
 
    
-    
     this.draw = function() {
 
 		var spacing = this.hudElementSpacingWidth;
@@ -111,8 +111,8 @@ function HudClass() {
 		drawBitmapCenteredAtLocationWithRotation(swordIcon, this.swordX+spacing*2, this.swordY, 0 );
 		printText("[space]", this.printAmmoX+spacing*1+50, this.printAmmoY-64, 16, "yellow");
 
-		for( i=0; i<3; i++ ) {
-			for( j=0; j<2; j++ ) {
+		for( i=0; i<HUD_INV_COLS; i++ ) {
+			for( j=0; j<HUD_INV_ROWS; j++ ) {
 				var xPosition = this.inventoryX + ((this.boxSize + this.boxGap) * i);
 				var yPosition = this.inventoryY + ((this.boxSize + this.boxGap) * j);
 
