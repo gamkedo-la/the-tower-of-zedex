@@ -6,6 +6,7 @@ const INV_POTION= 1;
 const INV_AMMO= 2;
 const INV_KEY= 3;
 const INV_MASTERKEY= 4;
+const INV_SPELLSCROLL= 5;
  
 function HudClass() {
 
@@ -76,7 +77,7 @@ function HudClass() {
 
     this.inventory = [ 
 		INV_POTION, INV_POTION, INV_AMMO, 
-		INV_EMPTY, INV_KEY, INV_EMPTY,
+		INV_EMPTY, INV_KEY, INV_SPELLSCROLL,
 	];
 
     
@@ -143,7 +144,9 @@ function HudClass() {
                 }
                 else if(this.inventory[inventoryIndex] == INV_MASTERKEY){
                     canvasContext.drawImage(pickupMasterKey, xPosition+5, yPosition+5, 32,32)
-                }
+                }else if(this.inventory[inventoryIndex] == INV_SPELLSCROLL){
+                    canvasContext.drawImage(pickupSpellScroll, xPosition+5, yPosition+5, 32,32)
+				}
  
 
 				// draw key numbers

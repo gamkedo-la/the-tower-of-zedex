@@ -25,7 +25,7 @@ var pickupPotion=document.createElement("img");
 var pickupAmmo=document.createElement("img");
 var pickupKey=document.createElement("img");
 var pickupMasterKey=document.createElement("img");
-
+var pickupSpellScroll=document.createElement("img");
 
 
 var tilePics = [];
@@ -76,6 +76,7 @@ function loadImages() {
 	{varName:pickupAmmo, theFile:"pickup_ammo.png"},
 	{varName:pickupKey, theFile:"pickup_key.png"},
 	{varName:pickupMasterKey, theFile:"pickup_masterKey.png"},
+	{varName:pickupSpellScroll, theFile:"pickup_spell_scroll.png"},
 	
 	{tileType:TILE_GROUND, theFile:"world_ground.png"},
 	{tileType:TILE_WALL, theFile:"world_wall.png"},
