@@ -80,14 +80,14 @@ function keyPressed(evt) {
 	}
 	
 	if(TitleScreen || MapEditingMode){
-		if(evt.key == "p"){
+		if(evt.key == "p" || evt.key == "P"){
 			TitleScreen = false;
 			MapEditingMode = false;
 			loadLevel(level[currentLevel]);
 		}
 	}
 
-	if(TitleScreen == true && evt.key == "e") {
+	if(TitleScreen == true && (evt.key == "e" || evt.key == "E")) {
 		MapEditingMode = true;
 		TitleScreen = false;
 		loadLevel(freshMap);
