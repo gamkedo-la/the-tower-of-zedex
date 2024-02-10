@@ -53,10 +53,10 @@ function BoomStickClass() {
         if(this.shotLife > 0){
 			this.shotLife--;
             this.x += this.xv;
-            this.y += this.yv;		
+            this.y += this.yv;
         }
 		else {
-			this.readyToRemove = true
+			this.readyToRemove = true;
 		}
 
 		for(var i = 0; i < enemyList.length; i++){

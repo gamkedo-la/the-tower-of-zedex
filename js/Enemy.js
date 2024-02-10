@@ -25,6 +25,9 @@ function enemyClass() {
 	this.ticksFromLastDirectionChange = 0;
 	this.ticksUntilDirectionChange = 60;
 
+	this.distanceToChase = 100;
+	this.chasePlayer = false;
+
 	// Animation stuff
 	this.sprite;
 	this.frameIndex =      0;
@@ -58,7 +61,13 @@ function enemyClass() {
 		this.readyToRemove =  false;
 	}
 
-	this.changeDirection = function() {
+
+
+	this.changeDirection = function(direction) {
+		if( direction != undefined ) {
+			this.direction = direction;
+			return;
+		}
 		var randomDirection = Math.ceil(Math.random()*4);
 		
 		if (randomDirection == 1)		{this.direction = 'north'}
@@ -71,73 +80,82 @@ function enemyClass() {
 		}
 	}
 
-	this.move = function() {		
+		
 
-		this.ticksFromLastMovement++;
-		this.ticksFromLastDirectionChange++;
-	
-		if ( this.ticksFromLastDirectionChange >= this.ticksUntilDirectionChange ) {
-			this.changeDirection();
-			this.ticksFromLastDirectionChange = 0;
+	this.move = function() {	
+
+		// working on a chase movement pattern
+		if( Math.abs(this.x - p1.x) <= this.distanceToChase ) {
+			this.chasePlayer = true;
+		} else { this.chasePlayer = false; }
+
+		if( this.chasePlayer == true ) {
+			if( p1.x > this.x ) {
+				this.changeDirection('east');
+			} else if( p1.y > this.y ) {
+				this.changeDirection('north');
+			} else if( p1.x < this.x ) {
+				this.changeDirection('west');
+			} else {
+				this.changeDirection('south');
+			}
 		}
-		if ( this.ticksFromLastMovement >= this.ticksUntilNextMovement ) {
-			var nextX = this.x;
-			var nextY = this.y;
-			var nextTileX = this.x;
-			var nextTileY = this.y;
 
-			// randomly choose direction
-			//this.changeDirection()
-				
-			// next X/Y depending on direction
-			if(this.direction == 'north') {
-				nextY -= this.speed;
-				nextTileY = this.y-1;
-			}
-			if(this.direction == 'east') {
-				nextX += this.speed;
-				nextTileX = this.x + TILE_W;
-			}
-			if(this.direction == 'south') {
-				nextY += this.speed;
-				nextTileY = this.y + TILE_H;
-			}
-			if(this.direction == 'west') {
-				nextX -= this.speed;
-				nextTileX = this.x - 1;
-			}
+		var nextX = this.x;
+		var nextY = this.y;
+		var nextTileX = this.x;
+		var nextTileY = this.y;
 
-			var walkIntoTileIndex = getTileIndexAtPixelCoord(nextTileX,nextTileY);
-			var walkIntoTileType = TILE_WALL;
 			
-			if( walkIntoTileIndex != undefined) {
-				walkIntoTileType = roomGrid[walkIntoTileIndex];
-			}
-
-			switch( walkIntoTileType ) {
-				case TILE_GROUND:
-					this.x = nextX;
-					this.y = nextY;
-					break;
-				case TILE_GOAL:
-					this.x = nextX;
-					this.y = nextY;
-					break;
-				case TILE_KEY:
-					this.x = nextX;
-					this.y = nextY;
-					break;
-				case TILE_SPIKE:
-					this.x = nextX;
-					this.y = nextY;
-					break;
-				case TILE_WALL:
-				default:
-					// any other tile type number was found... do nothing, for now
-					break;
-			}
-			this.ticksFromLastMovement = 0;
+		// next X/Y depending on direction
+		if(this.direction == 'north') {
+			nextY -= this.speed;
+			nextTileY = this.y-1;
 		}
+		if(this.direction == 'east') {
+			nextX += this.speed;
+			nextTileX = this.x + TILE_W;
+		}
+		if(this.direction == 'south') {
+			nextY += this.speed;
+			nextTileY = this.y + TILE_H;
+		}
+		if(this.direction == 'west') {
+			nextX -= this.speed;
+			nextTileX = this.x - 1;
+		}
+
+		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextTileX,nextTileY);
+		var walkIntoTileType = TILE_WALL;
+		
+		if( walkIntoTileIndex != undefined) {
+			walkIntoTileType = roomGrid[walkIntoTileIndex];
+		}
+
+		switch( walkIntoTileType ) {
+			case TILE_GROUND:
+				this.x = nextX;
+				this.y = nextY;
+				break;
+			case TILE_GOAL:
+				this.x = nextX;
+				this.y = nextY;
+				break;
+			case TILE_KEY:
+				this.x = nextX;
+				this.y = nextY;
+				break;
+			case TILE_SPIKE:
+				this.x = nextX;
+				this.y = nextY;
+				break;
+			case TILE_WALL:
+			default:
+				// any other tile type number was found... do nothing, for now
+				break;
+		}
+		this.ticksFromLastMovement = 0;
+		
 		
 	}
 
