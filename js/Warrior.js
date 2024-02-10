@@ -263,8 +263,12 @@ function warriorClass() {
 				this.x = nextX;
 				this.y = nextY;
 				break;
+			case TILE_CHEST:
+				if( hudDisplay.inventory.every(hudDisplay.checkInventoryForEmptySlot) == false ){
+					roomGrid[walkIntoTileIndex] = TILE_GROUND;
+				}
+				break;
 			case TILE_SPIKE:
-			
 				this.ticksUntilDamage = 5;
 				this.ticks += 1;
 				this.x = nextX;
@@ -277,7 +281,6 @@ function warriorClass() {
 				}
 				break;
 			case TILE_CRYPT_DAMAGE_FLOOR:
-
 				this.ticksUntilDamage = 5;
 				this.ticks += 1;
 				this.x = nextX;

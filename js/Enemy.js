@@ -83,6 +83,8 @@ function enemyClass() {
 		if ( this.ticksFromLastMovement >= this.ticksUntilNextMovement ) {
 			var nextX = this.x;
 			var nextY = this.y;
+			var nextTileX = this.x;
+			var nextTileY = this.y;
 
 			// randomly choose direction
 			//this.changeDirection()
@@ -90,18 +92,22 @@ function enemyClass() {
 			// next X/Y depending on direction
 			if(this.direction == 'north') {
 				nextY -= this.speed;
+				nextTileY = this.y-1;
 			}
 			if(this.direction == 'east') {
 				nextX += this.speed;
+				nextTileX = this.x + TILE_W;
 			}
 			if(this.direction == 'south') {
 				nextY += this.speed;
+				nextTileY = this.y + TILE_H;
 			}
 			if(this.direction == 'west') {
 				nextX -= this.speed;
+				nextTileX = this.x - 1;
 			}
 
-			var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
+			var walkIntoTileIndex = getTileIndexAtPixelCoord(nextTileX,nextTileY);
 			var walkIntoTileType = TILE_WALL;
 			
 			if( walkIntoTileIndex != undefined) {

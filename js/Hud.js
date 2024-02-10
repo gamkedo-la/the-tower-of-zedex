@@ -49,7 +49,9 @@ function HudClass() {
     this.currentAmmo = this.maxAmmo;
     };
 
-
+    this.checkInventoryForEmptySlot = function(currentSlotValue) {
+        return currentSlotValue < 1;
+    }
 
 
 	this.pickupTypes = {
