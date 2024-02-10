@@ -264,9 +264,8 @@ function warriorClass() {
 				this.y = nextY;
 				break;
 			case TILE_CHEST:
-				if( hudDisplay.inventory.every(hudDisplay.checkInventoryForEmptySlot) == false ){
-					roomGrid[walkIntoTileIndex] = TILE_GROUND;
-				}
+				roomGrid[walkIntoTileIndex] = TILE_MASTER_KEY;
+				
 				break;
 			case TILE_SPIKE:
 				this.ticksUntilDamage = 5;

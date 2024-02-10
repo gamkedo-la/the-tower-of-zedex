@@ -50,8 +50,9 @@ function HudClass() {
     };
 
     this.checkInventoryForEmptySlot = function(currentSlotValue) {
-        return currentSlotValue < 1;
-    }
+        console.log(currentSlotValue == INV_EMPTY);
+        return currentSlotValue == INV_EMPTY;
+    };
 
 
 	this.pickupTypes = {

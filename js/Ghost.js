@@ -4,11 +4,11 @@ function ghostClass() {
 	
 	this.x = 0;
 	this.y = 0;
-	this.speed = 2.0;
+	this.speed = 6.0;
 	
 	// Stats
 	this.readyToRemove =    false;
-	this.maxHealth =      1;
+	this.maxHealth =      2;
 	this.health =         0;
 	this.attackDamage =   3;
 
@@ -23,7 +23,7 @@ function ghostClass() {
 	this.ticksFromLastMovement =	0;
 	this.ticksUntilNextMovement =	2;
 	this.ticksFromLastDirectionChange = 0;
-	this.ticksUntilDirectionChange = 60;
+	this.ticksUntilDirectionChange = 40;
 
 	// Animation stuff
 	this.sprite;
@@ -124,8 +124,22 @@ function ghostClass() {
 					this.x = nextX;
 					this.y = nextY;
 					break;
+				case TILE_CRYPT_WALL1:
+					this.x = nextX;
+					this.y = nextY;
+					break;
+				case TILE_CRYPT_WALL2:
+					this.x = nextX;
+					this.y = nextY;
+					break;
+				case TILE_CRYPT_WALL3:
+					this.x = nextX;
+					this.y = nextY;
+					break;	
 				case TILE_WALL:
+					this.changeDirection();
 				default:
+					this.changeDirection();
 					// any other tile type number was found... do nothing, for now
 					break;
 			}
