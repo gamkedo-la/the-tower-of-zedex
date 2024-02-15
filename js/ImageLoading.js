@@ -1,3 +1,5 @@
+var scanlineFilter=document.createElement("img");
+
 var playerFacingDown=document.createElement("img");
 var playerFacingLeft=document.createElement("img");
 var playerFacingRight=document.createElement("img");
@@ -52,6 +54,8 @@ function loadImageForTileCode(tileCode, fileName) {
 function loadImages() {
 
   var imageList = [
+	{varName:scanlineFilter, theFile:"scanline-filter.png"},
+
 	{varName:playerFacingDown, theFile:"warrior_down.png"},
 	{varName:playerFacingLeft, theFile:"warrior_left.png"},
 	{varName:playerFacingRight, theFile:"warrior_right.png"},

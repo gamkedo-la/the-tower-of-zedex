@@ -115,6 +115,8 @@ function drawEverything() {
 
 		hudDisplay.draw();
 		p1.drawPlayerAttackHitBoxes();
+
 	}
 	
+	canvasContext.drawImage(scanlineFilter, 0, 0);
 }

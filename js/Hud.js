@@ -76,6 +76,10 @@ function HudClass() {
             console.log("You have the Key")
             
         },
+        5: function() {
+            console.log("You have the Scroll")
+            
+        },
 	}
 
     this.inventory = [ 
