@@ -56,6 +56,15 @@ function spawnEnemiesAndPlay() {
 			enemyList.push(ghost);
 		}
 	} while (enemyTypeFound);
+
+	do {
+		enemyTypeFound = levelHasValue(TILE_WALL_HUGGER);
+		if( enemyTypeFound ) {
+			var hug = new wallHuggerClass();
+			hug.init( wallHuggerSprite1 ); 
+			enemyList.push(hug);
+		}
+	} while (enemyTypeFound);    
 }
 
 

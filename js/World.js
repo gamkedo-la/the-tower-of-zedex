@@ -44,6 +44,7 @@ const TILE_CHEST = 10;
 
 const TILE_GHOST = 60;
 const TILE_ZOMBIE = 61;
+const TILE_WALL_HUGGER = 62;
 
 const TILE_CRYPT_WALL1 = 20;
 const TILE_CRYPT_WALL2 = 21;
