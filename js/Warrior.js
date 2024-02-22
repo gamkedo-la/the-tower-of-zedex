@@ -9,6 +9,7 @@ function warriorClass() {
 	// boomstick shot list
 	this.myShotList = [];
 	this.totalShots = 3;
+	this.isAttackingWithSword = false;
 
 	this.facingDirection = "down";
 	
@@ -22,8 +23,9 @@ function warriorClass() {
 	this.keyHeld_West = false;
 
 	this.ticks = 0;
+	this.totalTicks = 0;
 	this.ticksUntilDamage;
-	this.ticksUntilNextAnimationFrame;
+	this.ticksPerAnimationFrame;
 	
 
 	// key controls used for this
@@ -92,6 +94,10 @@ function warriorClass() {
 		}
 
 		colorRect(attackX, attackY, attackW, attackH, "white");
+		/*
+		this.isAttackingWithSword = true
+		*/
+
 		swordSwing.play();
 
 		// loop through enemy list and check if enemy overlaps hitbox
@@ -150,7 +156,7 @@ function warriorClass() {
 				
 				if(this.ticks >= this.ticksUntilDamage) {
 					this.ticks = 0;
-					hudDisplay.currentHealth -= 1;
+					hudDisplay.currentHealth -= enemyList[i].attackDamage;
 					playerHurt.play();
 				}
 			}
@@ -341,8 +347,33 @@ function warriorClass() {
 
 
 	this.draw = function() {
-		drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
-		//canvasContext.drawImage(playerSprites, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y)
+		/* 
+		if(this.isAttackingWithSword == true) {
+			tick (counts until equal to ticksPerAnimationFrame then resets to 0)
+			ticksPerAnimationFrame = 5
+			totalTicks (counts all transpired ticks)
+			animationFrames = 3
+			
+
+
+
+		} else {}
+		*/
+		if(this.isAttackingWithSword == true) {
+			this.ticksPerAnimationFrame = 5;
+			this.ticks++;
+			this.totalTicks++;
+			this.animationFrames = 3;
+			if (this.ticks = 5) {
+				drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
+			}
+
+			
+		} else {
+			
+			drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
+			//canvasContext.drawImage(playerSprites, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y)
+		}
 
 		for (var i=0; i < this.myShotList.length ; i++){
 			this.myShotList[i].draw();
