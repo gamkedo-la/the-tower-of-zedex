@@ -9,9 +9,9 @@ function warriorClass() {
 	// boomstick shot list
 	this.myShotList = [];
 	this.totalShots = 3;
-	this.isAttackingWithSword = false;
-
-	this.facingDirection = "down";
+	
+	this.playerState = "NORMAL"; // NORMAL, ATTACKING, SHOOTING
+	this.facingDirection = "DOWN";
 	
 	this.sx = 0;
 	this.sy = 0;
@@ -72,22 +72,22 @@ function warriorClass() {
 		var attackW = TILE_W
 		var attackH = TILE_H
 
-		if(this.facingDirection == "down") {
+		if(this.facingDirection == "DOWN") {
 			attackX = this.x - TILE_W/2;
 			attackY = this.y + TILE_H/2;
 			attackW = TILE_W*1.5;
 		}
-		if(this.facingDirection == "up") {
+		if(this.facingDirection == "UP") {
 			attackX = this.x - TILE_W/2;
 			attackY = this.y - TILE_H*1.5;
 			attackW = TILE_W*1.5;
 		}
-		if(this.facingDirection == "left") {
+		if(this.facingDirection == "LEFT") {
 			attackX = this.x - TILE_W*1.5;
 			attackY = this.y - TILE_H;
 			attackH = TILE_H*1.5;
 		}
-		if(this.facingDirection == "right") {
+		if(this.facingDirection == "RIGHT") {
 			attackX = this.x + TILE_W/2;
 			attackY = this.y - TILE_H/2;
 			attackH = TILE_H*1.5
@@ -319,23 +319,23 @@ function warriorClass() {
 		var attackW = TILE_W
 		var attackH = TILE_H
 
-		if(this.facingDirection == "down") {
+		if(this.facingDirection == "DOWN") {
 			attackX = this.x - TILE_W/2;
 			attackY = this.y + TILE_H/2;
 			attackW = TILE_W*1.5;
 
 		}
-		if(this.facingDirection == "up") {
+		if(this.facingDirection == "UP") {
 			attackX = this.x - TILE_W/2;
 			attackY = this.y - TILE_H*1.5;
 			attackW = TILE_W*1.5;
 		}
-		if(this.facingDirection == "left") {
+		if(this.facingDirection == "LEFT") {
 			attackX = this.x - TILE_W*1.5;
 			attackY = this.y - TILE_H;
 			attackH = TILE_H*1.5;
 		}
-		if(this.facingDirection == "right") {
+		if(this.facingDirection == "RIGHT") {
 			attackX = this.x + TILE_W/2;
 			attackY = this.y - TILE_H/2;
 			attackH = TILE_H*1.5
@@ -354,25 +354,32 @@ function warriorClass() {
 			totalTicks (counts all transpired ticks)
 			animationFrames = 3
 			
-
+			this.attackingSprites = {
+				down: [],
+				left: [],
+				right: [],
+				up: []
+			}
 
 
 		} else {}
 		*/
-		if(this.isAttackingWithSword == true) {
+		if(this.playerState == "ATTACKING") {
 			this.ticksPerAnimationFrame = 5;
 			this.ticks++;
-			this.totalTicks++;
 			this.animationFrames = 3;
-			if (this.ticks = 5) {
-				drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
+			this.
+			canvasContext.drawImage(playerSprites, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y);
+
+			if (this.ticks == 5) {
+				canvasContext.drawImage(playerSprites, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y)
 			}
 
 			
 		} else {
 			
-			drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
-			//canvasContext.drawImage(playerSprites, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y)
+			//drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
+			canvasContext.drawImage(playerSprites, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y)
 		}
 
 		for (var i=0; i < this.myShotList.length ; i++){

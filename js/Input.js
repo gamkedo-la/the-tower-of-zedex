@@ -52,19 +52,19 @@ function mouseButtonPressed(evt) {
 function setKeyHoldState(thisKey, thisPlayer, setTo) {
 	if(thisKey == thisPlayer.controlKeyForNorth) {
 		thisPlayer.keyHeld_North = setTo;
-		thisPlayer.facingDirection = "up";
+		thisPlayer.facingDirection = "UP";
 	}
 	if(thisKey == thisPlayer.controlKeyForEast) {
 		thisPlayer.keyHeld_East = setTo;
-		thisPlayer.facingDirection = "right";
+		thisPlayer.facingDirection = "RIGHT";
 	}
 	if(thisKey == thisPlayer.controlKeyForSouth) {
 		thisPlayer.keyHeld_South = setTo;
-		thisPlayer.facingDirection = "down";
+		thisPlayer.facingDirection = "DOWN";
 	}
 	if(thisKey == thisPlayer.controlKeyForWest) {
 		thisPlayer.keyHeld_West = setTo;
-		thisPlayer.facingDirection = "left";
+		thisPlayer.facingDirection = "LEFT";
 	}
 }
 

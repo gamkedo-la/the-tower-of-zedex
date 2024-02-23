@@ -32,16 +32,16 @@ function BoomStickClass() {
 		this.x = entityFiring.x;
 		this.y = entityFiring.y;
 
-        if(p1.facingDirection == "up"){	
+        if(p1.facingDirection == "UP"){	
 		    this.xv = 0;
 		    this.yv = -SHOT_SPEED;
-        } else if(p1.facingDirection == "right"){
+        } else if(p1.facingDirection == "RIGHT"){
             this.xv = SHOT_SPEED;
             this.yv = 0;
-        } else if(p1.facingDirection == "down"){
+        } else if(p1.facingDirection == "DOWN"){
             this.xv = 0;
             this.yv = SHOT_SPEED;
-        } else if(p1.facingDirection == "left"){
+        } else if(p1.facingDirection == "LEFT"){
             this.xv = -SHOT_SPEED;
             this.yv = 0;
         }
