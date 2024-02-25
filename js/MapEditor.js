@@ -88,6 +88,30 @@ var imageList = [
 	{tileType:TILE_CRYPT_WALL2,     theFile:"images/crypt_wall2.png",           tileValue: 21 },
 	{tileType:TILE_CRYPT_WALL3,     theFile:"images/crypt_wall3.png",           tileValue: 22 },
 	{tileType:TILE_CRYPT_DAMAGE_FLOOR, theFile:"images/crypt_damageFloor.png",  tileValue: 23 },
+
+    //Row 1: GardenSpriteSheet
+    {tileType: TILE_GARDEN_WALL1,               tileValue: 30,    theFile: "GardenSpriteSheet.png", locX:  0, locY: 98, width: 32, height: 32, offSetX: 0, offSetY: 0},
+    {tileType: TILE_GARDEN_WALL2,     			tileValue: 31,    theFile: "GardenSpriteSheet.png", locX: 32, locY: 98, width: 32, height: 32, offSetX: 0, offSetY: 0},
+    {tileType: TILE_GARDEN_WALL3,               tileValue: 32,    theFile: "GardenSpriteSheet.png", locX: 64, locY: 98, width: 32, height: 32, offSetX: 0, offSetY: 0},
+    {tileType: TILE_GRASS,       				tileValue: 33,    theFile: "GardenSpriteSheet.png", locX: 96, locY: 98, width: 32, height: 32, offSetX: 0, offSetY: 0},
+    {tileType: TILE_BUSH_TOP,      				tileValue: 34,    theFile: "GardenSpriteSheet.png", locX: 128, locY: 98, width: 32, height: 32, offSetX: 0, offSetY: 0},
+    {tileType: TILE_BUSH_BOTTOM,       			tileValue: 35,    theFile: "GardenSpriteSheet.png", locX: 160, locY: 98, width: 32, height: 32, offSetX: 0, offSetY: 0},
+    //OPEN
+    //OPEN
+    {tileType: TILE_GARDEN_WATER1,         		tileValue: 38,    theFile: "GardenSpriteSheet.png", locX: 256, locY: 98, width: 32, height: 32, offSetX: 0, offSetY: 0},
+    {tileType: TILE_GARDEN_WATER2,             	tileValue: 39,    theFile: "GardenSpriteSheet.png", locX: 288, locY: 98, width: 32, height: 32, offSetX: 0, offSetY: 0},
+
+    //Row 2: GardenSpriteSheet
+    {tileType: TILE_TREE_TOPLEFT,          	tileValue: 40,    theFile: "GardenSpriteSheet.png", locX:  0, locY: 128, width: 32, height: 32, offSetX: 0, offSetY: 0},
+    {tileType: TILE_TREE_TOPRIGHT,         	tileValue: 41,    theFile: "GardenSpriteSheet.png", locX: 32, locY: 128, width: 32, height: 32, offSetX: 0, offSetY: 0},
+    {tileType: TILE_TREE_MIDLEFT,          	tileValue: 42,    theFile: "GardenSpriteSheet.png", locX: 64, locY: 128, width: 32, height: 32, offSetX: 0, offSetY: 0},
+    {tileType: TILE_TREE_MIDRIGHT,       	tileValue: 43,    theFile: "GardenSpriteSheet.png", locX: 96, locY: 128, width: 32, height: 32, offSetX: 0, offSetY: 0},
+    {tileType: TILE_TREE_BOTLEFT,       	tileValue: 44,    theFile: "GardenSpriteSheet.png", locX: 128, locY: 128, width: 32, height: 32, offSetX: 0, offSetY: 0},
+    {tileType: TILE_TREE_BOTRIGHT,       	tileValue: 45,    theFile: "GardenSpriteSheet.png", locX: 160, locY: 128, width: 32, height: 32, offSetX: 0, offSetY: 0},
+    //OPEN
+    //OPEN
+    //OPEN
+    //OPEN
 ];
 
 

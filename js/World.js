@@ -51,6 +51,23 @@ const TILE_CRYPT_WALL2 = 21;
 const TILE_CRYPT_WALL3 = 22;
 const TILE_CRYPT_DAMAGE_FLOOR = 23;
 
+const TILE_GARDEN_WALL1 = 30;
+const TILE_GARDEN_WALL2 = 31;
+const TILE_GARDEN_WALL3 = 32;
+const TILE_GRASS = 33;
+const TILE_BUSH_TOP = 34;
+const TILE_BUSH_BOTTOM = 35;
+const TILE_GARDEN_WATER1 = 38;
+const TILE_GARDEN_WATER2 = 39;
+
+const TILE_TREE_TOPLEFT = 	40
+const TILE_TREE_TOPRIGHT = 	41;
+const TILE_TREE_MIDLEFT = 	42;
+const TILE_TREE_MIDRIGHT = 	43;
+const TILE_TREE_BOTLEFT = 	44;
+const TILE_TREE_BOTRIGHT = 	45;
+
+
 
 
 
@@ -115,6 +132,8 @@ function drawRoom() {
 
 		if(tilePics[tileTypeHere] != null) {
 			canvasContext.drawImage(tilePics[tileTypeHere], tileLeftEdgeX, tileTopEdgeY);
+			//canvasContext.drawImage(tilePics[tileTypeHere], tilePics[tileTypeHere].locX, tilePics[tileTypeHere].locY, 32,32, tileLeftEdgeX, tileTopEdgeY, 32,32 )
+			
 		} else {
 			canvasContext.fillStyle = "yellow";
 			canvasContext.fillRect(tileLeftEdgeX, tileTopEdgeY, TILE_W, TILE_H);
