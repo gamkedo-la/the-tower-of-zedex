@@ -364,23 +364,23 @@ function warriorClass() {
 
 		} else {}
 		*/
-		if(this.playerState == "ATTACKING") {
-			this.ticksPerAnimationFrame = 5;
-			this.ticks++;
-			this.animationFrames = 3;
-			this.
-			canvasContext.drawImage(playerSprites, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y);
+		// if(this.playerState == "ATTACKING") {
+		// 	this.ticksPerAnimationFrame = 5;
+		// 	this.ticks++;
+		// 	this.animationFrames = 3;
+		// 	this.
+		// 	canvasContext.drawImage(playerSprites, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y);
 
-			if (this.ticks == 5) {
-				canvasContext.drawImage(playerSprites, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y)
-			}
+		// 	if (this.ticks == 5) {
+		// 		canvasContext.drawImage(playerSprites, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y)
+		// 	}
 
 			
-		} else {
+		// } else {
 			
-			//drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
-			canvasContext.drawImage(playerSprites, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y)
-		}
+			drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
+			//canvasContext.drawImage(this.myBitmap, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y)
+	
 
 		for (var i=0; i < this.myShotList.length ; i++){
 			this.myShotList[i].draw();
