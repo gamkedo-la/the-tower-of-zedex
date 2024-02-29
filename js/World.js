@@ -126,14 +126,23 @@ function drawRoom() {
   
   for(var eachRow=0; eachRow<ROOM_ROWS; eachRow++) {
 	tileLeftEdgeX = 0; // resetting horizontal draw position for tiles to left edge
-	
 	for(var eachCol=0; eachCol<ROOM_COLS; eachCol++) {
+
 		var tileTypeHere = roomGrid[ tileIndex ];
+		var useImg = tilePics[tileTypeHere];
+		var spriteX = tilePics[tileTypeHere].locX;
+		var spriteY = tilePics[tileTypeHere].locY;
+		var spriteWidth = tilePics[tileTypeHere].width;
+		var spriteHeight = tilePics[tileTypeHere].height;
+		var spriteOffSetX = tilePics[tileTypeHere].offSetX + tileLeftEdgeX;
+		var spriteOffSetY = tilePics[tileTypeHere].offSetY + tileTopEdgeY;
 
 		if(tilePics[tileTypeHere] != null) {
-			canvasContext.drawImage(tilePics[tileTypeHere], tileLeftEdgeX, tileTopEdgeY);
-			//canvasContext.drawImage(tilePics[tileTypeHere], tilePics[tileTypeHere].locX, tilePics[tileTypeHere].locY, 32,32, tileLeftEdgeX, tileTopEdgeY, 32,32 )
 			
+			// canvasContext.drawImage(useImg, tileLeftEdgeX, tileTopEdgeY);
+			// canvasContext.drawImage(tilePics[tileTypeHere], tilePics[tileTypeHere].locX, tilePics[tileTypeHere].locY, 32,32, tileLeftEdgeX, tileTopEdgeY, 32,32 )
+			canvasContext.drawImage(useImg, spriteX, spriteY, spriteWidth, spriteHeight, spriteOffSetX, spriteOffSetY, spriteWidth, spriteHeight)
+
 		} else {
 			canvasContext.fillStyle = "yellow";
 			canvasContext.fillRect(tileLeftEdgeX, tileTopEdgeY, TILE_W, TILE_H);
