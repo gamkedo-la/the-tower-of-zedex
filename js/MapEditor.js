@@ -131,6 +131,12 @@ function setupTileButtons() {
     btn.addEventListener('click', generateReadableMapData);
     tileButtonContainer.appendChild(btn);
 
+    // Creates the Generate Garden Walls Button
+    let garden_btn = document.createElement('button');
+    garden_btn.innerHTML = 'Garden Walls';
+    garden_btn.addEventListener('click', generateGardenWalls);
+    tileButtonContainer.appendChild(garden_btn);
+
     // Creates the Clear Map Button
     let el_clearBtn = document.createElement('button');
     el_clearBtn.innerHTML = 'Clear Map';
@@ -144,6 +150,17 @@ function generateReadableMapData() {
     let readableString ='[ ' + freshMapText.replace(/,/g , ",  ").replace(/  20,/g , " 20,") + ' ]';
     console.log(readableString)
     alert( readableString );
+}
+
+function generateGardenWalls() {
+    
+    for(var i = 0; i< roomGrid.length; i++) {
+        if(roomGrid[i] == 20){
+            var randNum0to2 = Math.floor(Math.random()*3);
+            roomGrid[i] = 30+randNum0to2;
+        }
+    }
+    
 }
 
 function clearMapData() {
