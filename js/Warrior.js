@@ -16,6 +16,9 @@ function warriorClass() {
 	this.sx = 0;
 	this.sy = 0;
 
+	this.bumpSlideX = 0;
+	this.bumpSlideY = 0;
+
 	// keyboard hold state variables, to use keys more like buttons
 	this.keyHeld_North = false;
 	this.keyHeld_East = false;
@@ -157,6 +160,22 @@ function warriorClass() {
 				if(this.ticks >= this.ticksUntilDamage) {
 					this.ticks = 0;
 					hudDisplay.currentHealth -= enemyList[i].attackDamage;
+					var difX = this.x - enemyList[i].x;
+					var difY = this.y - enemyList[i].y;
+					if(Math.abs(difX) > Math.abs(difY)) {
+						if(difX < 0) {
+							this.bumpSlideX = -20;
+						} else { 
+							this.bumpSlideX = 20;
+						}
+					} else {
+						if(difY < 0) {
+							this.bumpSlideY = -20;
+						} else { 
+							this.bumpSlideY = 20;
+						}
+					}
+
 					playerHurt.play();
 				}
 			}
@@ -164,8 +183,10 @@ function warriorClass() {
 	}
 
 	this.move = function() {
-		var nextX = this.x;
-		var nextY = this.y;
+		var nextX = this.x + this.bumpSlideX;
+		var nextY = this.y + this.bumpSlideY;
+		this.bumpSlideX *= 0.8;
+		this.bumpSlideY *= 0.8;
 
 		this.removeBullet()
 
