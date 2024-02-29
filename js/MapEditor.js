@@ -90,24 +90,24 @@ var imageList = [
 	{tileType:TILE_CRYPT_DAMAGE_FLOOR, theFile:"images/crypt_damageFloor.png",  tileValue: 23 },
 
     //Row 1: GardenSpriteSheet
-    {tileType: TILE_GARDEN_WALL1,               tileValue: 30,    theFile: "images/GardenSpriteSheet.png", locX:  0, locY: 98, width: 32, height: 32, offSetX: 0, offSetY: 0},
-    {tileType: TILE_GARDEN_WALL2,     			tileValue: 31,    theFile: "images/GardenSpriteSheet.png", locX: 32, locY: 98, width: 32, height: 32, offSetX: 0, offSetY: 0},
-    {tileType: TILE_GARDEN_WALL3,               tileValue: 32,    theFile: "images/GardenSpriteSheet.png", locX: 64, locY: 98, width: 32, height: 32, offSetX: 0, offSetY: 0},
-    {tileType: TILE_GRASS,       				tileValue: 33,    theFile: "images/GardenSpriteSheet.png", locX: 96, locY: 98, width: 32, height: 32, offSetX: 0, offSetY: 0},
-    {tileType: TILE_BUSH_TOP,      				tileValue: 34,    theFile: "images/GardenSpriteSheet.png", locX: 128, locY: 98, width: 32, height: 32, offSetX: 0, offSetY: 0},
-    {tileType: TILE_BUSH_BOTTOM,       			tileValue: 35,    theFile: "images/GardenSpriteSheet.png", locX: 160, locY: 98, width: 32, height: 32, offSetX: 0, offSetY: 0},
+    {tileType: TILE_GARDEN_WALL1,               tileValue: 30,    theFile: "images/MapEditorSpecific/gardenWall1.png"},
+    {tileType: TILE_GARDEN_WALL2,     			tileValue: 31,    theFile: "images/MapEditorSpecific/gardenWall2.png"},
+    {tileType: TILE_GARDEN_WALL3,               tileValue: 32,    theFile: "images/MapEditorSpecific/gardenWall3.png"},
+    {tileType: TILE_GRASS,       				tileValue: 33,    theFile: "images/MapEditorSpecific/grass.png"},
+    {tileType: TILE_BUSH_TOP,      				tileValue: 34,    theFile: "images/MapEditorSpecific/bush-top.png"},
+    {tileType: TILE_BUSH_BOTTOM,       			tileValue: 35,    theFile: "images/MapEditorSpecific/bush-bottom.png"},
     //OPEN
     //OPEN
-    {tileType: TILE_GARDEN_WATER1,         		tileValue: 38,    theFile: "images/GardenSpriteSheet.png", locX: 256, locY: 98, width: 32, height: 32, offSetX: 0, offSetY: 0},
-    {tileType: TILE_GARDEN_WATER2,             	tileValue: 39,    theFile: "images/GardenSpriteSheet.png", locX: 288, locY: 98, width: 32, height: 32, offSetX: 0, offSetY: 0},
+    {tileType: TILE_GARDEN_WATER1,         		tileValue: 38,    theFile: "images/MapEditorSpecific/water.png"},
+    
 
-    //Row 2: GardenSpriteSheet
-    {tileType: TILE_TREE_TOPLEFT,          	tileValue: 40,    theFile: "images/GardenSpriteSheet.png", locX:  0, locY: 128, width: 32, height: 32, offSetX: 0, offSetY: 0},
-    {tileType: TILE_TREE_TOPRIGHT,         	tileValue: 41,    theFile: "images/GardenSpriteSheet.png", locX: 32, locY: 128, width: 32, height: 32, offSetX: 0, offSetY: 0},
-    {tileType: TILE_TREE_MIDLEFT,          	tileValue: 42,    theFile: "images/GardenSpriteSheet.png", locX: 64, locY: 128, width: 32, height: 32, offSetX: 0, offSetY: 0},
-    {tileType: TILE_TREE_MIDRIGHT,       	tileValue: 43,    theFile: "images/GardenSpriteSheet.png", locX: 96, locY: 128, width: 32, height: 32, offSetX: 0, offSetY: 0},
-    {tileType: TILE_TREE_BOTLEFT,       	tileValue: 44,    theFile: "images/GardenSpriteSheet.png", locX: 128, locY: 128, width: 32, height: 32, offSetX: 0, offSetY: 0},
-    {tileType: TILE_TREE_BOTRIGHT,       	tileValue: 45,    theFile: "images/GardenSpriteSheet.png", locX: 160, locY: 128, width: 32, height: 32, offSetX: 0, offSetY: 0},
+    //Row 2: 
+    {tileType: TILE_TREE_TOPLEFT,          	tileValue: 40,    theFile: "images/MapEditorSpecific/tree-topLeft.png"},
+    {tileType: TILE_TREE_TOPRIGHT,         	tileValue: 41,    theFile: "images/MapEditorSpecific/tree-topRight.png"},
+    {tileType: TILE_TREE_MIDLEFT,          	tileValue: 42,    theFile: "images/MapEditorSpecific/tree-midLeft.png"},
+    {tileType: TILE_TREE_MIDRIGHT,       	tileValue: 43,    theFile: "images/MapEditorSpecific/tree-midRight.png"},
+    {tileType: TILE_TREE_BOTLEFT,       	tileValue: 44,    theFile: "images/MapEditorSpecific/tree-botLeft.png"},
+    {tileType: TILE_TREE_BOTRIGHT,       	tileValue: 45,    theFile: "images/MapEditorSpecific/tree-botRight.png"},
     //OPEN
     //OPEN
     //OPEN

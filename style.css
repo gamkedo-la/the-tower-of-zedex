@@ -8,3 +8,7 @@ body {
 canvas {
     display: inline;
 }
+
+input {
+    transform: scale(2,2);
+}
