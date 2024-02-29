@@ -70,31 +70,32 @@ function warriorClass() {
 	this.swordAttack = function() {
 		console.log("sword attack initiated");
 
-		var attackX;
-		var attackY;
+		var attackCenterX = this.x;
+		var attackCenterY = this.y;
 		var attackW = TILE_W
 		var attackH = TILE_H
 
 		if(this.facingDirection == "DOWN") {
-			attackX = this.x - TILE_W/2;
-			attackY = this.y + TILE_H/2;
+			attackCenterY += TILE_H;
 			attackW = TILE_W*1.5;
 		}
 		if(this.facingDirection == "UP") {
-			attackX = this.x - TILE_W/2;
-			attackY = this.y - TILE_H*1.5;
+			attackCenterY -= TILE_H;
 			attackW = TILE_W*1.5;
 		}
 		if(this.facingDirection == "LEFT") {
-			attackX = this.x - TILE_W*1.5;
-			attackY = this.y - TILE_H;
+			attackCenterX += TILE_W;
 			attackH = TILE_H*1.5;
 		}
 		if(this.facingDirection == "RIGHT") {
-			attackX = this.x + TILE_W/2;
-			attackY = this.y - TILE_H/2;
+			attackCenterX -= TILE_W;
 			attackH = TILE_H*1.5
 		}
+		var attackX = attackCenterX - attackW/2;
+		var attackY = attackCenterY - attackH/2;
+		
+
+		
 
 		colorRect(attackX, attackY, attackW, attackH, "white");
 		/*
@@ -105,10 +106,10 @@ function warriorClass() {
 
 		// loop through enemy list and check if enemy overlaps hitbox
 		for(var i = 0; i < enemyList.length; i++){
-			if(	enemyList[i].x > attackX-TILE_W && 
-				enemyList[i].x < attackX+TILE_W &&
+			if(	enemyList[i].x > attackX && 
+				enemyList[i].x < attackX+ attackW &&
 				enemyList[i].y > attackY &&
-				enemyList[i].y < attackY+TILE_H ){
+				enemyList[i].y < attackY+ attackH ){
 					console.log(enemyList[i]+" has taken 1 damage.");
 					console.log(enemyList[i]+" Health: "+enemyList[i].health);
 					enemyList[i].health -= 1;
@@ -399,7 +400,8 @@ function warriorClass() {
 			
 		// } else {
 			
-			drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
+			drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x-16, this.y-16, 0.0 );
+			colorRect(this.x, this.y, 2,2, "magenta");
 			//canvasContext.drawImage(this.myBitmap, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y)
 	
 
