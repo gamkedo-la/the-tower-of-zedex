@@ -20,8 +20,8 @@ function HudClass() {
     this.hudY=450;
     this.hudElementSpacingWidth = 80;
 
-    this.heartX = 50;
-    this.heartY = 538;
+    this.heartX = 18;
+    this.heartY = 506;
     this.printHealthX = 36;
     this.printHealthY = 546;
     
@@ -30,8 +30,8 @@ function HudClass() {
     this.printAmmoX = 56;
     this.printAmmoY = 566;
 
-    this.swordX = 50;
-    this.swordY = 538;
+    this.swordX = 18;
+    this.swordY = 506;
 
     this.boxSize = 42;
     this.boxGap = 10;
