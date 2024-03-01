@@ -7,5 +7,14 @@ body {
 
 canvas {
     display: inline;
+    margin-top: 120px;
+}
+
+#editor-mode {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 54%;
+    margin: auto;
 }
 

@@ -14,6 +14,9 @@
 	-when done editing, click --"Return To Title Screen"-- to leave Editor Mode
 */
 
+var el_editorModeContainer = document.querySelector("#editor-mode");
+el_editorModeContainer.style.display = "none";
+
 var cleanMap =  [ 
         20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
         20,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 20,

@@ -89,6 +89,7 @@ function keyPressed(evt) {
 	if(gameState == "EDITOR"){
 		if(evt.key == "p" || evt.key == "P" || evt.key == "b" || evt.key == "B" ){
 			generateReadableMapData();
+			el_editorModeContainer.style.display = "none";
 			gameState = "TITLE";
 			loadLevel(level[currentLevel]);
 		}
@@ -96,6 +97,7 @@ function keyPressed(evt) {
 
 	if(gameState == "TITLE" && (evt.key == "e" || evt.key == "E")) {
 		gameState = "EDITOR";
+		el_editorModeContainer.style.display = "block";
 		loadLevel(freshMap);
 		console.log("Map Editing Mode");
 		console.log("Press -P- to End Map Editing Mode and Play")

@@ -79,7 +79,7 @@ function loadingDoneSoStartGame() {
 
 	initInput(); 
 	setupTileButtons();
-	
+	el_editorModeContainer.style.display = "none";
 }
 
 
