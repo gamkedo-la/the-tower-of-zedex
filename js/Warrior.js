@@ -402,6 +402,7 @@ function warriorClass() {
 			
 			drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x-16, this.y-16, 0.0 );
 			colorRect(this.x, this.y, 2,2, "magenta");
+			console.log(this.myBitmap.width)
 			//canvasContext.drawImage(this.myBitmap, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y)
 	
 

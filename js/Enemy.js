@@ -170,7 +170,8 @@ function enemyClass() {
 			} else { this.sprite = zombieSprite1 }
 		}
 		
-		canvasContext.drawImage( this.sprite, this.x-this.sprite.width/2, this.y-this.sprite.width/2 );
+		canvasContext.drawImage( this.sprite, this.x-16, this.y-16 );
+		colorRect(this.x, this.y, 2,2, "yellow")
 	}
 
 	

@@ -48,7 +48,9 @@ function beginLoadingImage(imgVar, fileName, locX, locY, width, height, offSetX,
 	imgVar.src = "images/" + fileName;
 	imgVar.locX = locX;
 	imgVar.locY = locY;
-	imgVar.width = width;
+	if (typeof width !== 'undefined') {
+		imgVar.width = width;
+	  }
 	imgVar.height = height;
 	imgVar.offSetX = offSetX;
 	imgVar.offSetY = offSetY;
