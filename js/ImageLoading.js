@@ -1,3 +1,4 @@
+var titlescreen=document.createElement("img");
 var scanlineFilter=document.createElement("img");
 var gardenSpriteSheet=document.createElement("img");
 
@@ -65,6 +66,7 @@ function loadImageForTileCode(tileCode, fileName, locX, locY, width, height, off
 function loadImages() {
 
   	var imageList = [
+		{varName:titlescreen, theFile:"titlescreen-ttoz.png"},
 		{varName:scanlineFilter, theFile:"scanline-filter.png"},
 		{varName:gardenSpriteSheet, theFile:"GardenSpriteSheet.png"},
 		

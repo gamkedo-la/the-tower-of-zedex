@@ -112,9 +112,10 @@ function drawEverything() {
 		drawRoom();
 	} 
 	else if (TitleScreen){
-		printText(" The Tower of Zedex ", canvas.width/4, 300, 40, "white");
-		printText(" press -P- to Play ", canvas.width/4, 360, 16, "grey");
-		printText(" press -E- for Map Editing Mode ", canvas.width/4, 390, 16, "grey");
+		canvasContext.drawImage(titlescreen, 0,0 );
+		//printText(" The Tower of Zedex ", canvas.width/4, 300, 40, "white");
+		printText(" press -P- to Play ", 280, 460, 16, "white");
+		printText(" press -E- for Map Editing Mode ", 280, 488, 16, "white");
 		
 	} else {
 		drawRoom();
