@@ -79,17 +79,23 @@ function keyPressed(evt) {
 		p1.boomStickShot();
 	}
 	
-	if(TitleScreen || MapEditingMode){
+	if(gameState == "TITLE"){
 		if(evt.key == "p" || evt.key == "P"){
-			TitleScreen = false;
-			MapEditingMode = false;
+			gameState = "PLAY";
 			loadLevel(level[currentLevel]);
 		}
 	}
 
-	if(TitleScreen == true && (evt.key == "e" || evt.key == "E")) {
-		MapEditingMode = true;
-		TitleScreen = false;
+	if(gameState == "EDITOR"){
+		if(evt.key == "p" || evt.key == "P" || evt.key == "b" || evt.key == "B" ){
+			generateReadableMapData();
+			gameState = "TITLE";
+			loadLevel(level[currentLevel]);
+		}
+	}
+
+	if(gameState == "TITLE" && (evt.key == "e" || evt.key == "E")) {
+		gameState = "EDITOR";
 		loadLevel(freshMap);
 		console.log("Map Editing Mode");
 		console.log("Press -P- to End Map Editing Mode and Play")

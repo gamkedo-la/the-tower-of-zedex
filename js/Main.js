@@ -5,6 +5,7 @@ var p1 = new warriorClass();
 
 var enemyList = [];
 
+var gameState = "TITLE"; // TITLE, EDITOR, PLAY, GAMEOVER
 var TitleScreen = true;
 var MapEditingMode = false;
 
@@ -78,46 +79,35 @@ function loadingDoneSoStartGame() {
 
 	initInput(); 
 	setupTileButtons();
-	//loadLevel(levelOne)
 	
 }
 
-/*
-function nextLevel() {
-	levelNow++;
-	if(levelNow > level.length) {
-		levelNow = 0;
-	}
-	loadLevel(level[levelNow]);
-}
 
-*/
 
 function moveEverything() {
-	if(TitleScreen || MapEditingMode){
-		return;
+	if(gameState == "PLAY"){
+		
+		if(hudDisplay.currentHealth < 1){
+			p1.reset();
+		}
+		hudDisplay.checkInvisibility();
+		p1.move();
+		moveEnemies();
 	}
-	if(hudDisplay.currentHealth < 1){
-		p1.reset();
-	}
-	hudDisplay.checkInvisibility();
-	p1.move();
-	moveEnemies();
 }
-
 function drawEverything() {
 	colorRect(0,0, canvas.width, canvas.height, "black")
 
-	if (MapEditingMode){
+	if (gameState == "EDITOR"){
 		drawRoom();
 	} 
-	else if (TitleScreen){
+	else if (gameState == "TITLE"){
 		canvasContext.drawImage(titlescreen, 0,0 );
 		//printText(" The Tower of Zedex ", canvas.width/4, 300, 40, "white");
 		printText(" press -P- to Play ", 280, 460, 16, "white");
 		printText(" press -E- for Map Editing Mode ", 280, 488, 16, "white");
 		
-	} else {
+	} else if (gameState == "PLAY"){
 		drawRoom();
 	
 		p1.draw();
