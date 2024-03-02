@@ -6,8 +6,8 @@ var p1 = new warriorClass();
 var enemyList = [];
 
 var gameState = "TITLE"; // TITLE, EDITOR, PLAY, GAMEOVER
-var TitleScreen = true;
-var MapEditingMode = false;
+// var TitleScreen = true;
+// var MapEditingMode = false;
 
 
 function moveEnemies() {
@@ -79,7 +79,7 @@ function loadingDoneSoStartGame() {
 
 	initInput(); 
 	setupTileButtons();
-	el_editorModeContainer.style.display = "none";
+	
 }
 
 
@@ -96,6 +96,7 @@ function moveEverything() {
 	}
 }
 function drawEverything() {
+	
 	colorRect(0,0, canvas.width, canvas.height, "black")
 
 	if (gameState == "EDITOR"){

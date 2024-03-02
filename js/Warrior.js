@@ -93,11 +93,9 @@ function warriorClass() {
 		}
 		var attackX = attackCenterX - attackW/2;
 		var attackY = attackCenterY - attackH/2;
-		
-
-		
 
 		colorRect(attackX, attackY, attackW, attackH, "white");
+		
 		/*
 		this.isAttackingWithSword = true
 		*/
@@ -165,15 +163,15 @@ function warriorClass() {
 					var difY = this.y - enemyList[i].y;
 					if(Math.abs(difX) > Math.abs(difY)) {
 						if(difX < 0) {
-							this.bumpSlideX = -20;
+							this.bumpSlideX = -10;
 						} else { 
-							this.bumpSlideX = 20;
+							this.bumpSlideX = 10;
 						}
 					} else {
 						if(difY < 0) {
-							this.bumpSlideY = -20;
+							this.bumpSlideY = -10;
 						} else { 
-							this.bumpSlideY = 20;
+							this.bumpSlideY = 10;
 						}
 					}
 
@@ -369,23 +367,6 @@ function warriorClass() {
 
 
 	this.draw = function() {
-		/* 
-		if(this.isAttackingWithSword == true) {
-			tick (counts until equal to ticksPerAnimationFrame then resets to 0)
-			ticksPerAnimationFrame = 5
-			totalTicks (counts all transpired ticks)
-			animationFrames = 3
-			
-			this.attackingSprites = {
-				down: [],
-				left: [],
-				right: [],
-				up: []
-			}
-
-
-		} else {}
-		*/
 		// if(this.playerState == "ATTACKING") {
 		// 	this.ticksPerAnimationFrame = 5;
 		// 	this.ticks++;
@@ -400,11 +381,17 @@ function warriorClass() {
 			
 		// } else {
 			
-			drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x-16, this.y-16, 0.0 );
-			colorRect(this.x, this.y, 2,2, "magenta");
-			console.log(this.myBitmap.width)
-			//canvasContext.drawImage(this.myBitmap, this.sx, this.sy, this.tileSize, this.tileSize, this.x, this.y)
-	
+		drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y-16, 0.0 );
+		colorRect(this.x, this.y, 2,2, "magenta");
+		console.log(this.myBitmap.width)
+		
+		// if(this.playerState == "ATTACK") {
+		// 	colorRect(attackX, attackY, attackW, attackH, "white");
+		// 	ticks++;
+		// 	if(ticks >= 5){
+		// 		this.playerState =="NONE";
+		// 	}
+		// }
 
 		for (var i=0; i < this.myShotList.length ; i++){
 			this.myShotList[i].draw();

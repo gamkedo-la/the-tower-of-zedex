@@ -13,7 +13,7 @@ function enemyClass() {
 	this.attackDamage =   3;
 
 	// Direction
-	this.direction =  'south';
+	this.direction =  'SOUTH';
 	this.walkNorth =  false;
 	this.walkEast =   false;
 	this.walkSouth =  true;
@@ -70,13 +70,13 @@ function enemyClass() {
 		}
 		var randomDirection = Math.ceil(Math.random()*4);
 		
-		if (randomDirection == 1)		{this.direction = 'north'}
-		else if (randomDirection == 2)	{this.direction = 'east'}
-		else if (randomDirection == 3)	{this.direction = 'south'}
-		else if (randomDirection == 4)	{this.direction = 'west'}
+		if (randomDirection == 1)		{this.direction = 'NORTH'}
+		else if (randomDirection == 2)	{this.direction = 'EAST'}
+		else if (randomDirection == 3)	{this.direction = 'SOUTH'}
+		else if (randomDirection == 4)	{this.direction = 'WEST'}
 		else { 
-			console.log('random direction error', randomDirection, "default direction to south");
-			this.direction = 'south'
+			console.log('random direction error', randomDirection, "default direction to SOUTH");
+			this.direction = 'SOUTH'
 		}
 	}
 
@@ -91,13 +91,13 @@ function enemyClass() {
 
 		if( this.chasePlayer == true ) {
 			if( p1.x > this.x ) {
-				this.changeDirection('east');
+				this.changeDirection('EAST');
 			} else if( p1.y > this.y ) {
-				this.changeDirection('north');
+				this.changeDirection('SOUTH');
 			} else if( p1.x < this.x ) {
-				this.changeDirection('west');
+				this.changeDirection('WEST');
 			} else {
-				this.changeDirection('south');
+				this.changeDirection('NORTH');
 			}
 		}
 
@@ -108,19 +108,19 @@ function enemyClass() {
 
 			
 		// next X/Y depending on direction
-		if(this.direction == 'north') {
+		if(this.direction == 'NORTH') {
 			nextY -= this.speed;
 			nextTileY = this.y-1;
 		}
-		if(this.direction == 'east') {
+		if(this.direction == 'EAST') {
 			nextX += this.speed;
 			nextTileX = this.x + TILE_W;
 		}
-		if(this.direction == 'south') {
+		if(this.direction == 'SOUTH') {
 			nextY += this.speed;
 			nextTileY = this.y + TILE_H;
 		}
-		if(this.direction == 'west') {
+		if(this.direction == 'WEST') {
 			nextX -= this.speed;
 			nextTileX = this.x - 1;
 		}
