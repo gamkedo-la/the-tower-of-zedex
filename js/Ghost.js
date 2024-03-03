@@ -160,6 +160,7 @@ function ghostClass() {
 		}
 	
 		canvasContext.drawImage( this.sprite, this.x, this.y );
+		colorRect(this.x, this.y, 5,5, "white")
 	}
 
 	

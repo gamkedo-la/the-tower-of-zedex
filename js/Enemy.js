@@ -76,7 +76,7 @@ function enemyClass() {
 		else if (randomDirection == 4)	{this.direction = 'WEST'}
 		else { 
 			console.log('random direction error', randomDirection, "default direction to SOUTH");
-			this.direction = 'SOUTH'
+			this.direction = 'SOUTH';
 		}
 	}
 
@@ -90,15 +90,17 @@ function enemyClass() {
 		} else { this.chasePlayer = false; }
 
 		if( this.chasePlayer == true ) {
+	
 			if( p1.x > this.x ) {
 				this.changeDirection('EAST');
 			} else if( p1.y > this.y ) {
 				this.changeDirection('SOUTH');
 			} else if( p1.x < this.x ) {
 				this.changeDirection('WEST');
-			} else {
+			} else if( p1.y < this.y ){
 				this.changeDirection('NORTH');
 			}
+
 		}
 
 		var nextX = this.x;
@@ -110,19 +112,19 @@ function enemyClass() {
 		// next X/Y depending on direction
 		if(this.direction == 'NORTH') {
 			nextY -= this.speed;
-			nextTileY = this.y-1;
+			nextTileY = this.y - 16;
 		}
 		if(this.direction == 'EAST') {
 			nextX += this.speed;
-			nextTileX = this.x + TILE_W;
+			nextTileX = this.x + 16;
 		}
 		if(this.direction == 'SOUTH') {
 			nextY += this.speed;
-			nextTileY = this.y + TILE_H;
+			nextTileY = this.y + 16;
 		}
 		if(this.direction == 'WEST') {
 			nextX -= this.speed;
-			nextTileX = this.x - 1;
+			nextTileX = this.x - 16;
 		}
 
 		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextTileX,nextTileY);
@@ -170,11 +172,20 @@ function enemyClass() {
 			} else { this.sprite = zombieSprite1 }
 		}
 		
-		canvasContext.drawImage( this.sprite, this.x-16, this.y-16 );
-		colorRect(this.x, this.y, 2,2, "yellow")
+		canvasContext.drawImage( this.sprite, this.x, this.y );
+		colorRect(this.x, this.y, 5,5, "blue")
 	}
 
-	
+	function detectAABBCollision(playerX, enemyX, playerY, enemyY){
+		if(	playerX < enemyX + TILE_W &&
+			playerX + TILE_W > enemyX &&
+			playerY < enemyY + TILE_H &&
+			playerY + TILE_H > enemyY ) 
+		{
+			console.log("collision DETECTED");
+		}
+
+	}
 
 	
 

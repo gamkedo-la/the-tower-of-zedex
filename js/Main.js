@@ -92,11 +92,11 @@ function moveEverything() {
 		}
 		hudDisplay.checkInvisibility();
 		p1.move();
-		moveEnemies();
+		//moveEnemies();
 	}
 }
 function drawEverything() {
-	
+
 	colorRect(0,0, canvas.width, canvas.height, "black")
 
 	if (gameState == "EDITOR"){

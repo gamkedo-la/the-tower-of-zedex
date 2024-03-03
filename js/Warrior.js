@@ -380,9 +380,9 @@ function warriorClass() {
 
 			
 		// } else {
-			
-		drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y-16, 0.0 );
-		colorRect(this.x, this.y, 2,2, "magenta");
+		canvasContext.drawImage(this.myBitmap, this.x, this.y);
+		// drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
+		colorRect(this.x, this.y, 5,5, "magenta");
 		console.log(this.myBitmap.width)
 		
 		// if(this.playerState == "ATTACK") {
