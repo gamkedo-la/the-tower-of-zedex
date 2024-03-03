@@ -1,5 +1,6 @@
 const MESSAGE_EMPTY = -1;
 const MESSAGE_INFO = 0;
+const MESSAGE_ALERT = 1;
 
 function MessagingClass() {
     this.messageQueue = [{ message: " ", type: MESSAGE_EMPTY }];

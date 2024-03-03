@@ -1,6 +1,6 @@
 
 function ghostClass() {
-	this.enemyType;
+	this.enemyType = EnemyType.GHOST;
 	
 	this.x = 0;
 	this.y = 0;
@@ -56,6 +56,10 @@ function ghostClass() {
 		this.health =   this.maxHealth;
 		this.readyToRemove =  false;
 	}
+
+    this.enemyTypeName = function() {
+        return Object.keys(EnemyType)[this.enemyType];
+    }
 
 	this.changeDirection = function() {
 		var randomDirection = Math.ceil(Math.random()*4);

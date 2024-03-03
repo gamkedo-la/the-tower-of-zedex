@@ -2,7 +2,7 @@ const SHOT_SPEED = 6.0;
 const SHOT_LIFE = 40;
 const SHOT_DISPLAY_RADIUS = 4.0;
 
-function BoomStickClass() {
+function boomStickClass() {
     this.x;
 	this.y;
 
@@ -67,8 +67,8 @@ function BoomStickClass() {
 				{
 					this.shotLife = 0;
 					this.readyToRemove = true;
-                    messagingSystem.log(enemyList[i]+" has taken 1 damage.");
-                    messagingSystem.log(enemyList[i]+" Health: "+enemyList[i].health);
+                    messagingSystem.log(enemyList[i].enemyTypeName()+" has taken 1 damage.");
+                    messagingSystem.log(enemyList[i].enemyTypeName() +" Health: "+enemyList[i].health);
 					enemyList[i].health -= 1;
 					if( enemyList[i].health < 1){
 						enemyList[i].readyToRemove = true;

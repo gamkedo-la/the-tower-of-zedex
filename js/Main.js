@@ -3,6 +3,12 @@ var canvas, canvasContext;
 
 var p1 = new warriorClass();
 
+const EnemyType = Object.freeze({ 
+    UNKNOWN: 0, 
+    ZOMBIE: 1,
+    GHOST: 2,
+    WALL_HUGGER: 3,
+}); 
 var enemyList = [];
 
 var gameState = "TITLE"; // TITLE, EDITOR, PLAY, GAMEOVER

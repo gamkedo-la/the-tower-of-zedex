@@ -2,8 +2,7 @@
 // traces around the walls it finds
 
 function wallHuggerClass() {
-	
-    this.enemyType = "Wall Hugger";
+    this.enemyType = EnemyType.WALL_HUGGER;
 	
 	this.x = 0;
 	this.y = 0;
@@ -51,6 +50,10 @@ function wallHuggerClass() {
 		this.health =   this.maxHealth;
 		this.readyToRemove =  false;
 	}
+
+    this.enemyTypeName = function() {
+        return Object.keys(EnemyType)[this.enemyType];
+    }
 
 	this.move = function() {	
 

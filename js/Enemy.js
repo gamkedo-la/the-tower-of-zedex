@@ -1,6 +1,5 @@
-
 function enemyClass() {
-	this.enemyType;
+	this.enemyType = EnemyType.ZOMBIE;
 	
 	this.x = 0;
 	this.y = 0;
@@ -62,6 +61,9 @@ function enemyClass() {
 	}
 
 
+    this.enemyTypeName = function() {
+        return Object.keys(EnemyType)[this.enemyType];
+    }
 
 	this.changeDirection = function(direction) {
 		if( direction != undefined ) {
