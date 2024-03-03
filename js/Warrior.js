@@ -68,7 +68,7 @@ function warriorClass() {
 	} // end of reset
 
 	this.swordAttack = function() {
-		console.log("sword attack initiated");
+        messagingSystem.log("Sword attack initiated.");
 
 		var attackCenterX = this.x;
 		var attackCenterY = this.y;
@@ -108,8 +108,8 @@ function warriorClass() {
 				enemyList[i].x < attackX+ attackW &&
 				enemyList[i].y > attackY &&
 				enemyList[i].y < attackY+ attackH ){
-					console.log(enemyList[i]+" has taken 1 damage.");
-					console.log(enemyList[i]+" Health: "+enemyList[i].health);
+					messagingSystem.log(enemyList[i]+" has taken 1 damage.");
+					messagingSystem.log(enemyList[i]+" Health: "+enemyList[i].health);
 					enemyList[i].health -= 1;
 					if( enemyList[i].health < 1){
 						enemyList[i].readyToRemove = true;
@@ -154,7 +154,7 @@ function warriorClass() {
 				this.y > enemyList[i].y &&
 				this.y < enemyList[i].y + TILE_H ) 
 			{
-				console.log("Player and Enemy in collision")
+                messagingSystem.log("Player and Enemy in collision");
 				
 				if(this.ticks >= this.ticksUntilDamage) {
 					this.ticks = 0;

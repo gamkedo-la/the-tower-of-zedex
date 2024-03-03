@@ -40,7 +40,7 @@ function HudClass() {
 
 
     this.restoreHealth = function() {
-        console.log("Player has used a potion");
+        messagingSystem.log("Player has used a potion");
         this.currentHealth = this.maxHealth;
     };
 
@@ -57,7 +57,7 @@ function HudClass() {
 
 	this.pickupTypes = {
 		0: function() {
-            console.log("This inventory slot is EMPTY");
+            messagingSystem.log("This inventory slot is EMPTY");
 
         },
 		1: function() {
@@ -69,15 +69,15 @@ function HudClass() {
             
         },
 		3: function() {
-            console.log("You have a Pick");
+            messagingSystem.log("You have a Pick");
             
         },
 		4: function() {
-            console.log("You have the Key")
+            messagingSystem.log("You have the Key");
             
         },
         5: function() {
-            console.log("You have the Scroll")
+            messagingSystem.log("You have the Scroll");
             
         },
 	}
@@ -161,6 +161,7 @@ function HudClass() {
 			}
 		}
 		
+		printText(messagingSystem.tail().message, this.messageWindowX + 20, this.messageWindowY + this.messageWindowHeight / 2, 16, "yellow");
 		drawRect(this.messageWindowX, this.messageWindowY, this.messageWindowWidth, this.messageWindowHeight, 4, 'white');
     }
 
