@@ -161,7 +161,14 @@ function HudClass() {
 			}
 		}
 		
-		printText(messagingSystem.tail().message, this.messageWindowX + 20, this.messageWindowY + this.messageWindowHeight / 2, 16, "yellow");
+        const messagesYPosition = this.messageWindowY + this.messageWindowHeight / 4;
+        const messagesYGap = 20;
+        const messagesToDisplay = 4;
+        const messages = messagingSystem.tail(4);
+
+        for (let i = 0; i < messagesToDisplay && i <= messages.length - 1; i++) {
+            printText(messages[i].message, this.messageWindowX + 20, messagesYPosition + messagesYGap * i, 16, "yellow");
+        }
 		drawRect(this.messageWindowX, this.messageWindowY, this.messageWindowWidth, this.messageWindowHeight, 4, 'white');
     }
 
