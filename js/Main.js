@@ -8,6 +8,7 @@ const EnemyType = Object.freeze({
     ZOMBIE: 1,
     GHOST: 2,
     WALL_HUGGER: 3,
+    TURRET: 4
 }); 
 var enemyList = [];
 
@@ -71,7 +72,16 @@ function spawnEnemiesAndPlay() {
 			hug.init( wallHuggerSprite1 ); 
 			enemyList.push(hug);
 		}
-	} while (enemyTypeFound);    
+	} while (enemyTypeFound);
+
+        do {
+		enemyTypeFound = levelHasValue(TILE_TURRET);
+		if( enemyTypeFound ) {
+			var turret = new turretClass();
+			turret.init( turretSprite1 ); 
+			enemyList.push(turret);
+		}
+	} while (enemyTypeFound);  
 }
 
 

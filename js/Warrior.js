@@ -1,5 +1,6 @@
 // tuning constants
 const PLAYER_MOVE_SPEED = 4.0;
+const BULLET_DAMAGE = 1;
 
 function warriorClass() {
 	// variables to keep track of position
@@ -123,7 +124,7 @@ function warriorClass() {
 	this.boomStickShot = function(){
 		if(hudDisplay.currentAmmo > 0){
 			if(this.myShotList.length < this.totalShots){
-				let tempShot = new boomStickClass();
+				let tempShot = new boomStickClass(false, BULLET_DAMAGE);
 				tempShot.shootFrom(this);
 				this.myShotList.push(tempShot);
 				hudDisplay.currentAmmo -=1;
@@ -383,7 +384,7 @@ function warriorClass() {
 		canvasContext.drawImage(this.myBitmap, this.x, this.y);
 		// drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
 		colorRect(this.x, this.y, 5,5, "magenta");
-		console.log(this.myBitmap.width)
+		// console.log(this.myBitmap.width)
 		
 		// if(this.playerState == "ATTACK") {
 		// 	colorRect(attackX, attackY, attackW, attackH, "white");

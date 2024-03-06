@@ -14,6 +14,8 @@ var ghostSprite1=document.createElement("img");
 var ghostSprite2=document.createElement("img");
 var wallHuggerSprite1=document.createElement("img");
 var wallHuggerSprite2=document.createElement("img");
+var turretSprite1=document.createElement("img");
+var turretSprite2=document.createElement("img");
 
 
 var healthIcon=document.createElement("img");
@@ -83,6 +85,8 @@ function loadImages() {
 		{varName:ghostSprite2, theFile:"ghostSprite_2.png"},
 		{varName:wallHuggerSprite1, theFile:"wall_hugger_1.png"},
 		{varName:wallHuggerSprite2, theFile:"wall_hugger_2.png"},
+                {varName:turretSprite1, theFile:"turret_sprite_1.png"},
+                {varName:turretSprite2, theFile:"turret_sprite_2.png"},
 
 		{varName:healthIcon, theFile:"health_icon.png"},
 		{varName:boomstickIcon, theFile:"boomstick_icon.png"},
