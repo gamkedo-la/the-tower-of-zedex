@@ -221,7 +221,7 @@ function warriorClass() {
 		if( walkIntoTileIndex != undefined) {
 			walkIntoTileType = roomGrid[walkIntoTileIndex];
 		}
-		
+
 		switch( walkIntoTileType ) {
 			case TILE_GROUND:
 				this.handleEnemyCollision();
@@ -317,6 +317,10 @@ function warriorClass() {
 					hudDisplay.currentHealth -= 5
 					playerHurt.play();
 				}
+			        break;
+			case TILE_SPIKE_WALL:
+				hudDisplay.currentHealth -= 2;
+				playerHurt.play();
 				break;
 			case TILE_WALL:
 			default:

@@ -38,8 +38,8 @@ const TILE_MASTER_KEY = 7;
 const TILE_AMMO = 8;
 const TILE_POTION = 9;
 const TILE_CHEST = 10;
+const TILE_SPIKE_WALL = 11;
 //		EMPTY_CHEST
-//		SPIKE_WALL
 
 const TILE_GHOST = 60;
 const TILE_ZOMBIE = 61;

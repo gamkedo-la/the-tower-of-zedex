@@ -140,8 +140,12 @@ function ghostClass() {
 					this.x = nextX;
 					this.y = nextY;
 					break;	
-				case TILE_WALL:
+			        case TILE_WALL:
+				        this.changeDirection();
+					break;
+				case TILE_SPIKE_WALL:
 					this.changeDirection();
+					break;
 				default:
 					this.changeDirection();
 					// any other tile type number was found... do nothing, for now
