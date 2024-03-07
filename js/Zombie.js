@@ -10,6 +10,7 @@ function zombieClass() {
 	this.maxHealth =      3;
 	this.health =         0;
 	this.attackDamage =   3;
+	this.ticksToFreeze = 0;
 
 	// Direction
 	this.direction =  'SOUTH';
@@ -84,7 +85,11 @@ function zombieClass() {
 
 		
 
-	this.move = function() {	
+	this.move = function() {
+		if (this.ticksToFreeze > 0) {
+			this.ticksToFreeze--;
+			return;
+		}
 
 		// working on a chase movement pattern
 		if( Math.abs(this.x - p1.x) <= this.distanceToChase ) {
@@ -166,13 +171,16 @@ function zombieClass() {
 	this.draw = function() {
 		// drawRect(this.x, this.y, 32,32, 3, 'green');
 
-		this.tickCount++;
-		if(this.tickCount == this.ticksPerFrame){
-			this.tickCount = 0;
-			if(this.sprite == zombieSprite1){
-				this.sprite = zombieSprite2;
-			} else { this.sprite = zombieSprite1 }
+		if (this.ticksToFreeze <= 0) {
+			this.tickCount++;
+			if(this.tickCount == this.ticksPerFrame){
+				this.tickCount = 0;
+				if(this.sprite == zombieSprite1){
+					this.sprite = zombieSprite2;
+				} else { this.sprite = zombieSprite1 }
+			}
 		}
+	
 		
 		canvasContext.drawImage( this.sprite, this.x, this.y );
 		colorRect(this.x, this.y, 5,5, "blue")
@@ -190,6 +198,8 @@ function zombieClass() {
 	}
 
 	
-
+	this.freeze = function(ticksToFreeze) {
+		this.ticksToFreeze = ticksToFreeze;
+	}
 
 }

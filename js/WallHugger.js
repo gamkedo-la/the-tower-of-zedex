@@ -13,6 +13,7 @@ function wallHuggerClass() {
 	this.maxHealth =      9999999; // invulnerable
 	this.health =         9999999;
 	this.attackDamage =   2;
+	this.ticksToFreeze = 0;
 
 	// Direction
 	this.walkNorth =  true;
@@ -55,7 +56,11 @@ function wallHuggerClass() {
         return Object.keys(EnemyType)[this.enemyType];
     }
 
-	this.move = function() {	
+	this.move = function() {
+		if (this.ticksToFreeze > 0) {
+			this.ticksToFreeze--;
+			return;
+		}
 
 		var nextX = this.x;
 		var nextY = this.y;
@@ -87,18 +92,21 @@ function wallHuggerClass() {
 	}
 
 	this.draw = function() {
-		this.tickCount++;
-		if(this.tickCount == this.ticksPerFrame){
-			this.tickCount = 0;
-			if(this.sprite == wallHuggerSprite1){
-				this.sprite = wallHuggerSprite2;
-			} else { this.sprite = wallHuggerSprite1 }
+		if (this.ticksToFreeze <= 0) {
+			this.tickCount++;
+			if(this.tickCount == this.ticksPerFrame){
+				this.tickCount = 0;
+				if(this.sprite == wallHuggerSprite1){
+					this.sprite = wallHuggerSprite2;
+				} else { this.sprite = wallHuggerSprite1 }
+			}
+		
+			if (this.walkNorth) this.rotation = 0;
+			if (this.walkEast) this.rotation = 90 * (Math.PI/180);
+			if (this.walkSouth) this.rotation = 180 * (Math.PI/180);
+			if (this.walkWest) this.rotation = 270 * (Math.PI/180);
 		}
 		
-        if (this.walkNorth) this.rotation = 0;
-        if (this.walkEast) this.rotation = 90 * (Math.PI/180);
-        if (this.walkSouth) this.rotation = 180 * (Math.PI/180);
-        if (this.walkWest) this.rotation = 270 * (Math.PI/180);
         drawBitmapCenteredAtLocationWithRotation(this.sprite,this.x,this.y,this.rotation);
         
         // unrotated, works great:
@@ -106,7 +114,9 @@ function wallHuggerClass() {
 	}
 
 	
-
+	this.freeze = function(ticksToFreeze) {
+		this.ticksToFreeze = ticksToFreeze;
+	}
 	
 
 

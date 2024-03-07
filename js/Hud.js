@@ -7,6 +7,9 @@ const INV_AMMO= 2;
 const INV_KEY= 3;
 const INV_MASTERKEY= 4;
 const INV_SPELLSCROLL= 5;
+
+const FREEZE_RADIUS = 100;	// In pixels
+const FREEZE_DURATION_IN_TICKS = 90;
  
 function HudClass() {
 
@@ -49,6 +52,28 @@ function HudClass() {
     this.currentAmmo = this.maxAmmo;
     };
 
+    this.freezeEnemies = function() {
+	// From the player's position (assuming that the player is the only one who can use this ability), get
+	// the list of enemies from within the radius of 5 tiles. For each enemy, add a boolean flag to
+	// represent whether they are frozen. If frozen, their movement and animation to stop. Otherwise,
+	// business as usual.
+
+	// Populating list of enemies within player's radius
+	const enemiesWithinRadius = [];
+	for (let i = 0; i < enemyList.length; i++) {
+	    const currEnemy = enemyList[i];
+	    if (((currEnemy.x - p1.x) ** 2 + (currEnemy.y - p1.y) ** 2) <= FREEZE_RADIUS ** 2) {
+		enemiesWithinRadius.push(currEnemy);
+	    }
+	}
+
+	// Mark each enemy as frozen
+	for (let i = 0; i < enemiesWithinRadius.length; i++) {
+	    const currEnemy = enemiesWithinRadius[i];
+	    currEnemy.freeze(FREEZE_DURATION_IN_TICKS);
+	}
+    };
+
     this.checkInventoryForEmptySlot = function(currentSlotValue) {
         console.log(currentSlotValue == INV_EMPTY);
         return currentSlotValue == INV_EMPTY;
@@ -77,7 +102,8 @@ function HudClass() {
             
         },
         5: function() {
-            messagingSystem.log("You have the Scroll");
+		messagingSystem.log("You used the Freeze Scroll");
+		this.freezeEnemies();
             
         },
 	}

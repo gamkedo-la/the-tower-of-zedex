@@ -17,6 +17,7 @@ function turretClass() {
 	// Stats
 	this.readyToRemove =    false;
 	this.health =               0;
+	this.ticksToFreeze = 0;
 
         // Direction
 	this.direction =  'SOUTH';
@@ -82,7 +83,17 @@ function turretClass() {
         // move here means to update the turret this frame, which includes finding out where the player is,
         // facing the direction the player is at, and only firing if the player is right in its line of fire.
 	this.move = function() {
+		// Bullet management not frozen, if they should be, put this after the ticksToFreeze guard
 		this.removeBullet();
+		for (var i=0; i < this.myShotList.length ; i++){
+			this.myShotList[i].movement();	
+		}
+
+		if (this.ticksToFreeze > 0) {
+			this.ticksToFreeze--;
+			return;
+		}
+
 		this.ticksUntilCanShoot = Math.max(0, this.ticksUntilCanShoot - 1);
 		
 		// working on a chase movement pattern
@@ -125,9 +136,7 @@ function turretClass() {
 	
 		}
 
-		for (var i=0; i < this.myShotList.length ; i++){
-			this.myShotList[i].movement();	
-		}
+		
 		
 	}
 
@@ -150,12 +159,14 @@ function turretClass() {
 	this.draw = function() {
 		// drawRect(this.x, this.y, 32,32, 3, 'green');
 
-		this.tickCount++;
-		if(this.tickCount == this.ticksPerFrame){
-			this.tickCount = 0;
-			if(this.sprite == turretSprite1){
-				this.sprite = turretSprite2;
-			} else { this.sprite = turretSprite1 }
+		if (this.ticksToFreeze <= 0) {
+			this.tickCount++;
+			if(this.tickCount == this.ticksPerFrame){
+				this.tickCount = 0;
+				if(this.sprite == turretSprite1){
+					this.sprite = turretSprite2;
+				} else { this.sprite = turretSprite1 }
+			}
 		}
 		
 		canvasContext.drawImage( this.sprite, this.x, this.y );
@@ -177,7 +188,9 @@ function turretClass() {
 
 	}
 
-	
+	this.freeze = function(ticksToFreeze) {
+		this.ticksToFreeze = ticksToFreeze;
+	}
 
 
 }

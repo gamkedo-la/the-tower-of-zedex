@@ -11,6 +11,7 @@ function ghostClass() {
 	this.maxHealth =      2;
 	this.health =         0;
 	this.attackDamage =   3;
+	this.ticksToFreeze = 0;
 
 	// Direction
 	this.direction =  'south';
@@ -74,7 +75,11 @@ function ghostClass() {
 		}
 	}
 
-	this.move = function() {		
+	this.move = function() {
+		if (this.ticksToFreeze > 0) {
+			this.ticksToFreeze--;
+			return;
+		}
 
 		this.ticksFromLastMovement++;
 		this.ticksFromLastDirectionChange++;
@@ -158,20 +163,26 @@ function ghostClass() {
 
 	this.draw = function() {
 		//colorRect(this.x, this.y, 32,32, 'white');
-	
-		this.tickCount++;
-		if(this.tickCount == this.ticksPerFrame){
-			this.tickCount = 0;
-			if(this.sprite == ghostSprite1){
-				this.sprite = ghostSprite2;
-			} else { this.sprite = ghostSprite1 }
+
+		if (this.ticksToFreeze <= 0) {
+			this.tickCount++;
+			if(this.tickCount == this.ticksPerFrame){
+				this.tickCount = 0;
+				if(this.sprite == ghostSprite1){
+					this.sprite = ghostSprite2;
+				} else { this.sprite = ghostSprite1 }
+			}
 		}
+	
+		
 	
 		canvasContext.drawImage( this.sprite, this.x, this.y );
 		colorRect(this.x, this.y, 5,5, "white")
 	}
 
-	
+	this.freeze = function(ticksToFreeze) {
+		this.ticksToFreeze = ticksToFreeze;
+	}
 
 	
 

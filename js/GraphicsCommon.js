@@ -9,7 +9,7 @@ function colorCircle(centerX, centerY, radius, fillColor) {
 	canvasContext.arc(centerX, centerY, radius, 0, Math.PI*2, true);
 	canvasContext.fill();
 }
-	
+
 function drawBitmapCenteredAtLocationWithRotation(graphic, atX, atY,withAngle) {
 	canvasContext.save(); // allows us to undo translate movement and rotate spin
 	canvasContext.translate(atX,atY); // sets the point where our graphic will go
@@ -31,4 +31,11 @@ function drawRect( topLeftX, topLeftY, width, height, lineWidth, color ) {
 				canvasContext.lineWidth = lineWidth;
 				canvasContext.rect( topLeftX, topLeftY, width, height )
 				canvasContext.stroke();
+}
+
+function drawCircle(centerX, centerY, radius, color) {
+	canvasContext.strokeStyle = color;
+	canvasContext.beginPath();
+	canvasContext.arc(centerX, centerY, radius, 0, Math.PI*2, true);
+	canvasContext.stroke();
 }
