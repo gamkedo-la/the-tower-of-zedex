@@ -50,7 +50,7 @@ function spawnEnemiesAndPlay() {
 	do { 
 		enemyTypeFound = levelHasValue(TILE_ZOMBIE);
 		if( enemyTypeFound ) {
-			var zombie = new enemyClass();
+			var zombie = new zombieClass();
 			zombie.init( zombieSprite1 );
 			enemyList.push(zombie);
 		}

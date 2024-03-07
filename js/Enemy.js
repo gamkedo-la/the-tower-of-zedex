@@ -1,4 +1,4 @@
-function enemyClass() {
+function zombieClass() {
 	this.enemyType = EnemyType.ZOMBIE;
 	
 	this.x = 0;
