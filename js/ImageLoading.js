@@ -114,6 +114,7 @@ function loadImages() {
 		{tileType:TILE_MASTER_KEY, theFile:"pickup_masterKey.png", 	locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
 		{tileType:TILE_CHEST, theFile:"chest.png", 					locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
 		{tileType:TILE_SPIKE_WALL, theFile:"world_spike_wall.png", 					locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
+		{tileType:TILE_FREEZE_SCROLL, theFile:"pickup_spell_scroll.png", 					locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
 
 		{tileType:TILE_CRYPT_WALL1, theFile:"crypt_wall1.png", 				locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
 		{tileType:TILE_CRYPT_WALL2, theFile:"crypt_wall2.png", 				locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},

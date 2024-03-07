@@ -108,6 +108,23 @@ function HudClass() {
         },
 	}
 
+	// Adds the given item and returns true if there is an empty slot, otherwise returns false.
+	this.addItem = function(itemAsInt) {
+		for(var i = 0; i<this.inventory.length; i++){
+			if(this.inventory[i] == 0){
+				this.inventory[i] = itemAsInt;
+				pickup.play();
+
+				if (inShopLevel()) {
+					destroyShopItems();
+				}
+				return true;
+			}
+		}
+
+		return false;
+	}
+
     this.inventory = [ 
 		INV_POTION, INV_POTION, INV_AMMO, 
 		INV_EMPTY, INV_KEY, INV_SPELLSCROLL,
@@ -162,23 +179,23 @@ function HudClass() {
 
 				// draw pickup Icons
 				//canvasContext.drawImage(pickupIcons, 32*i, 32*j, 32, 32, xPosition+5, yPosition+5, 32,32)
-                var inventoryIndex = 3*j+i;
-                if(this.inventory[inventoryIndex] == INV_EMPTY){
-                    
-                }
-                else if(this.inventory[inventoryIndex] == INV_POTION){
-                    canvasContext.drawImage(pickupPotion, xPosition+5, yPosition+5, 32,32)
-                }
-                else if(this.inventory[inventoryIndex] == INV_AMMO){
-                    canvasContext.drawImage(pickupAmmo, xPosition+5, yPosition+5, 32,32)
-                }
-                else if(this.inventory[inventoryIndex] == INV_KEY){
-                    canvasContext.drawImage(pickupKey, xPosition+5, yPosition+5, 32,32)
-                }
-                else if(this.inventory[inventoryIndex] == INV_MASTERKEY){
-                    canvasContext.drawImage(pickupMasterKey, xPosition+5, yPosition+5, 32,32)
-                }else if(this.inventory[inventoryIndex] == INV_SPELLSCROLL){
-                    canvasContext.drawImage(pickupSpellScroll, xPosition+5, yPosition+5, 32,32)
+				var inventoryIndex = 3*j+i;
+				if(this.inventory[inventoryIndex] == INV_EMPTY){
+
+				}
+				else if(this.inventory[inventoryIndex] == INV_POTION){
+				    canvasContext.drawImage(pickupPotion, xPosition+5, yPosition+5, 32,32)
+				}
+				else if(this.inventory[inventoryIndex] == INV_AMMO){
+				    canvasContext.drawImage(pickupAmmo, xPosition+5, yPosition+5, 32,32)
+				}
+				else if(this.inventory[inventoryIndex] == INV_KEY){
+				    canvasContext.drawImage(pickupKey, xPosition+5, yPosition+5, 32,32)
+				}
+				else if(this.inventory[inventoryIndex] == INV_MASTERKEY){
+				    canvasContext.drawImage(pickupMasterKey, xPosition+5, yPosition+5, 32,32)
+				}else if(this.inventory[inventoryIndex] == INV_SPELLSCROLL){
+				    canvasContext.drawImage(pickupSpellScroll, xPosition+5, yPosition+5, 32,32)
 				}
  
 

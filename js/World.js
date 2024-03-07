@@ -39,6 +39,7 @@ const TILE_AMMO = 8;
 const TILE_POTION = 9;
 const TILE_CHEST = 10;
 const TILE_SPIKE_WALL = 11;
+const TILE_FREEZE_SCROLL = 12;
 //		EMPTY_CHEST
 
 const TILE_GHOST = 60;

@@ -229,8 +229,13 @@ function warriorClass() {
 				this.y = nextY;
 				break;
 			case TILE_GOAL:
-				currentLevel += 1;
-				loadLevel(level[currentLevel]);
+			        if (inShopLevel()) {
+					exitShopLevel();
+					currentLevel += 1;
+					loadLevel(level[currentLevel]);
+				} else {
+					loadShopLevel();
+				}
 				break;
 			case TILE_DOOR:
 				for(var i = 0; i<hudDisplay.inventory.length; i++){
@@ -243,53 +248,40 @@ function warriorClass() {
 				roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
 				break;
 			case TILE_MASTER_KEY:
-				for(var i = 0; i<hudDisplay.inventory.length; i++){
-					if(hudDisplay.inventory[i] == 0){
-						hudDisplay.inventory[i] = 4;
-						roomGrid[walkIntoTileIndex] = TILE_GROUND;
-						pickup.play();
-						return;
-					}
+			        if(hudDisplay.addItem(4)) {
+					roomGrid[walkIntoTileIndex] = TILE_GROUND;
 				}
 				this.x = nextX;
 				this.y = nextY;
 				break;
 			case TILE_KEY:
-				for(var i = 0; i<hudDisplay.inventory.length; i++){
-					if(hudDisplay.inventory[i] == 0){
-						hudDisplay.inventory[i] = 3;
-						roomGrid[walkIntoTileIndex] = TILE_GROUND;
-						pickup.play();
-						return;
-					}
+			        if(hudDisplay.addItem(3)) {
+					roomGrid[walkIntoTileIndex] = TILE_GROUND;
 				}
 				this.x = nextX;
 				this.y = nextY;
 				break;
 			case TILE_POTION:
-				for(var i = 0; i<hudDisplay.inventory.length; i++){
-					if(hudDisplay.inventory[i] == 0){
-						hudDisplay.inventory[i] = 1;
-						roomGrid[walkIntoTileIndex] = TILE_GROUND;
-						pickup.play();
-						return;
-					}
+			        if(hudDisplay.addItem(1)) {
+					roomGrid[walkIntoTileIndex] = TILE_GROUND;
 				}
 				this.x = nextX;
 				this.y = nextY;
 				break;
 			case TILE_AMMO:
-				for(var i = 0; i<hudDisplay.inventory.length; i++){
-					if(hudDisplay.inventory[i] == 0){
-						hudDisplay.inventory[i] = 2;
-						roomGrid[walkIntoTileIndex] = TILE_GROUND;
-						pickup.play();
-						return;
-					}
+			        if(hudDisplay.addItem(2)) {
+					roomGrid[walkIntoTileIndex] = TILE_GROUND;
 				}
 				this.x = nextX;
 				this.y = nextY;
 				break;
+			case TILE_FREEZE_SCROLL:
+			        if(hudDisplay.addItem(5)) {
+					roomGrid[walkIntoTileIndex] = TILE_GROUND;
+				}
+				this.x = nextX;
+				this.y = nextY;
+			        break;
 			case TILE_CHEST:
 				roomGrid[walkIntoTileIndex] = TILE_MASTER_KEY;
 				

@@ -86,7 +86,9 @@ var imageList = [
     {tileType:TILE_MASTER_KEY,      theFile:"images/pickup_masterKey.png",      tileValue: 7 },
     {tileType:TILE_AMMO,            theFile:"images/pickup_ammo.png",           tileValue: 8 },
     {tileType:TILE_POTION,          theFile:"images/pickup_potion.png",         tileValue: 9 },
-    {tileType:TILE_CHEST,          theFile:"images/chest.png",                  tileValue: 10 },
+	{tileType:TILE_CHEST,          theFile:"images/chest.png",                  tileValue: 10 },
+	{tileType:TILE_FREEZE_SCROLL,  theFile:"images/pickup_spell_scroll.png",    tileValue: 12 },
+	
 	{tileType:TILE_CRYPT_WALL1,     theFile:"images/crypt_wall1.png",           tileValue: 20 },
 	{tileType:TILE_CRYPT_WALL2,     theFile:"images/crypt_wall2.png",           tileValue: 21 },
 	{tileType:TILE_CRYPT_WALL3,     theFile:"images/crypt_wall3.png",           tileValue: 22 },
