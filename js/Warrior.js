@@ -6,6 +6,14 @@ function warriorClass() {
 	// variables to keep track of position
 	this.x = 75;
 	this.y = 75;
+	this.width = 32;
+	this.height = 32;
+	this.rect = {
+		left: this.x,
+		right: this.x + this.width,
+		top: this.y,
+		bottom: this.y + this.height
+	}
 
 	// boomstick shot list
 	this.myShotList = [];
@@ -185,6 +193,12 @@ function warriorClass() {
 	this.move = function() {
 		var nextX = this.x + this.bumpSlideX;
 		var nextY = this.y + this.bumpSlideY;
+		this.movedRect = {
+			left: nextX,
+			right: nextX + this.width,
+			top: nextY,
+			bottom: nextY + this.height
+		}
 		this.bumpSlideX *= 0.8;
 		this.bumpSlideY *= 0.8;
 

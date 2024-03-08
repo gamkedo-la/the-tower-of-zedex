@@ -137,3 +137,44 @@ function drawEverything() {
 	
 	canvasContext.drawImage(scanlineFilter, 0, 0);
 }
+
+function rectCollision(rect1, rect2) {
+    return (
+        rect1.left < rect2.right &&
+        rect2.left < rect1.right &&
+        rect1.top < rect2.bottom &&
+        rect2.top < rect1.bottom
+      );
+}
+
+function pointInRect(x, y, rect){
+    return  x >= rect.left &&
+            x <= rect.right &&
+            y >= rect.top &&
+            y <= rect.bottom
+}
+
+function tileCollisionCheck(rect, tilemap){
+    //rect should be an object with left, right, top, bottom properties
+	//tilemap should be a 2D array of tile values
+
+    let leftTile =      Math.floor(this.rect.left / TILE_W),
+        rightTile =     Math.floor(this.rect.right / TILE_W),
+        topTile =       Math.floor(this.rect.top / TILE_W),
+        bottomTile =    Math.floor(this.rect.bottom / TILE_W),
+        
+    
+    for(let i = leftTile; i <=rightTile; i++){
+        for(let j = topTile; j<= bottomTile; j++){
+            let tile = roomTileToIndex(i, j)
+
+                if(tilemap[j][i] != TILE_GROUND){
+					return tile;
+				}
+            }
+        }
+	return 0;
+}
+	
+        
+

@@ -5,7 +5,14 @@ const SHOT_DISPLAY_RADIUS = 4.0;
 function boomStickClass(targetPlayer, damage) {
     this.x;
 	this.y;
-
+	this.width = 32;
+	this.height = 32;
+	this.rect = {
+		left: this.x,
+		right: this.x + this.width,
+		top: this.y,
+		bottom: this.y + this.height
+	}
 	this.targetPlayer = targetPlayer;
 	this.damage = damage;
 	this.readyToRemove = false;
@@ -80,6 +87,13 @@ function boomStickClass(targetPlayer, damage) {
 		    this.shotLife--;
 		    this.x += this.xv;
 		    this.y += this.yv;
+			//update rect
+			this.rect = {
+				left: this.x,
+				right: this.x + this.width,
+				top: this.y,
+				bottom: this.y + this.height
+			}
             }
 	    else {
 		    this.readyToRemove = true;
