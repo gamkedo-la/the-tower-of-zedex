@@ -158,17 +158,18 @@ function tileCollisionCheck(rect, tilemap){
     //rect should be an object with left, right, top, bottom properties
 	//tilemap should be a 2D array of tile values
 
-    let leftTile =      Math.floor(this.rect.left / TILE_W),
-        rightTile =     Math.floor(this.rect.right / TILE_W),
-        topTile =       Math.floor(this.rect.top / TILE_W),
-        bottomTile =    Math.floor(this.rect.bottom / TILE_W)
+    let leftTile =      Math.floor(rect.left / TILE_W),
+        rightTile =     Math.floor(rect.right / TILE_W),
+        topTile =       Math.floor(rect.top / TILE_W),
+        bottomTile =    Math.floor(rect.bottom / TILE_W)
         
     
     for(let i = leftTile; i <=rightTile; i++){
         for(let j = topTile; j<= bottomTile; j++){
-            let tile = roomTileToIndex(i, j)
+            let tile = roomGrid[roomTileToIndex(i, j)];
 
-                if(tilemap[j][i] != TILE_GROUND){
+                if(tile != TILE_GROUND){
+					//console.log(`tile collision at ${i}, ${j} with tile ${tile}`)
 					return tile;
 				}
             }

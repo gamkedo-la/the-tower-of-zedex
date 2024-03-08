@@ -4,10 +4,10 @@ const BULLET_DAMAGE = 1;
 
 function warriorClass() {
 	// variables to keep track of position
-	this.x = 75;
-	this.y = 75;
-	this.width = 32;
-	this.height = 32;
+	this.x = 0;
+	this.y = 0;
+	this.width = 30;
+	this.height = 30;
 	this.rect = {
 		left: this.x,
 		right: this.x + this.width,
@@ -62,8 +62,8 @@ function warriorClass() {
 				if( roomGrid[i] == TILE_PLAYER) {
 					var tileRow = Math.floor(i/ROOM_COLS);
 					var tileCol = i%ROOM_COLS;
-					this.homeX = tileCol * TILE_W + 0.5*TILE_W;
-					this.homeY = tileRow * TILE_H + 0.5*TILE_H;
+					this.homeX = tileCol * TILE_W //+ 0.5*TILE_W;
+					this.homeY = tileRow * TILE_H //+ 0.5*TILE_H;
 					roomGrid[i] = TILE_GROUND;
 					console.log("removing player tile")
 					break; // found it, so no need to keep searching 
@@ -191,6 +191,8 @@ function warriorClass() {
 	}
 
 	this.move = function() {
+		this.prevX = this.x;
+		this.prevY = this.y;
 		var nextX = this.x + this.bumpSlideX;
 		var nextY = this.y + this.bumpSlideY;
 		this.movedRect = {
@@ -228,19 +230,22 @@ function warriorClass() {
 			this.sx = 96;
 			
 		}
-				
-		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
-		var walkIntoTileType = TILE_WALL;
-		
-		if( walkIntoTileIndex != undefined) {
-			walkIntoTileType = roomGrid[walkIntoTileIndex];
-		}
 
+		this.x = nextX;
+		this.y = nextY;
+		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
+		//var walkIntoTileIndex = tileCollisionCheck(this.movedRect, roomGrid);
+		//var walkIntoTileType = TILE_WALL;
+		
+		// if( walkIntoTileIndex != undefined) {
+		// 	// walkIntoTileType = roomGrid[walkIntoTileIndex];
+		// 	walkIntoTyleType = tileCollisionCheck(this.movedRect, roomGrid);
+		// }
+		walkIntoTileType = tileCollisionCheck(this.movedRect, roomGrid);
+		console.log(walkIntoTileType)
 		switch( walkIntoTileType ) {
 			case TILE_GROUND:
 				this.handleEnemyCollision();
-				this.x = nextX;
-				this.y = nextY;
 				break;
 			case TILE_GOAL:
 			        if (inShopLevel()) {
@@ -265,36 +270,26 @@ function warriorClass() {
 			        if(hudDisplay.addItem(4)) {
 					roomGrid[walkIntoTileIndex] = TILE_GROUND;
 				}
-				this.x = nextX;
-				this.y = nextY;
 				break;
 			case TILE_KEY:
 			        if(hudDisplay.addItem(3)) {
 					roomGrid[walkIntoTileIndex] = TILE_GROUND;
 				}
-				this.x = nextX;
-				this.y = nextY;
 				break;
 			case TILE_POTION:
 			        if(hudDisplay.addItem(1)) {
 					roomGrid[walkIntoTileIndex] = TILE_GROUND;
 				}
-				this.x = nextX;
-				this.y = nextY;
 				break;
 			case TILE_AMMO:
 			        if(hudDisplay.addItem(2)) {
 					roomGrid[walkIntoTileIndex] = TILE_GROUND;
 				}
-				this.x = nextX;
-				this.y = nextY;
 				break;
 			case TILE_FREEZE_SCROLL:
 			        if(hudDisplay.addItem(5)) {
 					roomGrid[walkIntoTileIndex] = TILE_GROUND;
 				}
-				this.x = nextX;
-				this.y = nextY;
 			        break;
 			case TILE_CHEST:
 				roomGrid[walkIntoTileIndex] = TILE_MASTER_KEY;
@@ -303,8 +298,6 @@ function warriorClass() {
 			case TILE_SPIKE:
 				this.ticksUntilDamage = 5;
 				this.ticks += 1;
-				this.x = nextX;
-				this.y = nextY;
 				
 				if(this.ticks >= this.ticksUntilDamage) {
 					this.ticks = 0;
@@ -315,8 +308,6 @@ function warriorClass() {
 			case TILE_CRYPT_DAMAGE_FLOOR:
 				this.ticksUntilDamage = 5;
 				this.ticks += 1;
-				this.x = nextX;
-				this.y = nextY;
 				
 				if(this.ticks >= this.ticksUntilDamage) {
 					this.ticks = 0;
@@ -329,7 +320,12 @@ function warriorClass() {
 				playerHurt.play();
 				break;
 			case TILE_WALL:
+				
 			default:
+				console.log('hit wall')
+				//this works-ish, but it's not the best way to handle it, ultimately want to test collision on x and y axis separately
+				this.x = Math.round(this.x / TILE_W) * TILE_W;
+				this.y = Math.round(this.y / TILE_H) * TILE_H;
 				// any other tile type number was found... do nothing, for now
 				break;
 			
