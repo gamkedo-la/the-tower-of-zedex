@@ -72,7 +72,7 @@ function warriorClass() {
 	} // end of reset
 
 	this.swordAttack = function() {
-        messagingSystem.log("Sword attack initiated.");
+        messagingSystem.log("Sword attack initiated.", MessageType.ACTION);
 
 		var attackCenterX = this.x;
 		var attackCenterY = this.y;
@@ -132,7 +132,7 @@ function warriorClass() {
 				this.myShotList.push(tempShot);
 				hudDisplay.currentAmmo -=1;
 				boomstickFire.play();
-                messagingSystem.log("Player fires boom stick!");
+                messagingSystem.log("Player fires boom stick!", MessageType.ACTION);
 			}
 		}
 		
@@ -159,7 +159,7 @@ function warriorClass() {
 				this.y > enemyList[i].y &&
 				this.y < enemyList[i].y + TILE_H ) 
 			{
-                messagingSystem.log(`Player and ${enemyList[i].enemyTypeName()} in collision!`);
+                messagingSystem.log(`Player and ${enemyList[i].enemyTypeName()} in collision!`, MessageType.DANGER);
 				
 				if(this.ticks >= this.ticksUntilDamage) {
 					this.ticks = 0;
@@ -303,6 +303,7 @@ function warriorClass() {
 					this.ticks = 0;
 					hudDisplay.currentHealth -= 1
 					playerHurt.play();
+                    messagingSystem.log("Player is hurt!", MessageType.DANGER);
 				}
 				break;
 			case TILE_CRYPT_DAMAGE_FLOOR:
@@ -322,7 +323,7 @@ function warriorClass() {
 			case TILE_WALL:
 				
 			default:
-				messagingSystem.log('Player hits wall!');
+				messagingSystem.log('Player hits wall!', MessageType.DANGER);
 				//this works-ish, but it's not the best way to handle it, ultimately want to test collision on x and y axis separately
 				this.x = Math.round(this.x / TILE_W) * TILE_W;
 				this.y = Math.round(this.y / TILE_H) * TILE_H;

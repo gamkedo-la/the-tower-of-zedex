@@ -43,12 +43,12 @@ function HudClass() {
 
 
     this.restoreHealth = function() {
-        messagingSystem.log("Player has used a potion");
+        messagingSystem.log("Player has used a potion", MessageType.ACTION);
         this.currentHealth = this.maxHealth;
     };
 
     this.restoreAmmo = function() {
-    messagingSystem.log("Player has used an ammo box");
+    messagingSystem.log("Player has used an ammo box", MessageType.ACTION);
     this.currentAmmo = this.maxAmmo;
     };
 
@@ -86,23 +86,25 @@ function HudClass() {
 
         },
 		1: function() {
+            messagingSystem.log("You restored health!", MessageType.ACTION);
             this.restoreHealth();
         
         },
 		2: function() {
+            messagingSystem.log("You restore ammo!", MessageType.ACTION);
             this.restoreAmmo();
             
         },
 		3: function() {
-            messagingSystem.log("You have a Pick");
+            messagingSystem.log("You have a Pick", MessageType.ACTION);
             
         },
 		4: function() {
-            messagingSystem.log("You have the Key");
+            messagingSystem.log("You have the Key", MessageType.ACTION);
             
         },
         5: function() {
-		messagingSystem.log("You used the Freeze Scroll");
+		messagingSystem.log("You used the Freeze Scroll", MessageType.ACTION);
 		this.freezeEnemies();
             
         },
@@ -211,7 +213,7 @@ function HudClass() {
         const messages = messagingSystem.tail(4);
 
         for (let i = 0; i < messagesToDisplay && i <= messages.length - 1; i++) {
-            printText(messages[i].message, this.messageWindowX + 20, messagesYPosition + messagesYGap * i, 16, "yellow");
+            printText(messages[i].message, this.messageWindowX + 20, messagesYPosition + messagesYGap * i, 16, MessageColor[messages[i].type]);
         }
 		drawRect(this.messageWindowX, this.messageWindowY, this.messageWindowWidth, this.messageWindowHeight, 4, 'white');
     }

@@ -1,14 +1,24 @@
-const MESSAGE_EMPTY = -1;
-const MESSAGE_INFO = 0;
-const MESSAGE_ALERT = 1;
+const MessageType = Object.freeze({
+    EMPTY: -1,
+    INFO: 0,
+    DANGER: 1,
+    ACTION: 2,
+});
+
+const MessageColor = Object.freeze({
+    [MessageType.EMPTY]: "#000",
+    [MessageType.INFO]: "#FFF",
+    [MessageType.DANGER]: "#FF0000",
+    [MessageType.ACTION]: "#41e7c3",
+});
 
 function MessagingClass() {
-    this.messageQueue = [{ message: " ", type: MESSAGE_EMPTY }];
+    this.messageQueue = [{ message: " ", type: MessageType.EMPTY }];
     this.consoleOutput = false;
 
     this.toggleConsoleOutput = (consoleOutputEnabled = true) => this.consoleOutput = consoleOutputEnabled;
 
-    this.log = function (currentMessage, messageType = MESSAGE_INFO) {
+    this.log = function (currentMessage, messageType = MessageType.INFO) {
         const messageObject = { message: currentMessage, type: messageType };
         this.messageQueue.push(messageObject) ;
         if (this.consoleOutput) {
