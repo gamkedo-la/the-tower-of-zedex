@@ -113,6 +113,12 @@ var imageList = [
     {tileType: TILE_TREE_MIDRIGHT,       	tileValue: 43,    theFile: "images/MapEditorSpecific/tree-midRight.png"},
     {tileType: TILE_TREE_BOTLEFT,       	tileValue: 44,    theFile: "images/MapEditorSpecific/tree-botLeft.png"},
     {tileType: TILE_TREE_BOTRIGHT,       	tileValue: 45,    theFile: "images/MapEditorSpecific/tree-botRight.png"},
+
+    //Enemies
+    {tileType: TILE_GHOST, tileValue: 60, theFile: "images/ghostSprite_1.png"},
+    {tileType: TILE_ZOMBIE, tileValue: 61, theFile: "images/zombieSprite_1.png"},
+    {tileType: TILE_WALL_HUGGER, tileValue: 62, theFile: "images/wall_hugger_1.png"},
+    {tileType: TILE_TURRET, tileValue: 63, theFile: "images/turret_sprite_1.png"},
     //OPEN
     //OPEN
     //OPEN

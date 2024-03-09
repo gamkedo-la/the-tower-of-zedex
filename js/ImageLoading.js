@@ -140,6 +140,12 @@ function loadImages() {
 		{tileType: TILE_TREE_MIDRIGHT,       	theFile: "GardenSpriteSheet.png", locX: 96, locY: 32, width: 32, height: 32, offSetX: 0, offSetY: 0},
 		{tileType: TILE_TREE_BOTLEFT,       	theFile: "GardenSpriteSheet.png", locX: 128, locY: 32, width: 32, height: 32, offSetX: 0, offSetY: 0},
 		{tileType: TILE_TREE_BOTRIGHT,       	theFile: "GardenSpriteSheet.png", locX: 160, locY: 128, width: 32, height: 32, offSetX: 0, offSetY: 0},
+
+	    	//Enemy sprites for tile map editor
+		{tileType: TILE_GHOST,          	theFile: "ghostSprite_1.png", locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
+		{tileType: TILE_ZOMBIE,          	theFile: "zombieSprite_1.png", locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
+	    {tileType: TILE_WALL_HUGGER,          	theFile: "wall_hugger_1.png", locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
+		{tileType: TILE_TURRET,          	theFile: "turret_sprite_1.png", locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
 		//OPEN
 		//OPEN
 		//OPEN
