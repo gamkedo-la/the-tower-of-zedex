@@ -125,9 +125,10 @@ function HudClass() {
 		return false;
 	}
 
+	// INV_POTION, 	 INV_POTION, 	INV_AMMO, 	 INV_EMPTY, 	 INV_KEY, 	 INV_SPELLSCROLL,
     this.inventory = [ 
-		INV_POTION, INV_POTION, INV_AMMO, 
-		INV_EMPTY, INV_KEY, INV_SPELLSCROLL,
+		INV_EMPTY, INV_EMPTY, INV_EMPTY, 
+		INV_EMPTY, INV_EMPTY, INV_SPELLSCROLL,
 	];
 
     
