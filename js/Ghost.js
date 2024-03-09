@@ -4,6 +4,14 @@ function ghostClass() {
 	
 	this.x = 0;
 	this.y = 0;
+	this.width = 32;
+	this.height = 32;
+	this.rect = {
+		left: this.x,
+		right: this.x + this.width,
+		top: this.y,
+		bottom: this.y + this.height
+	}
 	this.speed = 6.0;
 	
 	// Stats
@@ -53,6 +61,12 @@ function ghostClass() {
 		}
 		this.x = this.homeX;
 		this.y = this.homeY;
+		this.rect = {
+			left: this.x,
+			right: this.x + this.width,
+			top: this.y,
+			bottom: this.y + this.height
+		}
 
 		this.health =   this.maxHealth;
 		this.readyToRemove =  false;
