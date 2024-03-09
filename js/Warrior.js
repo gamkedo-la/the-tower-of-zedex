@@ -57,22 +57,17 @@ function warriorClass() {
 	this.reset = function() {
 	hudDisplay.currentHealth = hudDisplay.maxHealth;
 		this.keysHeld = 0;
-		if(this.homeX == undefined) {
-			for(var i=0; i<roomGrid.length; i++) {
-				if( roomGrid[i] == TILE_PLAYER) {
-					var tileRow = Math.floor(i/ROOM_COLS);
-					var tileCol = i%ROOM_COLS;
-					this.homeX = tileCol * TILE_W //+ 0.5*TILE_W;
-					this.homeY = tileRow * TILE_H //+ 0.5*TILE_H;
-					roomGrid[i] = TILE_GROUND;
-					console.log("removing player tile")
-					break; // found it, so no need to keep searching 
-				} // end of if
-			} // end of for
-		} // end of if position not saved yet
-		
-		this.x = this.homeX;
-		this.y = this.homeY;
+		for(var i=0; i<roomGrid.length; i++) {
+			if( roomGrid[i] == TILE_PLAYER) {
+				var tileRow = Math.floor(i/ROOM_COLS);
+				var tileCol = i%ROOM_COLS;
+				this.x = tileCol * TILE_W //+ 0.5*TILE_W;
+				this.y = tileRow * TILE_H //+ 0.5*TILE_H;
+				roomGrid[i] = TILE_GROUND;
+				console.log("removing player tile")
+				break; // found it, so no need to keep searching 
+			} // end of if
+		} // end of for
 
 	} // end of reset
 
@@ -242,18 +237,22 @@ function warriorClass() {
 		// 	walkIntoTyleType = tileCollisionCheck(this.movedRect, roomGrid);
 		// }
 		walkIntoTileType = tileCollisionCheck(this.movedRect, roomGrid);
-		console.log(walkIntoTileType)
+
 		switch( walkIntoTileType ) {
 			case TILE_GROUND:
 				this.handleEnemyCollision();
 				break;
 			case TILE_GOAL:
-			        if (inShopLevel()) {
+		                if (inEditorPlayMode()) {
+				    quitLevelInEditor();
+				} else {
+			            if (inShopLevel()) {
 					exitShopLevel();
 					currentLevel += 1;
 					loadLevel(level[currentLevel]);
-				} else {
+				    } else {
 					loadShopLevel();
+				    }
 				}
 				break;
 			case TILE_DOOR:
