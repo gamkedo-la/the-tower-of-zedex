@@ -48,7 +48,7 @@ function HudClass() {
     };
 
     this.restoreAmmo = function() {
-    console.log("Player has used an ammo box");
+    messagingSystem.log("Player has used an ammo box");
     this.currentAmmo = this.maxAmmo;
     };
 

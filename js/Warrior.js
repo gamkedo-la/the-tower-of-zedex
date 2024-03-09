@@ -132,6 +132,7 @@ function warriorClass() {
 				this.myShotList.push(tempShot);
 				hudDisplay.currentAmmo -=1;
 				boomstickFire.play();
+                messagingSystem.log("Player fires boom stick!");
 			}
 		}
 		
@@ -321,7 +322,7 @@ function warriorClass() {
 			case TILE_WALL:
 				
 			default:
-				console.log('hit wall')
+				messagingSystem.log('Player hits wall!');
 				//this works-ish, but it's not the best way to handle it, ultimately want to test collision on x and y axis separately
 				this.x = Math.round(this.x / TILE_W) * TILE_W;
 				this.y = Math.round(this.y / TILE_H) * TILE_H;
