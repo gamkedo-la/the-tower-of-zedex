@@ -165,6 +165,48 @@ function setupTileButtons() {
     stop_btn.addEventListener('click', quitLevelInEditor);
     tileButtonContainer.appendChild(stop_btn);
 
+    // Load an existing level input (+ label)
+    let load_level_lbl = document.createElement('label');
+    load_level_lbl.innerHTML = 'Load a level (0 is shop, otherwise, n is nth level)';
+    tileButtonContainer.appendChild(load_level_lbl);
+
+    // Users cannot use keyboard to input numbers because the keyPressed function calls evt.preventDefault()
+    // which disables that (though it is intended to disable scrolling with arrow keys)
+    let load_level_inp = document.createElement('input');
+    load_level_inp.type = "number";
+    load_level_inp.id = "loadLevelInp";
+    load_level_inp.name = "level to load";
+    tileButtonContainer.appendChild(load_level_inp);
+
+    let load_level_btn = document.createElement('button');
+    load_level_btn.innerHTML = 'Load Level';
+    load_level_btn.addEventListener('click', () => {
+	const loadLevelInput = document.getElementById("loadLevelInp");
+	const levelToLoad = loadLevelInput.value;
+
+	if (levelToLoad == "") {
+	    console.log("You need to click on the arrows on the input to insert an integer.");
+	    return;
+	}
+
+	_loadLevelByNumber(levelToLoad);
+    });
+    tileButtonContainer.appendChild(load_level_btn);
+
+}
+
+// Load the shop level if n is 0, otherwise, load the nth level (assuming that n = 1 is the 1st level). If the
+// nth level does not exist, log the error and do nothing. If the game is in editor play mode, the player can
+// play the newly loaded level, but the level will be reverted to the one entering editor play mode upon
+// stopping the editor play mode.
+function _loadLevelByNumber(n) {
+    if (n == 0) {
+	loadLevel(shopLevel);
+    } else if (n < 0 || n >= level.length) {
+	console.log("The level number " + n + " does not correspond to any level.");
+    } else {
+	loadLevel(level[n]);
+    }
 }
 
 function _generateReadableMapData() {
