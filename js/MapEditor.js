@@ -210,10 +210,43 @@ function _loadLevelByNumber(n) {
 }
 
 function _generateReadableMapData() {
-    let freshMapText = roomGrid.slice()+'';
-    let readableString ='[ ' + freshMapText.replace(/,/g , ",  ").replace(/  20,/g , " 20,") + ' ]';
-    console.log(readableString)
-    alert( readableString );
+    // A list of strings, where a string represents a row of the roomGrid. For example,
+    // [ "      1,    2,   3", "     20,  20, 20" ].
+    let stringRows = [];
+
+    // A list of strings, where a string represents the tile type padded to a length of 3. For example,
+    // [ "  1", " 20" ].
+    let stringRow = [];
+
+    // Represents the number of tiles that have been traversed in the current row.
+    // Between 0 and ROOM_COLS, if ROOM_COLS then should reset to 0, other than that always increasing.
+    let currRowLen = 0;
+
+    for (let i = 0; i <= roomGrid.length; i++) {
+	if (currRowLen >= ROOM_COLS) {
+	    // The row should begin with 8 spaces (for indentation)
+	    stringRows.push(' '.repeat(8) + stringRow.join(","));
+	    
+	    currRowLen = 0;
+	    stringRow = [];
+
+	    if (i == roomGrid.length) {
+		break;
+	    }
+	}
+	
+
+	const tileType = roomGrid[i];
+
+	const paddedTileTypeAsString = tileType.toString().padStart(3, ' ');
+	stringRow.push(paddedTileTypeAsString);
+	currRowLen++;
+    }
+
+    // Every row ends with a comma and newline, except the last one.
+    const listInnerString = stringRows.join(',\n');
+    const out = "Copy and paste me into js/Levels.js:\n\nlevel[X] =\n    [\n" + listInnerString + "\n    ];";
+    console.log(out);
 }
 
 function _generateGardenWalls() {
