@@ -52,15 +52,10 @@ function setKeyHoldState(thisKey, thisPlayer, setTo) {
 }
 
 function keyPressed(evt) {
+    	evt.preventDefault(); // without this, arrow keys scroll the browser!
 	setKeyHoldState(evt.keyCode, p1, true);
 
-	if(evt.key == " "){
-		p1.swordAttack();
-	}
-
-	if(evt.keyCode == KEY_LETTER_X){
-		p1.boomStickShot();
-	}
+	
 	
 	if(gameState == "TITLE"){
 		if(evt.key == "p" || evt.key == "P"){
@@ -77,7 +72,20 @@ function keyPressed(evt) {
 	if(gameState == "EDITOR" && (evt.key == "p" || evt.key == "P" || evt.key == "b" || evt.key == "B" )){
 		closeLevelEditor();
 	}
-	
+
+        // The keys below are for PLAY state only.
+        if (gameState != "PLAY") {
+	        return;
+        }
+
+        if(evt.key == " "){
+		p1.swordAttack();
+	}
+
+	if(evt.keyCode == KEY_LETTER_X){
+		p1.boomStickShot();
+	}
+    
 	if(evt.key == "1"){
 		//check inventory slot one for pickupType and return function
 		console.log("Key 1 has been pressed")
@@ -109,8 +117,6 @@ function keyPressed(evt) {
 		hudDisplay.pickupTypes[hudDisplay.inventory[5]].call(hudDisplay);
 		hudDisplay.inventory[5] = 0;
 	}
-
-	evt.preventDefault(); // without this, arrow keys scroll the browser!
 }
 
 function keyReleased(evt) {
