@@ -108,7 +108,7 @@ function moveEverything() {
 		}
 		hudDisplay.checkInvisibility();
 		p1.move();
-		//moveEnemies();
+		moveEnemies();
 	}
 }
 function drawEverything() {
