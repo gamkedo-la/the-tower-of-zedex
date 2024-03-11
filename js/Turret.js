@@ -36,7 +36,7 @@ function turretClass() {
 	this.sprite;
 	this.frameIndex =      0;
 	this.tickCount =       0;
-	this.ticksPerFrame =  15;
+	this.ticksPerFrame =  6;
 	this.clipX = 0;
 	this.clipY = 0;
 
