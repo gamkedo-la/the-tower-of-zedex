@@ -80,20 +80,22 @@ function warriorClass() {
 		var attackH = TILE_H
 
 		if(this.facingDirection == "DOWN") {
-			attackCenterY += TILE_H;
+			attackCenterY += TILE_H*1.5;
 			attackW = TILE_W*1.5;
 		}
 		if(this.facingDirection == "UP") {
-			attackCenterY -= TILE_H;
+			attackCenterY -= TILE_H/2;
 			attackW = TILE_W*1.5;
 		}
 		if(this.facingDirection == "LEFT") {
-			attackCenterX += TILE_W;
+			attackCenterX -= TILE_W/2;
+			attackCenterY += TILE_H/2;
 			attackH = TILE_H*1.5;
 		}
 		if(this.facingDirection == "RIGHT") {
-			attackCenterX -= TILE_W;
-			attackH = TILE_H*1.5
+			attackCenterX += TILE_W + 8;
+			attackCenterY += TILE_H/2;
+			attackH = TILE_H*1.5;
 		}
 		var attackX = attackCenterX - attackW/2;
 		var attackY = attackCenterY - attackH/2;
@@ -342,32 +344,33 @@ function warriorClass() {
 
 
 	this.drawPlayerAttackHitBoxes = function() {
-		var attackX;
-		var attackY;
+		var attackCenterX = this.x;
+		var attackCenterY = this.y;
 		var attackW = TILE_W
 		var attackH = TILE_H
 
 		if(this.facingDirection == "DOWN") {
-			attackX = this.x - TILE_W/2;
-			attackY = this.y + TILE_H/2;
+			attackCenterY += TILE_H*1.5;
 			attackW = TILE_W*1.5;
-
 		}
 		if(this.facingDirection == "UP") {
-			attackX = this.x - TILE_W/2;
-			attackY = this.y - TILE_H*1.5;
+			attackCenterY -= TILE_H/2;
 			attackW = TILE_W*1.5;
 		}
 		if(this.facingDirection == "LEFT") {
-			attackX = this.x - TILE_W*1.5;
-			attackY = this.y - TILE_H;
+			attackCenterX -= TILE_W/2;
+			attackCenterY += TILE_H/2;
 			attackH = TILE_H*1.5;
 		}
 		if(this.facingDirection == "RIGHT") {
-			attackX = this.x + TILE_W/2;
-			attackY = this.y - TILE_H/2;
-			attackH = TILE_H*1.5
+			attackCenterX += TILE_W + 8;
+			attackCenterY += TILE_H/2;
+			attackH = TILE_H*1.5;
 		}
+
+		var attackX = attackCenterX - attackW/2;
+		var attackY = attackCenterY - attackH/2;
+
 		canvasContext.strokeStyle = "white";
 		canvasContext.lineWidth = 1;
 		canvasContext.strokeRect(attackX, attackY, attackW, attackH);
