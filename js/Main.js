@@ -78,7 +78,7 @@ function spawnEnemiesAndPlay() {
 		enemyTypeFound = levelHasValue(TILE_TURRET);
 		if( enemyTypeFound ) {
 			var turret = new turretClass();
-			turret.init( turretSprite1 ); 
+			turret.init( turretSprites ); 
 			enemyList.push(turret);
 		}
 	} while (enemyTypeFound);  

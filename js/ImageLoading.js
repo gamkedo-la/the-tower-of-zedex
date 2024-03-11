@@ -1,6 +1,7 @@
 var titlescreen=document.createElement("img");
 var scanlineFilter=document.createElement("img");
 var gardenSpriteSheet=document.createElement("img");
+var turretSprites=document.createElement("img");
 
 var playerFacingDown=document.createElement("img");
 var playerFacingLeft=document.createElement("img");
@@ -71,6 +72,7 @@ function loadImages() {
 		{varName:titlescreen, theFile:"titlescreen-ttoz.png"},
 		{varName:scanlineFilter, theFile:"scanline-filter.png"},
 		{varName:gardenSpriteSheet, theFile:"GardenSpriteSheet.png"},
+		{varName:turretSprites, theFile:"turret-sprites.png"},
 		
 
 		{varName:playerFacingDown, theFile:"warrior_down.png"},
@@ -142,11 +144,11 @@ function loadImages() {
 		{tileType: TILE_TREE_BOTRIGHT,       	theFile: "GardenSpriteSheet.png", locX: 160, locY: 128, width: 32, height: 32, offSetX: 0, offSetY: 0},
 
 	        //Player and enemy sprites for tile map editor
-	        {tileType: TILE_PLAYER,          	theFile: "warrior_down.png", locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
+	    {tileType: TILE_PLAYER,          	theFile: "warrior_down.png", locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
 		{tileType: TILE_GHOST,          	theFile: "ghostSprite_1.png", locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
 		{tileType: TILE_ZOMBIE,          	theFile: "zombieSprite_1.png", locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
 	    {tileType: TILE_WALL_HUGGER,          	theFile: "wall_hugger_1.png", locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
-		{tileType: TILE_TURRET,          	theFile: "turret_sprite_1.png", locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
+		{tileType: TILE_TURRET,          	theFile: "turret-sprites.png", locX:  0, locY: 0, width: 32, height: 64, offSetX: 0, offSetY: 0},
 		//OPEN
 		//OPEN
 		//OPEN

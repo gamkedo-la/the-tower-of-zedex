@@ -10,7 +10,7 @@ function turretClass() {
 	this.x = 0;
 	this.y = 0;
 	this.width = 32;
-	this.height = 32;
+	this.height = 64;
 	this.rect = {
 		left: this.x,
 		right: this.x + this.width,
@@ -37,6 +37,8 @@ function turretClass() {
 	this.frameIndex =      0;
 	this.tickCount =       0;
 	this.ticksPerFrame =  15;
+	this.clipX = 0;
+	this.clipY = 0;
 
 
 	this.init = function( enemyPic ) {
@@ -166,18 +168,21 @@ function turretClass() {
 
 	this.draw = function() {
 		// drawRect(this.x, this.y, 32,32, 3, 'green');
+		
 
 		if (this.ticksToFreeze <= 0) {
 			this.tickCount++;
+
 			if(this.tickCount == this.ticksPerFrame){
 				this.tickCount = 0;
-				if(this.sprite == turretSprite1){
-					this.sprite = turretSprite2;
-				} else { this.sprite = turretSprite1 }
+				if(this.clipX >= 64) {
+					this.clipX = 0
+				} else { this.clipX += this.width }
 			}
 		}
 		
-		canvasContext.drawImage( this.sprite, this.x, this.y );
+		//canvasContext.drawImage( this.sprite, this.x, this.y );
+		canvasContext.drawImage( this.sprite, this.clipX, this.clipY, this.width, this.height, this.x, this.y, this.width, this.height)
 		colorRect(this.x, this.y, 5,5, "blue");
 
 		for (var i=0; i < this.myShotList.length ; i++){
