@@ -18,7 +18,7 @@ function SoundOverlapsClass(filenameWithPath) {
 	
 	var altSoundTurn = false;
 	
-	this.play = function(volume=1) {
+	this.play = function(volume=0.3) {
 		if(altSoundTurn) {
 			altSound.currentTime = 0;
             altSound.volume = volume;
@@ -46,6 +46,7 @@ function BackgroundMusicClass(filenameWithPath){
 		}
 		musicSound = new Audio("sound/"+filenameWithPath+audioFormat);
 		musicSound.loop = true;
+		musicSound.volume = 0.5;
 		musicSound.play();
 	}
 	
