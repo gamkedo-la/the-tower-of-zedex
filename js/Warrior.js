@@ -1,7 +1,7 @@
 // tuning constants
 const PLAYER_MOVE_SPEED = 4.0;
 const BULLET_DAMAGE = 1;
-
+const FRAMES_PER_ANIM = 2;
 function warriorClass() {
 	// variables to keep track of position
 	this.x = 0;
@@ -34,10 +34,8 @@ function warriorClass() {
 	this.keyHeld_South = false;
 	this.keyHeld_West = false;
 
-	this.ticks = 0;
-	this.totalTicks = 0;
-	this.ticksUntilDamage;
-	this.ticksPerAnimationFrame;
+	this.framesUntilAnim = FRAMES_PER_ANIM;
+	this.animFrame = 0;
 	
 
 	// key controls used for this
@@ -406,13 +404,20 @@ function warriorClass() {
 		if(this.facingDirection == "UP") {
 			facingRow = 3;
 		}
-		drawBitmapCenteredAnimFrame(playerAttackSprites, this.x+16, this.y+16, 1, facingRow, 64);
+		drawBitmapCenteredAnimFrame(playerAttackSprites, this.x+16, this.y+16, this.animFrame, facingRow, 64);
 		canvasContext.drawImage(this.myBitmap, this.x, this.y);
 		// drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
 		colorRect(this.x, this.y, 5,5, "magenta");
 		// console.log(this.myBitmap.width)
-		
-		// if(this.playerState == "ATTACK") {
+		if(this.framesUntilAnim-- < 0){
+
+			this.framesUntilAnim = FRAMES_PER_ANIM;
+			this.animFrame ++;
+			if(this.animFrame >= 3){
+				this.animFrame = 0;
+			}
+		}
+			// if(this.playerState == "ATTACK") {
 		// 	colorRect(attackX, attackY, attackW, attackH, "white");
 		// 	ticks++;
 		// 	if(ticks >= 5){
