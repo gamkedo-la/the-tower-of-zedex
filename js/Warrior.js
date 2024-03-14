@@ -393,6 +393,20 @@ function warriorClass() {
 
 			
 		// } else {
+		var facingRow = 0;
+		if(this.facingDirection == "DOWN") {
+			facingRow = 0;
+		}
+		if(this.facingDirection == "LEFT") {
+			facingRow = 1;
+		}
+		if(this.facingDirection == "RIGHT") {
+			facingRow = 2;
+		}
+		if(this.facingDirection == "UP") {
+			facingRow = 3;
+		}
+		drawBitmapCenteredAnimFrame(playerAttackSprites, this.x+16, this.y+16, 1, facingRow, 64);
 		canvasContext.drawImage(this.myBitmap, this.x, this.y);
 		// drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
 		colorRect(this.x, this.y, 5,5, "magenta");

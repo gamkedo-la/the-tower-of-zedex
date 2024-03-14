@@ -18,6 +18,20 @@ function drawBitmapCenteredAtLocationWithRotation(graphic, atX, atY,withAngle) {
 	canvasContext.restore(); // undo the translation movement and rotation since save()
 }
 
+function drawBitmapCenteredAnimFrame(useBitmap, atX,atY, frameNum, vertNum, frameDim) {
+	var dimSize;
+	if(frameDim == undefined || frameDim == 0) {
+		dimSize = useBitmap.height;
+	} else {
+		dimSize = frameDim;
+	}
+	canvasContext.drawImage(useBitmap,
+		frameNum*dimSize,vertNum*dimSize,
+		dimSize,dimSize,
+		atX-dimSize/2,atY-dimSize/2,
+		dimSize,dimSize);
+}
+
 function printText( message, xPosition, yPosition, textSize, color ) {
 	canvasContext.fillStyle = color;
 	canvasContext.font = textSize + "px Arial";
@@ -39,3 +53,5 @@ function drawCircle(centerX, centerY, radius, color) {
 	canvasContext.arc(centerX, centerY, radius, 0, Math.PI*2, true);
 	canvasContext.stroke();
 }
+
+
