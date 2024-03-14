@@ -70,6 +70,10 @@ function warriorClass() {
 	} // end of reset
 
 	this.swordAttack = function() {
+		if(this.playerState != "NORMAL") {
+			return;
+		}
+		this.playerState = "ATTACKING";
         messagingSystem.log("Sword attack initiated.", MessageType.ACTION);
 
 		var attackCenterX = this.x;
@@ -404,19 +408,28 @@ function warriorClass() {
 		if(this.facingDirection == "UP") {
 			facingRow = 3;
 		}
-		drawBitmapCenteredAnimFrame(playerAttackSprites, this.x+16, this.y+16, this.animFrame, facingRow, 64);
-		canvasContext.drawImage(this.myBitmap, this.x, this.y);
-		// drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
-		colorRect(this.x, this.y, 5,5, "magenta");
-		// console.log(this.myBitmap.width)
-		if(this.framesUntilAnim-- < 0){
+		if(this.playerState == "ATTACKING"){
 
-			this.framesUntilAnim = FRAMES_PER_ANIM;
-			this.animFrame ++;
-			if(this.animFrame >= 3){
-				this.animFrame = 0;
-			}
+			drawBitmapCenteredAnimFrame(playerAttackSprites, this.x+16, this.y+16, this.animFrame, facingRow, 64);
+		} else{
+			canvasContext.drawImage(this.myBitmap, this.x, this.y);
 		}
+			// drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
+			colorRect(this.x, this.y, 5,5, "magenta");
+			// console.log(this.myBitmap.width)
+			if(this.framesUntilAnim-- < 0){
+				
+				this.framesUntilAnim = FRAMES_PER_ANIM;
+				this.animFrame ++;
+				var framesPerState = 1;
+				if(this.playerState == "ATTACKING"){
+					framesPerState = 3;
+				}
+				if(this.animFrame >= framesPerState){
+					this.animFrame = 0;
+					this.playerState = "NORMAL";
+				}
+			}
 			// if(this.playerState == "ATTACK") {
 		// 	colorRect(attackX, attackY, attackW, attackH, "white");
 		// 	ticks++;
