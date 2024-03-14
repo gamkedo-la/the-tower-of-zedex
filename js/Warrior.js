@@ -263,10 +263,12 @@ function warriorClass() {
 					if(hudDisplay.inventory[i] == 3 || hudDisplay.inventory[i] == 4){
 						hudDisplay.inventory[i] = 0;
 						useKey.play();
+						roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
 						return;
 					}
 				}
-				roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+				this.x = Math.round(this.x / TILE_W) * TILE_W;
+				this.y = Math.round(this.y / TILE_H) * TILE_H;
 				break;
 			case TILE_MASTER_KEY:
 			        if(hudDisplay.addItem(4)) {
@@ -327,8 +329,8 @@ function warriorClass() {
 			default:
 				messagingSystem.log('Player hits wall!', MessageType.DANGER);
 				//this works-ish, but it's not the best way to handle it, ultimately want to test collision on x and y axis separately
-				this.x = Math.round(this.x / TILE_W) * TILE_W;
-				this.y = Math.round(this.y / TILE_H) * TILE_H;
+				// this.x = Math.round(this.x / TILE_W) * TILE_W;
+				// this.y = Math.round(this.y / TILE_H) * TILE_H;
 				// any other tile type number was found... do nothing, for now
 				break;
 			
