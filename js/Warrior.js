@@ -1,7 +1,7 @@
 // tuning constants
 const PLAYER_MOVE_SPEED = 4.0;
 const BULLET_DAMAGE = 1;
-const FRAMES_PER_ANIM = 2;
+const FRAMES_PER_ANIM = 1;
 function warriorClass() {
 	// variables to keep track of position
 	this.x = 0;
