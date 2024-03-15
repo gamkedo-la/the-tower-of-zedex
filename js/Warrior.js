@@ -36,6 +36,8 @@ function warriorClass() {
 
 	this.framesUntilAnim = FRAMES_PER_ANIM;
 	this.animFrame = 0;
+	this.ticks = 0;
+	this.ticksUntilDamage = 5;
 	
 
 	// key controls used for this
@@ -329,10 +331,10 @@ function warriorClass() {
 			case TILE_WALL:
 				
 			default:
-				messagingSystem.log('Player hits wall!', MessageType.DANGER);
+				// messagingSystem.log('Player hits wall!', MessageType.DANGER);
 				//this works-ish, but it's not the best way to handle it, ultimately want to test collision on x and y axis separately
-				// this.x = Math.round(this.x / TILE_W) * TILE_W;
-				// this.y = Math.round(this.y / TILE_H) * TILE_H;
+				this.x = Math.round(this.x / TILE_W) * TILE_W;
+				this.y = Math.round(this.y / TILE_H) * TILE_H;
 				// any other tile type number was found... do nothing, for now
 				break;
 			
