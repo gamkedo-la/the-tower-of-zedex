@@ -183,22 +183,11 @@ function turretClass() {
 		
 		//canvasContext.drawImage( this.sprite, this.x, this.y );
 		canvasContext.drawImage( this.sprite, this.clipX, this.clipY, this.width, this.height, this.x, this.y, this.width, this.height)
-		colorRect(this.x, this.y, 5,5, "blue");
+		//colorRect(this.x, this.y, 5,5, "blue");
 
 		for (var i=0; i < this.myShotList.length ; i++){
 			this.myShotList[i].draw();
 		}
-	}
-
-	function detectAABBCollision(playerX, enemyX, playerY, enemyY){
-		if(	playerX < enemyX + TILE_W &&
-			playerX + TILE_W > enemyX &&
-			playerY < enemyY + TILE_H &&
-			playerY + TILE_H > enemyY ) 
-		{
-			console.log("collision DETECTED");
-		}
-
 	}
 
 	this.freeze = function(ticksToFreeze) {

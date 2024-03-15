@@ -105,17 +105,17 @@ function zombieClass() {
 		} else { this.chasePlayer = false; }
 
 		if( this.chasePlayer == true ) {
-	
-			if( p1.x > this.x ) {
-				this.changeDirection('EAST');
-			} else if( p1.y > this.y ) {
-				this.changeDirection('SOUTH');
-			} else if( p1.x < this.x ) {
-				this.changeDirection('WEST');
-			} else if( p1.y < this.y ){
-				this.changeDirection('NORTH');
-			}
-
+			if( Math.abs(p1.x - this.x) >= Math.abs(p1.y - this.y) ){
+				if( p1.x > this.x ) {
+					this.changeDirection('EAST');
+				} else this.changeDirection('WEST');
+			} else {
+				if( p1.y > this.y ) {
+					this.changeDirection('SOUTH');
+				} else {
+					this.changeDirection('NORTH')
+				}
+			} 
 		}
 
 		var nextX = this.x;
@@ -178,7 +178,9 @@ function zombieClass() {
 
 	this.draw = function() {
 		// drawRect(this.x, this.y, 32,32, 3, 'green');
-
+		if (this.ticksToFreeze > 0) {
+			colorRect(this.x, this.y, TILE_W, TILE_H, "dodgerblue");
+		}
 		if (this.ticksToFreeze <= 0) {
 			this.tickCount++;
 			if(this.tickCount == this.ticksPerFrame){
@@ -191,18 +193,7 @@ function zombieClass() {
 	
 		
 		canvasContext.drawImage( this.sprite, this.x, this.y );
-		colorRect(this.x, this.y, 5,5, "blue")
-	}
-
-	function detectAABBCollision(playerX, enemyX, playerY, enemyY){
-		if(	playerX < enemyX + TILE_W &&
-			playerX + TILE_W > enemyX &&
-			playerY < enemyY + TILE_H &&
-			playerY + TILE_H > enemyY ) 
-		{
-			console.log("collision DETECTED");
-		}
-
+		//colorRect(this.x, this.y, 5,5, "blue")
 	}
 
 	

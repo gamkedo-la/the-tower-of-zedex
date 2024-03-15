@@ -131,7 +131,7 @@ function drawEverything() {
 		drawEnemies();
 
 		hudDisplay.draw();
-		p1.drawPlayerAttackHitBoxes();
+		//p1.drawPlayerAttackHitBoxes();
 
 	}
 	

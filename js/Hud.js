@@ -9,7 +9,7 @@ const INV_MASTERKEY= 4;
 const INV_SPELLSCROLL= 5;
 
 const FREEZE_RADIUS = 100;	// In pixels
-const FREEZE_DURATION_IN_TICKS = 90;
+const FREEZE_DURATION_IN_TICKS = 300;
  
 function HudClass() {
 

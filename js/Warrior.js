@@ -84,16 +84,18 @@ function warriorClass() {
 		var attackH = TILE_H
 
 		if(this.facingDirection == "DOWN") {
+			attackCenterX += TILE_W/2;
 			attackCenterY += TILE_H*1.5;
 			attackW = TILE_W*1.5;
 		}
 		if(this.facingDirection == "UP") {
+			attackCenterX += TILE_W/2;
 			attackCenterY -= TILE_H/2;
 			attackW = TILE_W*1.5;
 		}
 		if(this.facingDirection == "LEFT") {
 			attackCenterX -= TILE_W/2;
-			attackCenterY += TILE_H/2;
+			attackCenterY += TILE_H/2 + 8;
 			attackH = TILE_H*1.5;
 		}
 		if(this.facingDirection == "RIGHT") {
@@ -104,7 +106,7 @@ function warriorClass() {
 		var attackX = attackCenterX - attackW/2;
 		var attackY = attackCenterY - attackH/2;
 
-		colorRect(attackX, attackY, attackW, attackH, "white");
+		colorRect(attackX, attackY, attackW, attackH, "orange");
 		
 		/*
 		this.isAttackingWithSword = true
