@@ -143,6 +143,9 @@ function warriorClass() {
                 messagingSystem.log("Player fires boom stick!", MessageType.ACTION);
 			}
 		}
+        else {
+            messagingSystem.log("Player's boom stick is out of ammo!", MessageType.INFO);
+        }
 		
 	}
 	
@@ -279,31 +282,35 @@ function warriorClass() {
 			case TILE_MASTER_KEY:
 			        if(hudDisplay.addItem(4)) {
 					roomGrid[walkIntoTileIndex] = TILE_GROUND;
+                    messagingSystem.log("Player obtained the master key!", MessageType.INFO);
 				}
 				break;
 			case TILE_KEY:
 			        if(hudDisplay.addItem(3)) {
 					roomGrid[walkIntoTileIndex] = TILE_GROUND;
+                    messagingSystem.log("Player obtained a key!", MessageType.INFO);
 				}
 				break;
 			case TILE_POTION:
 			        if(hudDisplay.addItem(1)) {
 					roomGrid[walkIntoTileIndex] = TILE_GROUND;
+                    messagingSystem.log("Player obtained a potion!", MessageType.INFO);
 				}
 				break;
 			case TILE_AMMO:
 			        if(hudDisplay.addItem(2)) {
 					roomGrid[walkIntoTileIndex] = TILE_GROUND;
+                    messagingSystem.log("Player obtained ammo!", MessageType.INFO);
 				}
 				break;
 			case TILE_FREEZE_SCROLL:
 			        if(hudDisplay.addItem(5)) {
 					roomGrid[walkIntoTileIndex] = TILE_GROUND;
+                    messagingSystem.log("Player obtained a freeze scroll!", MessageType.INFO);
 				}
 			        break;
 			case TILE_CHEST:
 				roomGrid[walkIntoTileIndex] = TILE_MASTER_KEY;
-				
 				break;
 			case TILE_SPIKE:
 				this.ticksUntilDamage = 5;
