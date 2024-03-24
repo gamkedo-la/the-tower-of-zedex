@@ -83,70 +83,69 @@ function warriorClass() {
 		var attackW = TILE_W
 		var attackH = TILE_H
 
-		var attackRect = {
-			left: this.x,
-			right: this.x + this.width,
-			top: this.y,
-			bottom: this.y + this.height
-		}
+		// var attackRect = {
+		// 	left: this.x,
+		// 	right: this.x + this.width,
+		// 	top: this.y,
+		// 	bottom: this.y + this.height
+		// }
 
 		if(this.facingDirection == "DOWN") {
 			attackCenterX += TILE_W/2;
 			attackCenterY += TILE_H*1.5;
 			attackW = TILE_W*1.5;
 
-			attackRect.left = 	this.x - 16;
-			attackRect.right = 	this.x + 32;
-			attackRect.top = 	this.y + 32;
-			attackRect.bottom = this.y + 64;
+			// attackRect.left = 	this.x - 16;
+			// attackRect.right = 	this.x + 32;
+			// attackRect.top = 	this.y + 32;
+			// attackRect.bottom = this.y + 64;
 		}
 		if(this.facingDirection == "UP") {
 			attackCenterX += TILE_W/2;
 			attackCenterY -= TILE_H/2;
 			attackW = TILE_W*1.5;
 
-			attackRect.left = 	this.x;
-			attackRect.right = 	this.x + 48;
-			attackRect.top = 	this.y - 32;
-			attackRect.bottom = this.y;
+			// attackRect.left = 	this.x;
+			// attackRect.right = 	this.x + 48;
+			// attackRect.top = 	this.y - 32;
+			// attackRect.bottom = this.y;
 		}
 		if(this.facingDirection == "LEFT") {
 			attackCenterX -= TILE_W/2;
 			attackCenterY += TILE_H/2 + 8;
 			attackH = TILE_H*1.5;
 
-			attackRect.left = 	this.x - 32;
-			attackRect.right = 	this.x;
-			attackRect.top = 	this.y - 16;
-			attackRect.bottom = this.y + 32;
+			// attackRect.left = 	this.x - 32;
+			// attackRect.right = 	this.x;
+			// attackRect.top = 	this.y - 16;
+			// attackRect.bottom = this.y + 32;
 		}
 		if(this.facingDirection == "RIGHT") {
 			attackCenterX += TILE_W + 8;
 			attackCenterY += TILE_H/2;
 			attackH = TILE_H*1.5;
 
-			attackRect.left = 	this.x + 32;
-			attackRect.right = 	this.x + 64;
-			attackRect.top = 	this.y;
-			attackRect.bottom = this.y + 48;
+			// attackRect.left = 	this.x + 32;
+			// attackRect.right = 	this.x + 64;
+			// attackRect.top = 	this.y;
+			// attackRect.bottom = this.y + 48;
 		}
 		var attackX = attackCenterX - attackW/2;
 		var attackY = attackCenterY - attackH/2;
 
-		//colorRect(attackX, attackY, attackW, attackH, "orange");
-		//colorRect(attackRect.top, attackRect.bottom, attackRect.left, attackRect.right, "orange");
+		colorRect(attackX, attackY, attackW, attackH, "orange");
+		//colorRect(attackRect.left, attackRect.bottom, attackW, attackH, "orange");
 
 		swordSwing.play();
 		console.log(attackRect)
 		// loop through enemy list and check if enemy overlaps hitbox
 		for(var i = 0; i < enemyList.length; i++){
-			// if(	enemyList[i].x > attackX && 
-			// 	enemyList[i].x < attackX+ attackW &&
-			// 	enemyList[i].y > attackY &&
-			// 	enemyList[i].y < attackY+ attackH ){
-				if(rectCollision(enemyList[i].rect, attackRect)){
-					
-					console.log(rectCollision(enemyList[i].rect, attackRect))
+			if(	enemyList[i].x +16 > attackX && 
+				enemyList[i].x +16 < attackX+ attackW &&
+				enemyList[i].y +16 > attackY &&
+				enemyList[i].y +16 < attackY+ attackH ){
+				// if(rectCollision(enemyList[i].rect, attackRect)){
+				// 	console.log(rectCollision(enemyList[i].rect, attackRect))
 
 					messagingSystem.log(enemyList[i].enemyTypeName()+" has taken 1 damage.");
 					messagingSystem.log(enemyList[i].enemyTypeName()+" Health: "+enemyList[i].health);
