@@ -83,43 +83,71 @@ function warriorClass() {
 		var attackW = TILE_W
 		var attackH = TILE_H
 
+		var attackRect = {
+			left: this.x,
+			right: this.x + this.width,
+			top: this.y,
+			bottom: this.y + this.height
+		}
+
 		if(this.facingDirection == "DOWN") {
 			attackCenterX += TILE_W/2;
 			attackCenterY += TILE_H*1.5;
 			attackW = TILE_W*1.5;
+
+			attackRect.left = 	this.x - 16;
+			attackRect.right = 	this.x + 32;
+			attackRect.top = 	this.y + 32;
+			attackRect.bottom = this.y + 64;
 		}
 		if(this.facingDirection == "UP") {
 			attackCenterX += TILE_W/2;
 			attackCenterY -= TILE_H/2;
 			attackW = TILE_W*1.5;
+
+			attackRect.left = 	this.x;
+			attackRect.right = 	this.x + 48;
+			attackRect.top = 	this.y - 32;
+			attackRect.bottom = this.y;
 		}
 		if(this.facingDirection == "LEFT") {
 			attackCenterX -= TILE_W/2;
 			attackCenterY += TILE_H/2 + 8;
 			attackH = TILE_H*1.5;
+
+			attackRect.left = 	this.x - 32;
+			attackRect.right = 	this.x;
+			attackRect.top = 	this.y - 16;
+			attackRect.bottom = this.y + 32;
 		}
 		if(this.facingDirection == "RIGHT") {
 			attackCenterX += TILE_W + 8;
 			attackCenterY += TILE_H/2;
 			attackH = TILE_H*1.5;
+
+			attackRect.left = 	this.x + 32;
+			attackRect.right = 	this.x + 64;
+			attackRect.top = 	this.y;
+			attackRect.bottom = this.y + 48;
 		}
 		var attackX = attackCenterX - attackW/2;
 		var attackY = attackCenterY - attackH/2;
 
-		colorRect(attackX, attackY, attackW, attackH, "orange");
-		
-		/*
-		this.isAttackingWithSword = true
-		*/
+		//colorRect(attackX, attackY, attackW, attackH, "orange");
+		//colorRect(attackRect.top, attackRect.bottom, attackRect.left, attackRect.right, "orange");
 
 		swordSwing.play();
-
+		console.log(attackRect)
 		// loop through enemy list and check if enemy overlaps hitbox
 		for(var i = 0; i < enemyList.length; i++){
-			if(	enemyList[i].x > attackX && 
-				enemyList[i].x < attackX+ attackW &&
-				enemyList[i].y > attackY &&
-				enemyList[i].y < attackY+ attackH ){
+			// if(	enemyList[i].x > attackX && 
+			// 	enemyList[i].x < attackX+ attackW &&
+			// 	enemyList[i].y > attackY &&
+			// 	enemyList[i].y < attackY+ attackH ){
+				if(rectCollision(enemyList[i].rect, attackRect)){
+					
+					console.log(rectCollision(enemyList[i].rect, attackRect))
+
 					messagingSystem.log(enemyList[i].enemyTypeName()+" has taken 1 damage.");
 					messagingSystem.log(enemyList[i].enemyTypeName()+" Health: "+enemyList[i].health);
 					enemyList[i].health -= 1;
@@ -143,9 +171,6 @@ function warriorClass() {
                 messagingSystem.log("Player fires boom stick!", MessageType.ACTION);
 			}
 		}
-        else {
-            messagingSystem.log("Player's boom stick is out of ammo!", MessageType.INFO);
-        }
 		
 	}
 	
@@ -172,8 +197,8 @@ function warriorClass() {
 			{
                 messagingSystem.log(`Player and ${enemyList[i].enemyTypeName()} in collision!`, MessageType.DANGER);
 				
-				if(this.ticks >= this.ticksUntilDamage) {
-					this.ticks = 0;
+				// if(this.ticks >= this.ticksUntilDamage) {
+				// 	this.ticks = 0;
 					hudDisplay.currentHealth -= enemyList[i].attackDamage;
 					var difX = this.x - enemyList[i].x;
 					var difY = this.y - enemyList[i].y;
@@ -192,7 +217,7 @@ function warriorClass() {
 					}
 
 					playerHurt.play();
-				}
+				//}
 			}
 		}
 	}
@@ -282,35 +307,31 @@ function warriorClass() {
 			case TILE_MASTER_KEY:
 			        if(hudDisplay.addItem(4)) {
 					roomGrid[walkIntoTileIndex] = TILE_GROUND;
-                    messagingSystem.log("Player obtained the master key!", MessageType.INFO);
 				}
 				break;
 			case TILE_KEY:
 			        if(hudDisplay.addItem(3)) {
 					roomGrid[walkIntoTileIndex] = TILE_GROUND;
-                    messagingSystem.log("Player obtained a key!", MessageType.INFO);
 				}
 				break;
 			case TILE_POTION:
 			        if(hudDisplay.addItem(1)) {
 					roomGrid[walkIntoTileIndex] = TILE_GROUND;
-                    messagingSystem.log("Player obtained a potion!", MessageType.INFO);
 				}
 				break;
 			case TILE_AMMO:
 			        if(hudDisplay.addItem(2)) {
 					roomGrid[walkIntoTileIndex] = TILE_GROUND;
-                    messagingSystem.log("Player obtained ammo!", MessageType.INFO);
 				}
 				break;
 			case TILE_FREEZE_SCROLL:
 			        if(hudDisplay.addItem(5)) {
 					roomGrid[walkIntoTileIndex] = TILE_GROUND;
-                    messagingSystem.log("Player obtained a freeze scroll!", MessageType.INFO);
 				}
 			        break;
 			case TILE_CHEST:
 				roomGrid[walkIntoTileIndex] = TILE_MASTER_KEY;
+				
 				break;
 			case TILE_SPIKE:
 				this.ticksUntilDamage = 5;
