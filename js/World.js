@@ -2,27 +2,28 @@
 const ROOM_COLS = 25;
 const ROOM_ROWS = 15;
 
-var roomGrid =
-	[	20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
-		 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,
-		 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,
-		 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,
-		 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,
-		 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,
-		 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,
-		 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,
-		 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,
-		 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,
-		 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,
-		 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,
-		 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,
-		 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 20,  2, 20,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,
-	  	20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+var roomGrid = [
+  20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+  20, 20, 20, 20, 20, 20, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+  1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 20, 2, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 20, 20, 20,
+  20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+  20, 20, 20,
 
-	  //  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,
-	  //  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
-	  // 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
-	];
+  //  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,
+  //  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+  // 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+];
 
 const TILE_W = 32;
 const TILE_H = 32;
@@ -61,48 +62,47 @@ const TILE_BUSH_BOTTOM = 35;
 const TILE_GARDEN_WATER1 = 38;
 const TILE_GARDEN_WATER2 = 39;
 
-const TILE_TREE_TOPLEFT = 	40
-const TILE_TREE_TOPRIGHT = 	41;
-const TILE_TREE_MIDLEFT = 	42;
-const TILE_TREE_MIDRIGHT = 	43;
-const TILE_TREE_BOTLEFT = 	44;
-const TILE_TREE_BOTRIGHT = 	45;
+const TILE_TREE_TOPLEFT = 40;
+const TILE_TREE_TOPRIGHT = 41;
+const TILE_TREE_MIDLEFT = 42;
+const TILE_TREE_MIDRIGHT = 43;
+const TILE_TREE_BOTLEFT = 44;
+const TILE_TREE_BOTRIGHT = 45;
 
-
-
-
-
-
-	//WORKED OUT WITH CHRIS
+//WORKED OUT WITH CHRIS
 function levelHasValue(checkValue) {
-	for(var i=0; i<roomGrid.length; i++) {
-		if( roomGrid[i] == checkValue) {
-			return true;
-		}
-	}
-	return false;
+  for (var i = 0; i < roomGrid.length; i++) {
+    if (roomGrid[i] == checkValue) {
+      return true;
+    }
+  }
+  return false;
 }
-
 
 function roomTileToIndex(tileCol, tileRow) {
-  return (tileCol + ROOM_COLS*tileRow);
+  return tileCol + ROOM_COLS * tileRow;
 }
 
-function getTileIndexAtPixelCoord(pixelX,pixelY) {
+function getTileIndexAtPixelCoord(pixelX, pixelY) {
   var tileCol = pixelX / TILE_W;
   var tileRow = pixelY / TILE_H;
-  
+
   // we'll use Math.floor to round down to the nearest whole number
-  tileCol = Math.floor( tileCol );
-  tileRow = Math.floor( tileRow );
+  tileCol = Math.floor(tileCol);
+  tileRow = Math.floor(tileRow);
 
   // first check whether the tile coords fall within valid bounds
-  if(tileCol < 0 || tileCol >= ROOM_COLS ||
-	 tileRow < 0 || tileRow >= ROOM_ROWS) {
-	 document.getElementById("debugText").innerHTML = "out of bounds:"+pixelX+","+pixelY;
-	 return undefined;
+  if (
+    tileCol < 0 ||
+    tileCol >= ROOM_COLS ||
+    tileRow < 0 ||
+    tileRow >= ROOM_ROWS
+  ) {
+    document.getElementById("debugText").innerHTML =
+      "out of bounds:" + pixelX + "," + pixelY;
+    return undefined;
   }
-  
+
   var tileIndex = roomTileToIndex(tileCol, tileRow);
   return tileIndex;
 }
@@ -115,8 +115,8 @@ function getTileIndexAtPixelCoord(pixelX,pixelY) {
 
 function loadLevel(level) {
   roomGrid = level.slice();
-  if(gameState == "PLAY") {
-		spawnEnemiesAndPlay();
+  if (gameState == "PLAY") {
+    spawnEnemiesAndPlay();
   }
 }
 
@@ -124,36 +124,46 @@ function drawRoom() {
   var tileIndex = 0;
   var tileLeftEdgeX = 0;
   var tileTopEdgeY = 0;
-  
-  for(var eachRow=0; eachRow<ROOM_ROWS; eachRow++) {
-	tileLeftEdgeX = 0; // resetting horizontal draw position for tiles to left edge
-	for(var eachCol=0; eachCol<ROOM_COLS; eachCol++) {
 
-		var tileTypeHere = roomGrid[ tileIndex ];
-		var useImg = tilePics[tileTypeHere];
-		var spriteX = tilePics[tileTypeHere].locX;
-		var spriteY = tilePics[tileTypeHere].locY;
-		var spriteWidth = tilePics[tileTypeHere].width;
-		var spriteHeight = tilePics[tileTypeHere].height;
-		var spriteOffSetX = tilePics[tileTypeHere].offSetX + tileLeftEdgeX;
-		var spriteOffSetY = tilePics[tileTypeHere].offSetY + tileTopEdgeY;
+  for (var eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
+    tileLeftEdgeX = 0; // resetting horizontal draw position for tiles to left edge
+    for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
+      var tileTypeHere = roomGrid[tileIndex];
+      var useImg = tilePics[tileTypeHere];
+      var spriteX = tilePics[tileTypeHere].locX;
+      var spriteY = tilePics[tileTypeHere].locY;
+      var spriteWidth = tilePics[tileTypeHere].width;
+      var spriteHeight = tilePics[tileTypeHere].height;
+      var spriteOffSetX = tilePics[tileTypeHere].offSetX + tileLeftEdgeX;
+      var spriteOffSetY = tilePics[tileTypeHere].offSetY + tileTopEdgeY;
 
-		if(tilePics[tileTypeHere] != null) {
-			
-			// canvasContext.drawImage(useImg, tileLeftEdgeX, tileTopEdgeY);
-			canvasContext.drawImage(useImg, spriteX, spriteY, spriteWidth, spriteHeight, spriteOffSetX, spriteOffSetY, spriteWidth, spriteHeight)
+      if (tilePics[tileTypeHere] != null) {
+        // canvasContext.drawImage(useImg, tileLeftEdgeX, tileTopEdgeY);
+        canvasContext.drawImage(
+          useImg,
+          spriteX,
+          spriteY,
+          spriteWidth,
+          spriteHeight,
+          spriteOffSetX,
+          spriteOffSetY,
+          spriteWidth,
+          spriteHeight
+        );
+      } else {
+        canvasContext.fillStyle = "yellow";
+        canvasContext.fillRect(tileLeftEdgeX, tileTopEdgeY, TILE_W, TILE_H);
+        canvasContext.fillStyle = "black";
+        canvasContext.fillText(
+          "" + tileTypeHere,
+          tileLeftEdgeX + TILE_W * 0.25,
+          tileTopEdgeY + TILE_H * 0.5
+        );
+      }
+      tileIndex++;
+      tileLeftEdgeX += TILE_W;
+    }
 
-		} else {
-			canvasContext.fillStyle = "yellow";
-			canvasContext.fillRect(tileLeftEdgeX, tileTopEdgeY, TILE_W, TILE_H);
-			canvasContext.fillStyle = "black";
-			canvasContext.fillText(""+tileTypeHere,tileLeftEdgeX+TILE_W*0.25, tileTopEdgeY+TILE_H*0.5);
-		}
-		tileIndex++;
-		tileLeftEdgeX += TILE_W;
-	} 
-
-	tileTopEdgeY += TILE_H;
-	
-  }    
+    tileTopEdgeY += TILE_H;
+  }
 }

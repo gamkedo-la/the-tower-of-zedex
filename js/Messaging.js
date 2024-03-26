@@ -1,49 +1,50 @@
 const MessageType = Object.freeze({
-    EMPTY: -1,
-    INFO: 0,
-    DANGER: 1,
-    ACTION: 2,
+  EMPTY: -1,
+  INFO: 0,
+  DANGER: 1,
+  ACTION: 2,
 });
 
 const MessageColor = Object.freeze({
-    [MessageType.EMPTY]: "#000",
-    [MessageType.INFO]: "#FFF",
-    [MessageType.DANGER]: "#FF0000",
-    [MessageType.ACTION]: "#41e7c3",
+  [MessageType.EMPTY]: "#000",
+  [MessageType.INFO]: "#FFF",
+  [MessageType.DANGER]: "#FF0000",
+  [MessageType.ACTION]: "#41e7c3",
 });
 
 function MessagingClass() {
-    this.messageQueue = [{ message: " ", type: MessageType.EMPTY }];
-    this.consoleOutput = false;
+  this.messageQueue = [{ message: " ", type: MessageType.EMPTY }];
+  this.consoleOutput = false;
 
-    this.toggleConsoleOutput = (consoleOutputEnabled = true) => this.consoleOutput = consoleOutputEnabled;
+  this.toggleConsoleOutput = (consoleOutputEnabled = true) =>
+    (this.consoleOutput = consoleOutputEnabled);
 
-    this.log = function (currentMessage, messageType = MessageType.INFO) {
-        const messageObject = { message: currentMessage, type: messageType };
-        this.messageQueue.push(messageObject) ;
-        if (this.consoleOutput) {
-            console.log(messageObject.message);
-        }
-        return messageObject;
-    };
+  this.log = function (currentMessage, messageType = MessageType.INFO) {
+    const messageObject = { message: currentMessage, type: messageType };
+    this.messageQueue.push(messageObject);
+    if (this.consoleOutput) {
+      console.log(messageObject.message);
+    }
+    return messageObject;
+  };
 
-    this.tail = function (lastNMessages = 1) {
-        let n = lastNMessages;
-        if (this.messageQueue.length - 1 < n) {
-           n = this.messageQueue.length - 1         
-        }
+  this.tail = function (lastNMessages = 1) {
+    let n = lastNMessages;
+    if (this.messageQueue.length - 1 < n) {
+      n = this.messageQueue.length - 1;
+    }
 
-        const lastNMesasgeQueue = [];
-        for (let i = n; i > 0; i--) {
-            lastNMesasgeQueue.push(this.messageQueue[this.messageQueue.length - i]);
-        }
+    const lastNMesasgeQueue = [];
+    for (let i = n; i > 0; i--) {
+      lastNMesasgeQueue.push(this.messageQueue[this.messageQueue.length - i]);
+    }
 
-        if (lastNMessages == 1) {
-            return this.messageQueue[this.messageQueue.length - 1];
-        }
+    if (lastNMessages == 1) {
+      return this.messageQueue[this.messageQueue.length - 1];
+    }
 
-        return lastNMesasgeQueue;
-    };
+    return lastNMesasgeQueue;
+  };
 }
 
 var messagingSystem = new MessagingClass();
