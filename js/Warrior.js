@@ -2,6 +2,10 @@
 const PLAYER_MOVE_SPEED = 4.0;
 const BULLET_DAMAGE = 1;
 const FRAMES_PER_ANIM = 1;
+
+// Giving the collision some clearance so movement of player is smoother
+const COLLISION_CLEARANCE = 3;
+
 function warriorClass() {
 	// variables to keep track of position
 	this.x = 0;
@@ -221,161 +225,159 @@ function warriorClass() {
 		}
 	}
 
-	this.move = function() {
+	this.move = function () {
 		this.prevX = this.x;
 		this.prevY = this.y;
+	
 		var nextX = this.x + this.bumpSlideX;
 		var nextY = this.y + this.bumpSlideY;
-		this.movedRect = {
-			left: nextX,
-			right: nextX + this.width,
-			top: nextY,
-			bottom: nextY + this.height
-		}
-		this.bumpSlideX *= 0.8;
-		this.bumpSlideY *= 0.8;
-
-		this.removeBullet()
-
-		if(this.keyHeld_North) {
+	
+		if (this.keyHeld_North) {
 			nextY -= PLAYER_MOVE_SPEED;
 			this.myBitmap = playerFacingUp;
 			this.sx = 0;
-			
 		}
-		if(this.keyHeld_East) {
+		if (this.keyHeld_East) {
 			nextX += PLAYER_MOVE_SPEED;
 			this.myBitmap = playerFacingRight;
 			this.sx = 32;
-			
 		}
-		if(this.keyHeld_South) {
+		if (this.keyHeld_South) {
 			nextY += PLAYER_MOVE_SPEED;
 			this.myBitmap = playerFacingDown;
 			this.sx = 64;
-			
 		}
-		if(this.keyHeld_West) {
+		if (this.keyHeld_West) {
 			nextX -= PLAYER_MOVE_SPEED;
 			this.myBitmap = playerFacingLeft;
 			this.sx = 96;
-			
 		}
-
-		this.x = nextX;
-		this.y = nextY;
-		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
-		//var walkIntoTileIndex = tileCollisionCheck(this.movedRect, roomGrid);
-		//var walkIntoTileType = TILE_WALL;
-		
-		// if( walkIntoTileIndex != undefined) {
-		// 	// walkIntoTileType = roomGrid[walkIntoTileIndex];
-		// 	walkIntoTyleType = tileCollisionCheck(this.movedRect, roomGrid);
-		// }
-		walkIntoTileType = tileCollisionCheck(this.movedRect, roomGrid);
-
-		switch( walkIntoTileType ) {
+	
+		this.movedRect = {
+			left: nextX + COLLISION_CLEARANCE * 2.75,
+			right: nextX + this.width - COLLISION_CLEARANCE * 2,
+			top: nextY + COLLISION_CLEARANCE * 2,
+			bottom: nextY + this.height,
+		};
+	
+		this.bumpSlideX *= 0.8;
+		this.bumpSlideY *= 0.8;
+	
+		this.removeBullet();
+	
+		// The bounding box of the warrior can overlap multiple tiles
+		// so we collect all the multiple tiles that are being overlapped
+		const tilesColliding = tileCollisionCheck(this.movedRect);
+	
+		// We will only move if there are no collisions
+		let shouldMove = true;
+	
+		tilesColliding.forEach((walkIntoTileIndex) => {
+		  let walkIntoTileType = roomGrid[walkIntoTileIndex];
+	
+		  switch (walkIntoTileType) {
 			case TILE_GROUND:
-				this.handleEnemyCollision();
-				break;
+			  this.handleEnemyCollision();
+			  break;
 			case TILE_GOAL:
-		                if (inEditorPlayMode()) {
-				    quitLevelInEditor();
+			  if (inEditorPlayMode()) {
+				quitLevelInEditor();
+			  } else {
+				if (inShopLevel()) {
+				  exitShopLevel();
+				  currentLevel += 1;
+				  loadLevel(level[currentLevel]);
 				} else {
-			            if (inShopLevel()) {
-					exitShopLevel();
-					currentLevel += 1;
-					loadLevel(level[currentLevel]);
-				    } else {
-					loadShopLevel();
-				    }
+				  loadShopLevel();
 				}
-				break;
+			  }
+			  break;
 			case TILE_DOOR:
-				for(var i = 0; i<hudDisplay.inventory.length; i++){
-					if(hudDisplay.inventory[i] == 3 || hudDisplay.inventory[i] == 4){
-						hudDisplay.inventory[i] = 0;
-						useKey.play();
-						roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
-						return;
-					}
+			  for (var i = 0; i < hudDisplay.inventory.length; i++) {
+				if (hudDisplay.inventory[i] == 3 || hudDisplay.inventory[i] == 4) {
+				  hudDisplay.inventory[i] = 0;
+				  useKey.play();
+				  roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+				  return;
 				}
-				this.x = Math.round(this.x / TILE_W) * TILE_W;
-				this.y = Math.round(this.y / TILE_H) * TILE_H;
-				break;
+			  }
+			  shouldMove = false;
+			  break;
 			case TILE_MASTER_KEY:
-			        if(hudDisplay.addItem(4)) {
-					roomGrid[walkIntoTileIndex] = TILE_GROUND;
-				}
-				break;
+			  if (hudDisplay.addItem(4)) {
+				roomGrid[walkIntoTileIndex] = TILE_GROUND;
+			  }
+			  break;
 			case TILE_KEY:
-			        if(hudDisplay.addItem(3)) {
-					roomGrid[walkIntoTileIndex] = TILE_GROUND;
-				}
-				break;
+			  if (hudDisplay.addItem(3)) {
+				roomGrid[walkIntoTileIndex] = TILE_GROUND;
+			  }
+			  break;
 			case TILE_POTION:
-			        if(hudDisplay.addItem(1)) {
-					roomGrid[walkIntoTileIndex] = TILE_GROUND;
-				}
-				break;
+			  if (hudDisplay.addItem(1)) {
+				roomGrid[walkIntoTileIndex] = TILE_GROUND;
+			  }
+			  break;
 			case TILE_AMMO:
-			        if(hudDisplay.addItem(2)) {
-					roomGrid[walkIntoTileIndex] = TILE_GROUND;
-				}
-				break;
+			  if (hudDisplay.addItem(2)) {
+				roomGrid[walkIntoTileIndex] = TILE_GROUND;
+			  }
+			  break;
 			case TILE_FREEZE_SCROLL:
-			        if(hudDisplay.addItem(5)) {
-					roomGrid[walkIntoTileIndex] = TILE_GROUND;
-				}
-			        break;
+			  if (hudDisplay.addItem(5)) {
+				roomGrid[walkIntoTileIndex] = TILE_GROUND;
+			  }
+			  break;
 			case TILE_CHEST:
-				roomGrid[walkIntoTileIndex] = TILE_MASTER_KEY;
-				
-				break;
+			  roomGrid[walkIntoTileIndex] = TILE_MASTER_KEY;
+	
+			  break;
 			case TILE_SPIKE:
-				this.ticksUntilDamage = 5;
-				this.ticks += 1;
-				
-				if(this.ticks >= this.ticksUntilDamage) {
-					this.ticks = 0;
-					hudDisplay.currentHealth -= 1
-					playerHurt.play();
-                    messagingSystem.log("Player is hurt!", MessageType.DANGER);
-				}
-				break;
-			case TILE_CRYPT_DAMAGE_FLOOR:
-				this.ticksUntilDamage = 5;
-				this.ticks += 1;
-				
-				if(this.ticks >= this.ticksUntilDamage) {
-					this.ticks = 0;
-					hudDisplay.currentHealth -= 5
-					playerHurt.play();
-				}
-			        break;
-			case TILE_SPIKE_WALL:
-				hudDisplay.currentHealth -= 2;
+			  this.ticksUntilDamage = 5;
+			  this.ticks += 1;
+	
+			  if (this.ticks >= this.ticksUntilDamage) {
+				this.ticks = 0;
+				hudDisplay.currentHealth -= 1;
 				playerHurt.play();
-				break;
+				messagingSystem.log("Player is hurt!", MessageType.DANGER);
+			  }
+			  break;
+			case TILE_CRYPT_DAMAGE_FLOOR:
+			  this.ticksUntilDamage = 5;
+			  this.ticks += 1;
+	
+			  if (this.ticks >= this.ticksUntilDamage) {
+				this.ticks = 0;
+				hudDisplay.currentHealth -= 5;
+				playerHurt.play();
+			  }
+			  break;
+			case TILE_SPIKE_WALL:
+			  hudDisplay.currentHealth -= 2;
+			  playerHurt.play();
+			  break;
 			case TILE_WALL:
-				
 			default:
-				// messagingSystem.log('Player hits wall!', MessageType.DANGER);
-				//this works-ish, but it's not the best way to handle it, ultimately want to test collision on x and y axis separately
-				this.x = Math.round(this.x / TILE_W) * TILE_W;
-				this.y = Math.round(this.y / TILE_H) * TILE_H;
-				// any other tile type number was found... do nothing, for now
-				break;
-			
+			  shouldMove = false;
+			  // messagingSystem.log('Player hits wall!', MessageType.DANGER);
+			  // any other tile type number was found... do nothing, for now
+			  break;
+		  }
+		});
+	
+		if (shouldMove) {
+		  	this.x = nextX;
+		  	this.y = nextY;
 		}
-
+	
 		// this.handleEnemyCollision();
-
-		for (var i=0; i < this.myShotList.length ; i++){
-			this.myShotList[i].movement();	
+	
+		for (var i = 0; i < this.myShotList.length; i++) {
+			this.myShotList[i].movement();
 		}
-
-	}
+	};
+	
 
 
 	this.drawPlayerAttackHitBoxes = function() {

@@ -154,28 +154,25 @@ function pointInRect(x, y, rect){
             y <= rect.bottom
 }
 
-function tileCollisionCheck(rect, tilemap){
-    //rect should be an object with left, right, top, bottom properties
-	//tilemap should be a 2D array of tile values
-
-    let leftTile =      Math.floor(rect.left / TILE_W),
-        rightTile =     Math.floor(rect.right / TILE_W),
-        topTile =       Math.floor(rect.top / TILE_W),
-        bottomTile =    Math.floor(rect.bottom / TILE_W)
-        
-    
-    for(let i = leftTile; i <=rightTile; i++){
-        for(let j = topTile; j<= bottomTile; j++){
-            let tile = roomGrid[roomTileToIndex(i, j)];
-
-                if(tile != TILE_GROUND){
-					//console.log(`tile collision at ${i}, ${j} with tile ${tile}`)
-					return tile;
-				}
-            }
-        }
-	return 0;
-}
+/**
+ * @param rect should be an object with left, right, top, bottom properties
+ */
+function tileCollisionCheck(rect) {
+	let leftTile = Math.floor(rect.left / TILE_W),
+	  rightTile = Math.floor(rect.right / TILE_W),
+	  topTile = Math.floor(rect.top / TILE_W),
+	  bottomTile = Math.floor(rect.bottom / TILE_W);
+  
+	let collisions = [];
+  
+	for (let i = leftTile; i <= rightTile; i++) {
+	  for (let j = topTile; j <= bottomTile; j++) {
+		collisions.push(roomTileToIndex(i, j));
+	  }
+	}
+  
+	return collisions;
+  }
 	
         
 
