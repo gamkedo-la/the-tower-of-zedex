@@ -2,7 +2,7 @@ body {
     background-color: rgb(58, 37, 37);
     width: 100%;
     text-align:center;
-
+    overflow: hidden;
 }
 
 canvas {

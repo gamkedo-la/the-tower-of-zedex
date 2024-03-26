@@ -52,7 +52,6 @@ function setKeyHoldState(thisKey, thisPlayer, setTo) {
 }
 
 function keyPressed(evt) {
-    	evt.preventDefault(); // without this, arrow keys scroll the browser!
 	setKeyHoldState(evt.keyCode, p1, true);
 
 	
