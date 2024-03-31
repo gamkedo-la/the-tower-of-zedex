@@ -13,14 +13,22 @@ const MessageColor = Object.freeze({
 });
 
 function MessagingClass() {
-    this.messageQueue = [{ message: " ", type: MessageType.EMPTY }];
+    this.messageQueue = [{ message: " ", type: MessageType.EMPTY, repeat: false }];
     this.consoleOutput = false;
 
     this.toggleConsoleOutput = (consoleOutputEnabled = true) => this.consoleOutput = consoleOutputEnabled;
 
-    this.log = function (currentMessage, messageType = MessageType.INFO) {
-        const messageObject = { message: currentMessage, type: messageType };
-        this.messageQueue.push(messageObject) ;
+    this.log = function (currentMessage, messageType = MessageType.INFO, noRepeat = false) {
+        const lastMessage = this.messageQueue[this.messageQueue.length - 1];
+        const messageObject = { message: currentMessage, type: messageType, repeat: false };
+
+        if ((lastMessage.message != messageObject.message && noRepeat) || !noRepeat) {
+            this.messageQueue.push(messageObject) ;
+        }
+        else {
+            lastMessage.repeat = true;
+        }
+
         if (this.consoleOutput) {
             console.log(messageObject.message);
         }
