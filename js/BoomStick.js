@@ -107,8 +107,7 @@ function boomStickClass(targetPlayer, damage) {
 		    {
 			    this.shotLife = 0;
 			    this.readyToRemove = true;
-			    messagingSystem.log("You got hit by a bullet.", MessageType.DANGER);
-			    hudDisplay.currentHealth -= this.damage;
+                hudDisplay.affectCurrentHealth(-this.damage, "You got hit by a bullet!", MessageType.DANGER);
 			    playerHurt.play();
 			    // Player reset upon death  happens in the top level update function, so we don't
 			    // care about that here.

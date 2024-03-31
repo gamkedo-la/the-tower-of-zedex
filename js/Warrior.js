@@ -59,7 +59,7 @@ function warriorClass() {
 	}
 	
 	this.reset = function() {
-	hudDisplay.currentHealth = hudDisplay.maxHealth;
+        hudDisplay.affectCurrentHealth(hudDisplay.maxHealth - hudDisplay.currentHealth, "Your health has been restored!");
 		this.keysHeld = 0;
 		for(var i=0; i<roomGrid.length; i++) {
 			if( roomGrid[i] == TILE_PLAYER) {
@@ -171,7 +171,7 @@ function warriorClass() {
 				this.myShotList.push(tempShot);
 				hudDisplay.currentAmmo -=1;
 				boomstickFire.play();
-                messagingSystem.log("Player fires boom stick!", MessageType.ACTION);
+                messagingSystem.log("You fired boom stick!", MessageType.ACTION);
 			}
 		}
 		
@@ -198,11 +198,13 @@ function warriorClass() {
 				this.y > enemyList[i].y &&
 				this.y < enemyList[i].y + TILE_H ) 
 			{
-                messagingSystem.log(`Player and ${enemyList[i].enemyTypeName()} in collision!`, MessageType.DANGER);
-				
 				// if(this.ticks >= this.ticksUntilDamage) {
 				// 	this.ticks = 0;
-					hudDisplay.currentHealth -= enemyList[i].attackDamage;
+					hudDisplay.affectCurrentHealth(
+                        -enemyList[i].attackDamage,
+                        `You and ${enemyList[i].enemyTypeName()} are in collision!`, 
+                        MessageType.DANGER
+                    );
 					var difX = this.x - enemyList[i].x;
 					var difY = this.y - enemyList[i].y;
 					if(Math.abs(difX) > Math.abs(difY)) {
@@ -338,9 +340,8 @@ function warriorClass() {
 	
 			  if (this.ticks >= this.ticksUntilDamage) {
 				this.ticks = 0;
-				hudDisplay.currentHealth -= 1;
+                hudDisplay.affectCurrentHealth(-1);
 				playerHurt.play();
-				messagingSystem.log("Player is hurt!", MessageType.DANGER);
 			  }
 			  break;
 			case TILE_CRYPT_DAMAGE_FLOOR:
@@ -349,12 +350,12 @@ function warriorClass() {
 	
 			  if (this.ticks >= this.ticksUntilDamage) {
 				this.ticks = 0;
-				hudDisplay.currentHealth -= 5;
+                hudDisplay.affectCurrentHealth(-5);
 				playerHurt.play();
 			  }
 			  break;
 			case TILE_SPIKE_WALL:
-			  hudDisplay.currentHealth -= 2;
+              hudDisplay.affectCurrentHealth(-2);
 			  playerHurt.play();
 			  break;
 			case TILE_WALL:
