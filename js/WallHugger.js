@@ -6,6 +6,14 @@ function wallHuggerClass() {
 	
 	this.x = 0;
 	this.y = 0;
+	this.width = 32;
+	this.height = 32;
+	this.rect = {
+		left: this.x,
+		right: this.x + this.width,
+		top: this.y,
+		bottom: this.y + this.height
+	}
 	this.speed = 1;
 	
 	// Stats
@@ -13,6 +21,7 @@ function wallHuggerClass() {
 	this.maxHealth =      9999999; // invulnerable
 	this.health =         9999999;
 	this.attackDamage =   2;
+	this.ticksToFreeze = 0;
 
 	// Direction
 	this.walkNorth =  true;
@@ -46,6 +55,12 @@ function wallHuggerClass() {
 		}
 		this.x = this.homeX;
 		this.y = this.homeY;
+		this.rect = {
+			left: this.x,
+			right: this.x + this.width,
+			top: this.y,
+			bottom: this.y + this.height
+		}
 
 		this.health =   this.maxHealth;
 		this.readyToRemove =  false;
@@ -55,7 +70,11 @@ function wallHuggerClass() {
         return Object.keys(EnemyType)[this.enemyType];
     }
 
-	this.move = function() {	
+	this.move = function() {
+		if (this.ticksToFreeze > 0) {
+			this.ticksToFreeze--;
+			return;
+		}
 
 		var nextX = this.x;
 		var nextY = this.y;
@@ -87,26 +106,31 @@ function wallHuggerClass() {
 	}
 
 	this.draw = function() {
-		this.tickCount++;
-		if(this.tickCount == this.ticksPerFrame){
-			this.tickCount = 0;
-			if(this.sprite == wallHuggerSprite1){
-				this.sprite = wallHuggerSprite2;
-			} else { this.sprite = wallHuggerSprite1 }
+		if (this.ticksToFreeze <= 0) {
+			this.tickCount++;
+			if(this.tickCount == this.ticksPerFrame){
+				this.tickCount = 0;
+				if(this.sprite == wallHuggerSprite1){
+					this.sprite = wallHuggerSprite2;
+				} else { this.sprite = wallHuggerSprite1 }
+			}
+		
+			if (this.walkNorth) this.rotation = 0;
+			if (this.walkEast) this.rotation = 90 * (Math.PI/180);
+			if (this.walkSouth) this.rotation = 180 * (Math.PI/180);
+			if (this.walkWest) this.rotation = 270 * (Math.PI/180);
 		}
 		
-        if (this.walkNorth) this.rotation = 0;
-        if (this.walkEast) this.rotation = 90 * (Math.PI/180);
-        if (this.walkSouth) this.rotation = 180 * (Math.PI/180);
-        if (this.walkWest) this.rotation = 270 * (Math.PI/180);
+        colorRect(this.x, this.y, this.width, this.height);
         drawBitmapCenteredAtLocationWithRotation(this.sprite,this.x,this.y,this.rotation);
-        
         // unrotated, works great:
         // canvasContext.drawImage( this.sprite, this.x-16, this.y-16 ); // sprite is centered on its xy
 	}
 
 	
-
+	this.freeze = function(ticksToFreeze) {
+		this.ticksToFreeze = ticksToFreeze;
+	}
 	
 
 

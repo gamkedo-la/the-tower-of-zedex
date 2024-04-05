@@ -1,8 +1,16 @@
-function enemyClass() {
+function zombieClass() {
 	this.enemyType = EnemyType.ZOMBIE;
 	
 	this.x = 0;
 	this.y = 0;
+	this.width = 32;
+	this.height = 32;
+	this.rect = {
+		left: this.x,
+		right: this.x + this.width,
+		top: this.y,
+		bottom: this.y + this.height
+	}
 	this.speed = 2.0;
 	
 	// Stats
@@ -10,6 +18,7 @@ function enemyClass() {
 	this.maxHealth =      3;
 	this.health =         0;
 	this.attackDamage =   3;
+	this.ticksToFreeze = 0;
 
 	// Direction
 	this.direction =  'SOUTH';
@@ -84,7 +93,11 @@ function enemyClass() {
 
 		
 
-	this.move = function() {	
+	this.move = function() {
+		if (this.ticksToFreeze > 0) {
+			this.ticksToFreeze--;
+			return;
+		}
 
 		// working on a chase movement pattern
 		if( Math.abs(this.x - p1.x) <= this.distanceToChase ) {
@@ -92,17 +105,17 @@ function enemyClass() {
 		} else { this.chasePlayer = false; }
 
 		if( this.chasePlayer == true ) {
-	
-			if( p1.x > this.x ) {
-				this.changeDirection('EAST');
-			} else if( p1.y > this.y ) {
-				this.changeDirection('SOUTH');
-			} else if( p1.x < this.x ) {
-				this.changeDirection('WEST');
-			} else if( p1.y < this.y ){
-				this.changeDirection('NORTH');
-			}
-
+			if( Math.abs(p1.x - this.x) >= Math.abs(p1.y - this.y) ){
+				if( p1.x > this.x ) {
+					this.changeDirection('EAST');
+				} else this.changeDirection('WEST');
+			} else {
+				if( p1.y > this.y ) {
+					this.changeDirection('SOUTH');
+				} else {
+					this.changeDirection('NORTH')
+				}
+			} 
 		}
 
 		var nextX = this.x;
@@ -165,31 +178,27 @@ function enemyClass() {
 
 	this.draw = function() {
 		// drawRect(this.x, this.y, 32,32, 3, 'green');
-
-		this.tickCount++;
-		if(this.tickCount == this.ticksPerFrame){
-			this.tickCount = 0;
-			if(this.sprite == zombieSprite1){
-				this.sprite = zombieSprite2;
-			} else { this.sprite = zombieSprite1 }
+		if (this.ticksToFreeze > 0) {
+			colorRect(this.x, this.y, TILE_W, TILE_H, "dodgerblue");
 		}
+		if (this.ticksToFreeze <= 0) {
+			this.tickCount++;
+			if(this.tickCount == this.ticksPerFrame){
+				this.tickCount = 0;
+				if(this.sprite == zombieSprite1){
+					this.sprite = zombieSprite2;
+				} else { this.sprite = zombieSprite1 }
+			}
+		}
+	
 		
 		canvasContext.drawImage( this.sprite, this.x, this.y );
-		colorRect(this.x, this.y, 5,5, "blue")
-	}
-
-	function detectAABBCollision(playerX, enemyX, playerY, enemyY){
-		if(	playerX < enemyX + TILE_W &&
-			playerX + TILE_W > enemyX &&
-			playerY < enemyY + TILE_H &&
-			playerY + TILE_H > enemyY ) 
-		{
-			console.log("collision DETECTED");
-		}
-
+		//colorRect(this.x, this.y, 5,5, "blue")
 	}
 
 	
-
+	this.freeze = function(ticksToFreeze) {
+		this.ticksToFreeze = ticksToFreeze;
+	}
 
 }

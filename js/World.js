@@ -38,12 +38,14 @@ const TILE_MASTER_KEY = 7;
 const TILE_AMMO = 8;
 const TILE_POTION = 9;
 const TILE_CHEST = 10;
+const TILE_SPIKE_WALL = 11;
+const TILE_FREEZE_SCROLL = 12;
 //		EMPTY_CHEST
-//		SPIKE_WALL
 
 const TILE_GHOST = 60;
 const TILE_ZOMBIE = 61;
 const TILE_WALL_HUGGER = 62;
+const TILE_TURRET = 63;
 
 const TILE_CRYPT_WALL1 = 20;
 const TILE_CRYPT_WALL2 = 21;

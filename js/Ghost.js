@@ -4,6 +4,14 @@ function ghostClass() {
 	
 	this.x = 0;
 	this.y = 0;
+	this.width = 32;
+	this.height = 32;
+	this.rect = {
+		left: this.x,
+		right: this.x + this.width,
+		top: this.y,
+		bottom: this.y + this.height
+	}
 	this.speed = 6.0;
 	
 	// Stats
@@ -11,6 +19,7 @@ function ghostClass() {
 	this.maxHealth =      2;
 	this.health =         0;
 	this.attackDamage =   3;
+	this.ticksToFreeze = 0;
 
 	// Direction
 	this.direction =  'south';
@@ -52,6 +61,12 @@ function ghostClass() {
 		}
 		this.x = this.homeX;
 		this.y = this.homeY;
+		this.rect = {
+			left: this.x,
+			right: this.x + this.width,
+			top: this.y,
+			bottom: this.y + this.height
+		}
 
 		this.health =   this.maxHealth;
 		this.readyToRemove =  false;
@@ -74,7 +89,11 @@ function ghostClass() {
 		}
 	}
 
-	this.move = function() {		
+	this.move = function() {
+		if (this.ticksToFreeze > 0) {
+			this.ticksToFreeze--;
+			return;
+		}
 
 		this.ticksFromLastMovement++;
 		this.ticksFromLastDirectionChange++;
@@ -140,8 +159,12 @@ function ghostClass() {
 					this.x = nextX;
 					this.y = nextY;
 					break;	
-				case TILE_WALL:
+			        case TILE_WALL:
+				        this.changeDirection();
+					break;
+				case TILE_SPIKE_WALL:
 					this.changeDirection();
+					break;
 				default:
 					this.changeDirection();
 					// any other tile type number was found... do nothing, for now
@@ -154,20 +177,26 @@ function ghostClass() {
 
 	this.draw = function() {
 		//colorRect(this.x, this.y, 32,32, 'white');
-	
-		this.tickCount++;
-		if(this.tickCount == this.ticksPerFrame){
-			this.tickCount = 0;
-			if(this.sprite == ghostSprite1){
-				this.sprite = ghostSprite2;
-			} else { this.sprite = ghostSprite1 }
+
+		if (this.ticksToFreeze <= 0) {
+			this.tickCount++;
+			if(this.tickCount == this.ticksPerFrame){
+				this.tickCount = 0;
+				if(this.sprite == ghostSprite1){
+					this.sprite = ghostSprite2;
+				} else { this.sprite = ghostSprite1 }
+			}
 		}
 	
+		
+	
 		canvasContext.drawImage( this.sprite, this.x, this.y );
-		colorRect(this.x, this.y, 5,5, "white")
+		//colorRect(this.x, this.y, 5,5, "white")
 	}
 
-	
+	this.freeze = function(ticksToFreeze) {
+		this.ticksToFreeze = ticksToFreeze;
+	}
 
 	
 

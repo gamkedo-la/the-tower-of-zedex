@@ -8,3 +8,7 @@ slnx.sqlite
 *.swp
 *.swo
 *.ase
+
+# emacs autosave files
+\#*\#
+.\#*

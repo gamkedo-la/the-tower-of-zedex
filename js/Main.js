@@ -8,6 +8,7 @@ const EnemyType = Object.freeze({
     ZOMBIE: 1,
     GHOST: 2,
     WALL_HUGGER: 3,
+    TURRET: 4
 }); 
 var enemyList = [];
 
@@ -49,7 +50,7 @@ function spawnEnemiesAndPlay() {
 	do { 
 		enemyTypeFound = levelHasValue(TILE_ZOMBIE);
 		if( enemyTypeFound ) {
-			var zombie = new enemyClass();
+			var zombie = new zombieClass();
 			zombie.init( zombieSprite1 );
 			enemyList.push(zombie);
 		}
@@ -71,7 +72,16 @@ function spawnEnemiesAndPlay() {
 			hug.init( wallHuggerSprite1 ); 
 			enemyList.push(hug);
 		}
-	} while (enemyTypeFound);    
+	} while (enemyTypeFound);
+
+        do {
+		enemyTypeFound = levelHasValue(TILE_TURRET);
+		if( enemyTypeFound ) {
+			var turret = new turretClass();
+			turret.init( turretSprites ); 
+			enemyList.push(turret);
+		}
+	} while (enemyTypeFound);  
 }
 
 
@@ -98,7 +108,7 @@ function moveEverything() {
 		}
 		hudDisplay.checkInvisibility();
 		p1.move();
-		//moveEnemies();
+		moveEnemies();
 	}
 }
 function drawEverything() {
@@ -121,9 +131,48 @@ function drawEverything() {
 		drawEnemies();
 
 		hudDisplay.draw();
-		p1.drawPlayerAttackHitBoxes();
+		//p1.drawPlayerAttackHitBoxes();
 
 	}
 	
 	canvasContext.drawImage(scanlineFilter, 0, 0);
 }
+
+function rectCollision(rect1, rect2) {
+    return (
+        rect1.left < rect2.right &&
+        rect2.left < rect1.right &&
+        rect1.top < rect2.bottom &&
+        rect2.top < rect1.bottom
+      );
+}
+
+function pointInRect(x, y, rect){
+    return  x >= rect.left &&
+            x <= rect.right &&
+            y >= rect.top &&
+            y <= rect.bottom
+}
+
+/**
+ * @param rect should be an object with left, right, top, bottom properties
+ */
+function tileCollisionCheck(rect) {
+	let leftTile = Math.floor(rect.left / TILE_W),
+	  rightTile = Math.floor(rect.right / TILE_W),
+	  topTile = Math.floor(rect.top / TILE_W),
+	  bottomTile = Math.floor(rect.bottom / TILE_W);
+  
+	let collisions = [];
+  
+	for (let i = leftTile; i <= rightTile; i++) {
+	  for (let j = topTile; j <= bottomTile; j++) {
+		collisions.push(roomTileToIndex(i, j));
+	  }
+	}
+  
+	return collisions;
+  }
+	
+        
+

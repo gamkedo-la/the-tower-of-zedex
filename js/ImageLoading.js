@@ -1,12 +1,14 @@
 var titlescreen=document.createElement("img");
 var scanlineFilter=document.createElement("img");
 var gardenSpriteSheet=document.createElement("img");
+var turretSprites=document.createElement("img");
 
 var playerFacingDown=document.createElement("img");
 var playerFacingLeft=document.createElement("img");
 var playerFacingRight=document.createElement("img");
 var playerFacingUp=document.createElement("img");
 var playerSprites=document.createElement("img");
+var playerAttackSprites=document.createElement("img");
 
 var zombieSprite1=document.createElement("img");
 var zombieSprite2=document.createElement("img");
@@ -14,6 +16,8 @@ var ghostSprite1=document.createElement("img");
 var ghostSprite2=document.createElement("img");
 var wallHuggerSprite1=document.createElement("img");
 var wallHuggerSprite2=document.createElement("img");
+var turretSprite1=document.createElement("img");
+var turretSprite2=document.createElement("img");
 
 
 var healthIcon=document.createElement("img");
@@ -69,6 +73,7 @@ function loadImages() {
 		{varName:titlescreen, theFile:"titlescreen-ttoz.png"},
 		{varName:scanlineFilter, theFile:"scanline-filter.png"},
 		{varName:gardenSpriteSheet, theFile:"GardenSpriteSheet.png"},
+		{varName:turretSprites, theFile:"turret-sprites.png"},
 		
 
 		{varName:playerFacingDown, theFile:"warrior_down.png"},
@@ -76,6 +81,7 @@ function loadImages() {
 		{varName:playerFacingRight, theFile:"warrior_right.png"},
 		{varName:playerFacingUp, theFile:"warrior_up.png"},
 		{varName:playerSprites, theFile:"playerSpriteSheet.png"},
+		{varName:playerAttackSprites, theFile:"playerSwordAttack.png"},
 
 		{varName:zombieSprite1, theFile:"zombieSprite_1.png"},
 		{varName:zombieSprite2, theFile:"zombieSprite_2.png"},
@@ -83,6 +89,8 @@ function loadImages() {
 		{varName:ghostSprite2, theFile:"ghostSprite_2.png"},
 		{varName:wallHuggerSprite1, theFile:"wall_hugger_1.png"},
 		{varName:wallHuggerSprite2, theFile:"wall_hugger_2.png"},
+                {varName:turretSprite1, theFile:"turret_sprite_1.png"},
+                {varName:turretSprite2, theFile:"turret_sprite_2.png"},
 
 		{varName:healthIcon, theFile:"health_icon.png"},
 		{varName:boomstickIcon, theFile:"boomstick_icon.png"},
@@ -109,6 +117,8 @@ function loadImages() {
 		{tileType:TILE_AMMO, theFile:"pickup_ammo.png", 		locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
 		{tileType:TILE_MASTER_KEY, theFile:"pickup_masterKey.png", 	locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
 		{tileType:TILE_CHEST, theFile:"chest.png", 					locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
+		{tileType:TILE_SPIKE_WALL, theFile:"world_spike_wall.png", 					locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
+		{tileType:TILE_FREEZE_SCROLL, theFile:"pickup_spell_scroll.png", 					locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
 
 		{tileType:TILE_CRYPT_WALL1, theFile:"crypt_wall1.png", 				locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
 		{tileType:TILE_CRYPT_WALL2, theFile:"crypt_wall2.png", 				locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
@@ -134,6 +144,13 @@ function loadImages() {
 		{tileType: TILE_TREE_MIDRIGHT,       	theFile: "GardenSpriteSheet.png", locX: 96, locY: 32, width: 32, height: 32, offSetX: 0, offSetY: 0},
 		{tileType: TILE_TREE_BOTLEFT,       	theFile: "GardenSpriteSheet.png", locX: 128, locY: 32, width: 32, height: 32, offSetX: 0, offSetY: 0},
 		{tileType: TILE_TREE_BOTRIGHT,       	theFile: "GardenSpriteSheet.png", locX: 160, locY: 128, width: 32, height: 32, offSetX: 0, offSetY: 0},
+
+	        //Player and enemy sprites for tile map editor
+	    {tileType: TILE_PLAYER,          	theFile: "warrior_down.png", locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
+		{tileType: TILE_GHOST,          	theFile: "ghostSprite_1.png", locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
+		{tileType: TILE_ZOMBIE,          	theFile: "zombieSprite_1.png", locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
+	    {tileType: TILE_WALL_HUGGER,          	theFile: "wall_hugger_1.png", locX:  0, locY: 0, width: 32, height: 32, offSetX: 0, offSetY: 0},
+		{tileType: TILE_TURRET,          	theFile: "turret-sprites.png", locX:  0, locY: 0, width: 32, height: 64, offSetX: 0, offSetY: 0},
 		//OPEN
 		//OPEN
 		//OPEN

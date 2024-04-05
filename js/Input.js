@@ -9,9 +9,9 @@ const KEY_LETTER_S = 83;
 const KEY_LETTER_D = 68;
 const KEY_LETTER_X = 88;
 
+// For input throughout all the states
 function initInput() {
 	canvas.addEventListener('mousemove', updateMousePos);
-	canvas.addEventListener('click', mouseButtonClicked);
 	canvas.addEventListener('mousedown', mouseButtonPressed);
 	
 	document.addEventListener("keydown", keyPressed);
@@ -26,23 +26,6 @@ function updateMousePos(evt) {
 
 	mouseX = evt.clientX - rect.left - root.scrollLeft;
 	mouseY = evt.clientY - rect.top - root.scrollTop;
-}
-
-
-function mouseButtonClicked(evt) {
-	var rect = canvas.getBoundingClientRect();
-	var root = document.documentElement;
-
-	mouseX = evt.clientX - rect.left - root.scrollLeft;
-	mouseY = evt.clientY - rect.top - root.scrollTop;
-	console.log(storedTileValue)
-	if(storedTileValue == -1) {
-		console.log("no tile brush defined")
-		return
-	}
-	var clickedIndex = getTileIndexAtPixelCoord(mouseX, mouseY);
-	
-	roomGrid[getTileIndexAtPixelCoord(mouseX, mouseY)] = storedTileValue;
 }
 
 function mouseButtonPressed(evt) {
@@ -71,13 +54,7 @@ function setKeyHoldState(thisKey, thisPlayer, setTo) {
 function keyPressed(evt) {
 	setKeyHoldState(evt.keyCode, p1, true);
 
-	if(evt.key == " "){
-		p1.swordAttack();
-	}
-
-	if(evt.keyCode == KEY_LETTER_X){
-		p1.boomStickShot();
-	}
+	
 	
 	if(gameState == "TITLE"){
 		if(evt.key == "p" || evt.key == "P"){
@@ -86,24 +63,28 @@ function keyPressed(evt) {
 		}
 	}
 
-	if(gameState == "EDITOR"){
-		if(evt.key == "p" || evt.key == "P" || evt.key == "b" || evt.key == "B" ){
-			generateReadableMapData();
-			el_editorModeContainer.style.display = "none";
-			gameState = "TITLE";
-			loadLevel(level[currentLevel]);
-		}
-	}
-
-	if(gameState == "TITLE" && (evt.key == "e" || evt.key == "E")) {
-		gameState = "EDITOR";
-		el_editorModeContainer.style.display = "block";
-		loadLevel(freshMap);
-		console.log("Map Editing Mode");
-		console.log("Press -P- to End Map Editing Mode and Play")
+        if(gameState == "TITLE" && (evt.key == "e" || evt.key == "E")) {
+		loadLevelEditor();
 	}
 
 
+	if(gameState == "EDITOR" && (evt.key == "p" || evt.key == "P" || evt.key == "b" || evt.key == "B" )){
+		closeLevelEditor();
+	}
+
+        // The keys below are for PLAY state only.
+        if (gameState != "PLAY") {
+	        return;
+        }
+
+        if(evt.key == " "){
+		p1.swordAttack();
+	}
+
+	if(evt.keyCode == KEY_LETTER_X){
+		p1.boomStickShot();
+	}
+    
 	if(evt.key == "1"){
 		//check inventory slot one for pickupType and return function
 		console.log("Key 1 has been pressed")
@@ -135,8 +116,6 @@ function keyPressed(evt) {
 		hudDisplay.pickupTypes[hudDisplay.inventory[5]].call(hudDisplay);
 		hudDisplay.inventory[5] = 0;
 	}
-
-	evt.preventDefault(); // without this, arrow keys scroll the browser!
 }
 
 function keyReleased(evt) {
