@@ -33,29 +33,24 @@ function SoundOverlapsClass(filenameWithPath) {
 
 }	
 
-function BackgroundMusicClass(filenameWithPath){
+function BackgroundMusicClass(){
 	
-	var musicSound = null;
+    var MUSIC_VOLUME = 0.1;
+    var musicSound = null;
 	
 	this.loopSong = function(filenameWithPath){
-		setFormat(); 
-		
-		if(musicSound != null){
+		// mp3 or ogg?
+        setFormat(); 
+		// stop existing music if we're starting a new one
+        if(musicSound != null){
 			musicSound.pause();
 			musicSound = null;
 		}
+    	console.log("Looping background music...");
 		musicSound = new Audio("sound/"+filenameWithPath+audioFormat);
 		musicSound.loop = true;
-		musicSound.volume = 0.5;
+		musicSound.volume = MUSIC_VOLUME;
 		musicSound.play();
-	}
-	
-	this.startOrStopMusic = function(){
-		if(musicSound.paused){
-			musicSound.play();
-		} else {
-			musicSound.pause();
-		}
 	}
 }
 
@@ -68,4 +63,4 @@ var enemyHitSword = new SoundOverlapsClass("swordHitEnemy");
 var enemyHitBullet = new SoundOverlapsClass("bulletHitEnemy")
 var useKey = new SoundOverlapsClass("useKey")
 // Music //
-//var backgroundMusic = new BackgroundMusicClass("backgroundMusic");
+var backgroundMusic = new BackgroundMusicClass();

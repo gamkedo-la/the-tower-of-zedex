@@ -58,6 +58,7 @@ function keyPressed(evt) {
 	
 	if(gameState == "TITLE"){
 		if(evt.key == "p" || evt.key == "P"){
+            backgroundMusic.loopSong("backgroundMusic");
 			gameState = "PLAY";
 			loadLevel(level[currentLevel]);
 		}
