@@ -8,6 +8,8 @@ const KEY_LETTER_A = 65;
 const KEY_LETTER_S = 83;
 const KEY_LETTER_D = 68;
 const KEY_LETTER_X = 88;
+const KEY_LETTER_P = 80;
+const KEY_SPACEBAR = 32;
 
 // For input throughout all the states
 function initInput() {
@@ -57,7 +59,7 @@ function keyPressed(evt) {
 	
 	
 	if(gameState == "TITLE"){
-		if(evt.key == "p" || evt.key == "P"){
+		if(evt.keyCode == KEY_LETTER_P || evt.key == "p" || evt.key == "P"){
             backgroundMusic.loopSong("backgroundMusic");
 			gameState = "PLAY";
 			loadLevel(level[currentLevel]);
@@ -69,7 +71,7 @@ function keyPressed(evt) {
 	}
 
 
-	if(gameState == "EDITOR" && (evt.key == "p" || evt.key == "P" || evt.key == "b" || evt.key == "B" )){
+	if(gameState == "EDITOR" && (evt.keyCode == KEY_LETTER_P || evt.key == "p" || evt.key == "P" || evt.key == "b" || evt.key == "B" )){
 		closeLevelEditor();
 	}
 
@@ -78,9 +80,9 @@ function keyPressed(evt) {
 	        return;
         }
 
-        if(evt.key == " "){
-		p1.swordAttack();
-	}
+        if(evt.keyCode == KEY_SPACEBAR || evt.key == " "){
+		    p1.swordAttack();
+	    }
 
 	if(evt.keyCode == KEY_LETTER_X){
 		p1.boomStickShot();
