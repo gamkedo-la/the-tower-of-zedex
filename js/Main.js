@@ -106,7 +106,9 @@ function moveEverything() {
 		if(hudDisplay.currentHealth < 1){
             console.log("YOUR HEALTH IS ZERO! GAME OVER!");
             backgroundMusic.loopSong("GameOverMusic",GAME_OVER_MUSIC_VOLUME);
-			p1.reset(); // FIXME
+			p1.reset(); // so it has full health next game
+            // fixme: make a game over screen? just go back to main menu for now
+            gameState = "TITLE"; 
 		}
 		hudDisplay.checkInvisibility();
 		p1.move();
