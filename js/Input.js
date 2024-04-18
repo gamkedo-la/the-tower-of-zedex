@@ -30,7 +30,13 @@ function updateMousePos(evt) {
 	mouseY = evt.clientY - rect.top - root.scrollTop;
 }
 
+var firstClickEver = true;
 function mouseButtonPressed(evt) {
+
+    if (firstClickEver) {
+        backgroundMusic.loopSong("MainMenuMusic",MAIN_MENU_MUSIC_VOLUME);
+        firstClickEver = false;
+    }
 
 }
 

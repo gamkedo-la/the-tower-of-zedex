@@ -104,7 +104,9 @@ function moveEverything() {
 	if(gameState == "PLAY"){
 		
 		if(hudDisplay.currentHealth < 1){
-			p1.reset();
+            console.log("YOUR HEALTH IS ZERO! GAME OVER!");
+            backgroundMusic.loopSong("GameOverMusic",GAME_OVER_MUSIC_VOLUME);
+			p1.reset(); // FIXME
 		}
 		hudDisplay.checkInvisibility();
 		p1.move();

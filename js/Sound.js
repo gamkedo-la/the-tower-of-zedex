@@ -1,3 +1,9 @@
+const MUSIC_VOLUME = 0.1; // in-game music
+const MAIN_MENU_MUSIC_VOLUME = 0.05; // the wav is super loud!
+const GAME_OVER_MUSIC_VOLUME = 0.1;
+
+
+
 var audioFormat;
 
 function setFormat(){
@@ -35,10 +41,9 @@ function SoundOverlapsClass(filenameWithPath) {
 
 function BackgroundMusicClass(){
 	
-    var MUSIC_VOLUME = 0.1;
     var musicSound = null;
 	
-	this.loopSong = function(filenameWithPath){
+	this.loopSong = function(filenameWithPath,vol=MUSIC_VOLUME){
 		// mp3 or ogg?
         setFormat(); 
 		// stop existing music if we're starting a new one
@@ -49,7 +54,7 @@ function BackgroundMusicClass(){
     	console.log("Looping background music...");
 		musicSound = new Audio("sound/"+filenameWithPath+audioFormat);
 		musicSound.loop = true;
-		musicSound.volume = MUSIC_VOLUME;
+		musicSound.volume = vol;
 		musicSound.play();
 	}
 }
