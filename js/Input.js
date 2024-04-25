@@ -62,7 +62,10 @@ function setKeyHoldState(thisKey, thisPlayer, setTo) {
 function keyPressed(evt) {
 	setKeyHoldState(evt.keyCode, p1, true);
 
-	
+	if(gameState == "CREDITS") {
+		gameState = "TITLE";
+		return;
+	}
 	
 	if(gameState == "TITLE"){
 		if(evt.keyCode == KEY_LETTER_P || evt.key == "p" || evt.key == "P"){
@@ -70,25 +73,28 @@ function keyPressed(evt) {
 			gameState = "PLAY";
 			loadLevel(level[currentLevel]);
 		}
-	}
 
-        if(gameState == "TITLE" && (evt.key == "e" || evt.key == "E")) {
-		loadLevelEditor();
-	}
+		if(evt.key == "c" || evt.key == "C") {
+			gameState = "CREDITS";
+		}
 
+	    if(evt.key == "e" || evt.key == "E") {
+			loadLevelEditor();
+		}
+	}
 
 	if(gameState == "EDITOR" && (evt.keyCode == KEY_LETTER_P || evt.key == "p" || evt.key == "P" || evt.key == "b" || evt.key == "B" )){
 		closeLevelEditor();
 	}
 
-        // The keys below are for PLAY state only.
-        if (gameState != "PLAY") {
-	        return;
-        }
+    // The keys below are for PLAY state only.
+    if (gameState != "PLAY") {
+        return;
+    }
 
-        if(evt.keyCode == KEY_SPACEBAR || evt.key == " "){
-		    p1.swordAttack();
-	    }
+    if(evt.keyCode == KEY_SPACEBAR || evt.key == " "){
+	    p1.swordAttack();
+    }
 
 	if(evt.keyCode == KEY_LETTER_X){
 		p1.boomStickShot();
