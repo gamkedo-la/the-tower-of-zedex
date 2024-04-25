@@ -190,19 +190,20 @@ function warriorClass() {
 	}
 	
 	this.handleEnemyCollision = function(){
+		this.ticks += 1;
 		if(this.ticksUntilDamage > 0) {
 			this.ticksUntilDamage--;
+			return;
 		}
-		this.ticks += 1;
 
 		// BASIC SINGLE POINT COLLISION CHECK
 		// NEED TO UPGRADE TO CHECK ALL EDGES/SIDES
 		for(var i = 0; i < enemyList.length; i++){
 			// console.log(enemyList[i])
-			if(	this.x > enemyList[i].x &&
-				this.x < enemyList[i].x + TILE_W &&
-				this.y > enemyList[i].y &&
-				this.y < enemyList[i].y + TILE_H ) 
+			if(	this.x+16 > enemyList[i].x &&
+				this.x+16 < enemyList[i].x + TILE_W &&
+				this.y+16 > enemyList[i].y &&
+				this.y+16 < enemyList[i].y + TILE_H ) 
 			{
 				this.ticksUntilDamage = 30;
 				hudDisplay.affectCurrentHealth(
@@ -278,12 +279,14 @@ function warriorClass() {
 		// We will only move if there are no collisions
 		let shouldMove = true;
 	
+		// moved out of tilesColliding.forEach where it could happen multiple times per frame
+		this.handleEnemyCollision();
+
 		tilesColliding.forEach((walkIntoTileIndex) => {
 		  let walkIntoTileType = roomGrid[walkIntoTileIndex];
 	
 		  switch (walkIntoTileType) {
 			case TILE_GROUND:
-			  this.handleEnemyCollision();
 			  break;
 			case TILE_GOAL:
 			  if (inEditorPlayMode()) {
@@ -339,28 +342,25 @@ function warriorClass() {
 	
 			  break;
 			case TILE_SPIKE:
-			  this.ticksUntilDamage = 5;
-			  this.ticks += 1;
-	
-			  if (this.ticks >= this.ticksUntilDamage) {
-				this.ticks = 0;
+			  if (this.ticksUntilDamage <= 0) {
+				this.ticksUntilDamage = 15;
                 hudDisplay.affectCurrentHealth(-1);
 				playerHurt.play();
 			  }
 			  break;
 			case TILE_CRYPT_DAMAGE_FLOOR:
-			  this.ticksUntilDamage = 5;
-			  this.ticks += 1;
-	
-			  if (this.ticks >= this.ticksUntilDamage) {
-				this.ticks = 0;
+			  if (this.ticksUntilDamage <= 0) {
+				this.ticksUntilDamage = 15;
                 hudDisplay.affectCurrentHealth(-5);
 				playerHurt.play();
 			  }
 			  break;
 			case TILE_SPIKE_WALL:
-              hudDisplay.affectCurrentHealth(-2);
-			  playerHurt.play();
+			  if (this.ticksUntilDamage <= 0) {
+				this.ticksUntilDamage = 15;
+              	hudDisplay.affectCurrentHealth(-2);
+			  	playerHurt.play();
+			  }
 			  break;
 			case TILE_WALL:
 			default:

@@ -173,9 +173,9 @@ function pointInRect(x, y, rect){
  */
 function tileCollisionCheck(rect) {
 	let leftTile = Math.floor(rect.left / TILE_W),
-	  rightTile = Math.floor(rect.right / TILE_W),
+	  rightTile = Math.floor(rect.right / TILE_H),
 	  topTile = Math.floor(rect.top / TILE_W),
-	  bottomTile = Math.floor(rect.bottom / TILE_W);
+	  bottomTile = Math.floor(rect.bottom / TILE_H);
   
 	let collisions = [];
   
