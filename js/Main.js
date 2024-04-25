@@ -199,7 +199,7 @@ function tileCollisionCheck(rect) {
 "Victor Debone (javascripl): Input handler improvement, collision fixes"," ",
 "Patrick McKeown: Sounds (doorlock, enemy hit, hinge sounds, scroll)"," ",
 "Jason Timms: Treasure chest opening sound"," ",
-"Chris DeLeon: Ghost spawn fix",
+"Chris DeLeon: Ghost spawn fix, collision fixes",
 " ",
 "== PRESS ANY KEY TO RETURN =="
   ];

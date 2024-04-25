@@ -42,7 +42,7 @@ function warriorClass() {
 	this.animFrame = 0;
 	this.ticks = 0;
 	this.ticksUntilDamage = 20;
-	
+	this.isWalking = false;
 
 	// key controls used for this
 	this.setupControls = function(northKey,eastKey,southKey,westKey) {
@@ -141,7 +141,7 @@ function warriorClass() {
 		//colorRect(attackRect.left, attackRect.bottom, attackW, attackH, "orange");
 
 		swordSwing.play();
-		var swordRange = 22; // pretty forgiving but easy to tune here
+		var swordRange = 18; // pretty forgiving but easy to tune here
 		// loop through enemy list and check if enemy overlaps hitbox
 		for(var i = 0; i < enemyList.length; i++){
 			var enemyLeftEdge = enemyList[i].x - swordRange;
@@ -231,30 +231,35 @@ function warriorClass() {
 			}
 		}
 	}
-
+	
 	this.move = function () {
 		this.prevX = this.x;
 		this.prevY = this.y;
+		this.isWalking = false;
 	
 		var nextX = this.x + this.bumpSlideX;
 		var nextY = this.y + this.bumpSlideY;
 	
 		if (this.keyHeld_North) {
+			this.isWalking = true;
 			nextY -= PLAYER_MOVE_SPEED;
 			this.myBitmap = playerFacingUp;
 			this.sx = 0;
 		}
 		if (this.keyHeld_East) {
+			this.isWalking = true;
 			nextX += PLAYER_MOVE_SPEED;
 			this.myBitmap = playerFacingRight;
 			this.sx = 32;
 		}
 		if (this.keyHeld_South) {
+			this.isWalking = true;
 			nextY += PLAYER_MOVE_SPEED;
 			this.myBitmap = playerFacingDown;
 			this.sx = 64;
 		}
 		if (this.keyHeld_West) {
+			this.isWalking = true;
 			nextX -= PLAYER_MOVE_SPEED;
 			this.myBitmap = playerFacingLeft;
 			this.sx = 96;
@@ -344,21 +349,21 @@ function warriorClass() {
 			case TILE_SPIKE:
 			  if (this.ticksUntilDamage <= 0) {
 				this.ticksUntilDamage = 15;
-                hudDisplay.affectCurrentHealth(-1);
+                hudDisplay.affectCurrentHealth(-5);
 				playerHurt.play();
 			  }
 			  break;
 			case TILE_CRYPT_DAMAGE_FLOOR:
 			  if (this.ticksUntilDamage <= 0) {
 				this.ticksUntilDamage = 15;
-                hudDisplay.affectCurrentHealth(-5);
+                hudDisplay.affectCurrentHealth(-15);
 				playerHurt.play();
 			  }
 			  break;
 			case TILE_SPIKE_WALL:
 			  if (this.ticksUntilDamage <= 0) {
 				this.ticksUntilDamage = 15;
-              	hudDisplay.affectCurrentHealth(-2);
+              	hudDisplay.affectCurrentHealth(-10);
 			  	playerHurt.play();
 			  }
 			  break;
@@ -452,7 +457,20 @@ function warriorClass() {
 		if(this.playerState == "ATTACKING"){
 			drawBitmapCenteredAnimFrame(playerAttackSprites, this.x+16, this.y+16, this.animFrame, facingRow, 64);
 		} else{
-			canvasContext.drawImage(this.myBitmap, this.x, this.y);
+			if(this.isWalking==false) {
+				this.animFrame = 0;
+			} else {
+				if(this.animFrame==0) {
+					this.animFrame=1;
+				}
+				if(this.ticks % 6 == 1) {
+					this.animFrame++;
+				}
+				if(this.animFrame>=3) {
+					this.animFrame=1;
+				}
+			}
+			drawBitmapCenteredAnimFrame(this.myBitmap, this.x+16, this.y+16, 0, this.animFrame, 32);
 		}
 			// drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
 			// colorRect(this.x, this.y, 5,5, "magenta");
