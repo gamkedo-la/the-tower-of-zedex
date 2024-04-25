@@ -41,7 +41,7 @@ function warriorClass() {
 	this.framesUntilAnim = FRAMES_PER_ANIM;
 	this.animFrame = 0;
 	this.ticks = 0;
-	this.ticksUntilDamage = 5;
+	this.ticksUntilDamage = 20;
 	
 
 	// key controls used for this
@@ -186,7 +186,9 @@ function warriorClass() {
 	}
 	
 	this.handleEnemyCollision = function(){
-		this.ticksUntilDamage = 10;
+		if(this.ticksUntilDamage > 0) {
+			this.ticksUntilDamage--;
+		}
 		this.ticks += 1;
 
 		// BASIC SINGLE POINT COLLISION CHECK
@@ -198,31 +200,29 @@ function warriorClass() {
 				this.y > enemyList[i].y &&
 				this.y < enemyList[i].y + TILE_H ) 
 			{
-				// if(this.ticks >= this.ticksUntilDamage) {
-				// 	this.ticks = 0;
-					hudDisplay.affectCurrentHealth(
-                        -enemyList[i].attackDamage,
-                        `You and ${enemyList[i].enemyTypeName()} are in collision!`, 
-                        MessageType.DANGER
-                    );
-					var difX = this.x - enemyList[i].x;
-					var difY = this.y - enemyList[i].y;
-					if(Math.abs(difX) > Math.abs(difY)) {
-						if(difX < 0) {
-							this.bumpSlideX = -10;
-						} else { 
-							this.bumpSlideX = 10;
-						}
-					} else {
-						if(difY < 0) {
-							this.bumpSlideY = -10;
-						} else { 
-							this.bumpSlideY = 10;
-						}
+				this.ticksUntilDamage = 30;
+				hudDisplay.affectCurrentHealth(
+                    -enemyList[i].attackDamage,
+                    `You and ${enemyList[i].enemyTypeName()} are in collision!`, 
+                    MessageType.DANGER
+                );
+				var difX = this.x - enemyList[i].x;
+				var difY = this.y - enemyList[i].y;
+				if(Math.abs(difX) > Math.abs(difY)) {
+					if(difX < 0) {
+						this.bumpSlideX = -10;
+					} else { 
+						this.bumpSlideX = 10;
 					}
+				} else {
+					if(difY < 0) {
+						this.bumpSlideY = -10;
+					} else { 
+						this.bumpSlideY = 10;
+					}
+				}
 
-					playerHurt.play();
-				//}
+				playerHurt.play();
 			}
 		}
 	}
@@ -416,6 +416,9 @@ function warriorClass() {
 
 
 	this.draw = function() {
+		if(this.ticksUntilDamage>0 && this.ticks % 4 < 2) {
+			return;
+		}
 		// if(this.playerState == "ATTACKING") {
 		// 	this.ticksPerAnimationFrame = 5;
 		// 	this.ticks++;
@@ -443,13 +446,12 @@ function warriorClass() {
 			facingRow = 3;
 		}
 		if(this.playerState == "ATTACKING"){
-
 			drawBitmapCenteredAnimFrame(playerAttackSprites, this.x+16, this.y+16, this.animFrame, facingRow, 64);
 		} else{
 			canvasContext.drawImage(this.myBitmap, this.x, this.y);
 		}
 			// drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
-			colorRect(this.x, this.y, 5,5, "magenta");
+			// colorRect(this.x, this.y, 5,5, "magenta");
 			// console.log(this.myBitmap.width)
 			if(this.framesUntilAnim-- < 0){
 				
