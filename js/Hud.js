@@ -221,7 +221,7 @@ function HudClass() {
 
 
                 // draw key numbers
-                printText((1 + i) + (j * 3), xPosition, yPosition + 6, 20, "cyan")
+                printText((1 + i) + (j * 3), xPosition+3, yPosition + 17, 20, "cyan")
             }
         }
 
