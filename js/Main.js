@@ -39,6 +39,7 @@ window.onload = function() {
 	canvasContext = canvas.getContext('2d');
 	
 	loadImages();
+	lineWrapCredits();
 }
 
 function spawnEnemiesAndPlay() {
@@ -120,7 +121,7 @@ function drawEverything() {
 	colorRect(0,0, canvas.width, canvas.height, "black")
 
 	if(gameState == "CREDITS") {
-		colorRect(0,0, canvas.width, canvas.height, "red")
+		drawCredits();
 	} else if (gameState == "EDITOR"){
 		drawRoom();
 	} 
@@ -179,6 +180,79 @@ function tileCollisionCheck(rect) {
   
 	return collisions;
   }
-	
-        
 
+  creditsList = [
+"Kyle Knutson: Project lead, core gameplay, environment art, level design, main pickups and inventory, animated character sprites (player, zombie, turrets), enemy AI, map editor, keys and ammo functionality, hazard tiles,", " ",
+"John Fortune: Item icons with integration (spell scroll, speed potion, shield potion, invisibility potion), title input fix"," ",
+"Christer \"McFunkypants\" Kaitila: Wall hugger, music integration, gamepad support, additional songs (menu, game over), player death"," ",
+"Randy Tan Shaoxian: Game event messaging (system, display, colors, hookups)"," ",
+"Marvin Chong: Level music"," ",
+"Vince McKeown: Player projectiles, additional level design, spiked walls"," ",
+"Hamza 'Hums' Sehavdic: Ghost sprite"," ",
+"Victor Debone (javascripl): Input handler improvement, collision fixes"," ",
+"Patrick McKeown: Sounds (doorlock, enemy hit, hinge sounds, scroll)"," ",
+"Jason Timms: Treasure chest opening sound"," ",
+"Chris DeLeon: Ghost spawn fix",
+" ",
+"== PRESS ANY KEY TO RETURN =="
+  ];
+
+
+function drawCredits() {
+	colorRect(0,0, canvas.width, canvas.height, "black")
+	var lineX = 60;
+    var lineY = 30;
+    var creditsSize = 19;
+    var lineSkip = creditsSize+2;
+    for(var i=0;i<creditsList.length;i++) {
+		printText(creditsList[i], lineX, lineY, creditsSize, "white");
+		lineY+=lineSkip;
+	}
+}
+
+function lineWrapCredits() {
+    const newCut = [];
+    var maxLineChar = 75;
+    var findEnd;
+
+    for(let i = 0; i < creditsList.length; i++) {
+      const currentLine = creditsList[i];
+      for(let j = 0; j < currentLine.length; j++) {
+        /*const aChar = currentLine[j];
+        if(aChar === ":") {
+          if(i !== 0) {
+            newCut.push("\n");
+          }
+
+          newCut.push(currentLine.substring(0, j + 1));
+          newCut.push(currentLine.substring(j + 2, currentLine.length));
+          break;
+        } else*/ if(j === currentLine.length - 1) {
+          if((i === 0) || (i >= creditsList.length - 2)) {
+            newCut.push(currentLine);
+          } else {
+            newCut.push(currentLine.substring(0, currentLine.length));
+          }
+        }
+      }
+    }
+
+    const newerCut = [];
+    for(var i=0;i<newCut.length;i++) {
+      while(newCut[i].length > 0) {
+        findEnd = maxLineChar;
+        if(newCut[i].length > maxLineChar) {
+          for(var ii=findEnd;ii>0;ii--) {
+            if(newCut[i].charAt(ii) == " ") {
+              findEnd=ii;
+              break;
+            }
+          }
+        }
+        newerCut.push(newCut[i].substring(0, findEnd));
+        newCut[i] = newCut[i].substring(findEnd, newCut[i].length);
+      }
+    }
+
+    creditsList = newerCut;
+  }        
