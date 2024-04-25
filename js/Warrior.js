@@ -137,23 +137,27 @@ function warriorClass() {
 		var attackX = attackCenterX - attackW/2;
 		var attackY = attackCenterY - attackH/2;
 
-		colorRect(attackX, attackY, attackW, attackH, "orange");
+		// colorRect(attackX, attackY, attackW, attackH, "orange");
 		//colorRect(attackRect.left, attackRect.bottom, attackW, attackH, "orange");
 
 		swordSwing.play();
-		console.log(attackRect)
+		var swordRange = 22; // pretty forgiving but easy to tune here
 		// loop through enemy list and check if enemy overlaps hitbox
 		for(var i = 0; i < enemyList.length; i++){
-			if(	enemyList[i].x +16 > attackX && 
-				enemyList[i].x +16 < attackX+ attackW &&
-				enemyList[i].y +16 > attackY &&
-				enemyList[i].y +16 < attackY+ attackH ){
-				// if(rectCollision(enemyList[i].rect, attackRect)){
-				// 	console.log(rectCollision(enemyList[i].rect, attackRect))
-
+			var enemyLeftEdge = enemyList[i].x - swordRange;
+			var enemyRightEdge = enemyList[i].x + swordRange;
+			var enemyTopEdge = enemyList[i].y - swordRange;
+			var enemyBottomEdge = enemyList[i].y + swordRange;
+			var attackRight = attackX + attackW;
+			var attackBottom = attackY + attackH;
+			if(	(enemyLeftEdge > attackRight || 
+				enemyRightEdge < attackX ||
+				enemyTopEdge > attackBottom ||
+				enemyBottomEdge < attackY) == false){
 					messagingSystem.log(enemyList[i].enemyTypeName()+" has taken 1 damage.");
 					messagingSystem.log(enemyList[i].enemyTypeName()+" Health: "+enemyList[i].health);
 					enemyList[i].health -= 1;
+					enemyList[i].hurtTimeFreeze = 10;
 					if( enemyList[i].health < 1){
 						enemyList[i].readyToRemove = true;
 					}

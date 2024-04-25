@@ -19,7 +19,11 @@ var gameState = "TITLE"; // TITLE, EDITOR, PLAY, GAMEOVER
 
 function moveEnemies() {
 	for( var i = 0; i<enemyList.length; i++ ) {
-		enemyList[i].move();
+		if(enemyList[i].hurtTimeFreeze > 0) {
+			enemyList[i].hurtTimeFreeze--;
+		} else {
+			enemyList[i].move();
+		}
 	}
 	for(var i = enemyList.length - 1; i >= 0 ; i--){
 		if(enemyList[i].readyToRemove){
@@ -30,7 +34,10 @@ function moveEnemies() {
 
 function drawEnemies() {
 	for( var i = 0; i<enemyList.length; i++ ) {
-		enemyList[i].draw();
+		if(enemyList[i].hurtTimeFreeze === undefined || enemyList[i].hurtTimeFreeze<=0 ||
+				enemyList[i].hurtTimeFreeze % 4 <2) {
+			enemyList[i].draw();
+		}
 	}
 }
 
