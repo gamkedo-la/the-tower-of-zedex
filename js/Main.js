@@ -111,7 +111,9 @@ function loadingDoneSoStartGame() {
 function moveEverything() {
 	if(gameState == "PLAY"){
 		
-		if(hudDisplay.currentHealth < 1){
+		
+        if(!hudDisplay.currentHealth // handle possible NaN
+            || hudDisplay.currentHealth < 1){ 
             console.log("YOUR HEALTH IS ZERO! GAME OVER!");
             backgroundMusic.loopSong("GameOverMusic",GAME_OVER_MUSIC_VOLUME);
 			p1.reset(); // so it has full health next game

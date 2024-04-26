@@ -42,7 +42,15 @@ function HudClass() {
     this.inventoryY = 490;
 
     this.affectCurrentHealth = function(healthDelta, message, messageType = MessageType.INFO) {
+        
+        // avoid NaN, undefined, null, etc
+        if (!healthDelta) healthDelta = 0;
+        
         this.currentHealth += healthDelta;
+
+        if (this.currentHealth <= 0) {
+            console.log("health is now zero!");
+        }
 
         let msg = message;
         let msgType = messageType;
