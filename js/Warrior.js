@@ -360,22 +360,22 @@ function warriorClass() {
 			  break;
 			case TILE_SPIKE:
 			  if (this.ticksUntilDamage <= 0) {
-				this.ticksUntilDamage = 15;
-                hudDisplay.affectCurrentHealth(-5);
+				this.ticksUntilDamage = 20;
+                hudDisplay.affectCurrentHealth(-2);
 				playerHurt.play();
 			  }
 			  break;
 			case TILE_CRYPT_DAMAGE_FLOOR:
 			  if (this.ticksUntilDamage <= 0) {
-				this.ticksUntilDamage = 15;
-                hudDisplay.affectCurrentHealth(-15);
+				this.ticksUntilDamage = 20;
+                hudDisplay.affectCurrentHealth(-3);
 				playerHurt.play();
 			  }
 			  break;
 			case TILE_SPIKE_WALL:
 			  if (this.ticksUntilDamage <= 0) {
-				this.ticksUntilDamage = 15;
-              	hudDisplay.affectCurrentHealth(-10);
+				this.ticksUntilDamage = 20;
+              	hudDisplay.affectCurrentHealth(-4);
 			  	playerHurt.play();
 			  }
 			  break;

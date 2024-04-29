@@ -120,7 +120,7 @@ function boomStickClass(targetPlayer, damage) {
 		    for(var i = 0; i < enemyList.length; i++){
 			    if(	this.x > enemyList[i].x 		&& 
 				this.x < enemyList[i].x + 32 	&& // 32 is a stand-in for tile width
-				this.y > enemyList[i].y &&
+				this.y > enemyList[i].y-16 &&
 				this.y < enemyList[i].y + 32 )
 			    {
 				    this.shotLife = 0;
