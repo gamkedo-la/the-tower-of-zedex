@@ -168,6 +168,7 @@ function zombieClass() {
 				break;
 			case TILE_WALL:
 			default:
+				this.changeDirection(); // bounce off wall
 				// any other tile type number was found... do nothing, for now
 				break;
 		}
