@@ -87,9 +87,12 @@ function loadShopLevel() {
 		roomGrid[roomGridIdx] = intToItemTile(itemInt);
 		_roomGridIdxWithItemTiles.push(roomGridIdx);
 	}
+	movePlayerToBottom();
+	showShopMessage = true;
 }
 
 function destroyShopItems() {
+	showShopMessage = false;
 	// The player would have turned one of the item tiles to a ground already, and this function would
 	// turn that item tile to a ground tile again
 	for (let i = 0; i < _roomGridIdxWithItemTiles.length; i++) {

@@ -311,9 +311,13 @@ function warriorClass() {
 				  loadLevel(level[currentLevel]);
 				} else {
 				  loadShopLevel();
+				  showShopMessage = true;
 				}
+				movePlayerToBottom();
 			  }
-			  break;
+			  shouldMove = false; // avoid nextX overriding movePlayerToBottom
+			  console.log("shouldMove skipping from goal");
+			  return; 
 			case TILE_DOOR:
 			  for (var i = 0; i < hudDisplay.inventory.length; i++) {
 				if (hudDisplay.inventory[i] == 3 || hudDisplay.inventory[i] == 4) {

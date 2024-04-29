@@ -144,6 +144,13 @@ function drawEverything() {
 		
 	} else if (gameState == "PLAY"){
 		drawRoom();
+
+		if(showShopMessage) {
+			canvasContext.textAlign = "center";
+			printText("CHOOSE ONE", canvas.width/2, 140, 30, "white");
+			canvasContext.textAlign = "left";
+		}
+
 	
 		p1.draw();
 		drawEnemies();

@@ -114,17 +114,22 @@ function getTileIndexAtPixelCoord(pixelX,pixelY) {
 // }
 
 function loadLevel(level) {
+	showShopMessage = false;
   if(level == undefined || currentLevel >= level.length) {
   	gameState = "WINSCREEN";
   } else {
 	  roomGrid = level.slice();
 	  if(gameState == "PLAY") {
-	  		p1.x = 384;
-	  		p1.y = 444;
-	  		p1.myBitmap = playerFacingUp;
 			spawnEnemiesAndPlay();
 	  }
   }
+}
+
+function movePlayerToBottom() {
+	p1.x = 384;
+	p1.y = 444;
+	p1.myBitmap = playerFacingUp;
+	console.log("player moved to bottom");
 }
 
 function drawRoom() {
