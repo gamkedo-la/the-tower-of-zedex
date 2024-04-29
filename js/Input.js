@@ -39,6 +39,10 @@ function mouseButtonPressed(evt) {
         firstClickEver = false;
     }
 
+    if(gameState == "WINSCREEN") {
+    	location.reload();
+    }
+
 }
 
 function setKeyHoldState(thisKey, thisPlayer, setTo) {

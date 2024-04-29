@@ -12,7 +12,7 @@ const EnemyType = Object.freeze({
 }); 
 var enemyList = [];
 
-var gameState = "TITLE"; // TITLE, EDITOR, PLAY, GAMEOVER
+var gameState = "TITLE"; // TITLE, EDITOR, PLAY, GAMEOVER, CREDITS, WINSCREEN
 // var TitleScreen = true;
 // var MapEditingMode = false;
 
@@ -129,7 +129,9 @@ function drawEverything() {
 
 	colorRect(0,0, canvas.width, canvas.height, "black")
 
-	if(gameState == "CREDITS") {
+	if(gameState == "WINSCREEN") {
+		drawWinScreen();
+	} else if(gameState == "CREDITS") {
 		drawCredits();
 	} else if (gameState == "EDITOR"){
 		drawRoom();
@@ -206,6 +208,30 @@ function tileCollisionCheck(rect) {
 "== PRESS ANY KEY TO RETURN =="
   ];
 
+  winEndList = [
+"CONGRATULATIONS!", " ",
+"YOU ESCAPED",
+"THE TOWER",
+"OF ZEDEX",
+" ",
+" ",
+" ",
+"== CLICK ANYWHERE TO RESET =="
+  ];
+
+
+function drawWinScreen() {
+	colorRect(0,0, canvas.width, canvas.height, "black")
+	var lineX = canvas.width/2;
+    var lineY = 130;
+    var storySize = 39;
+    var lineSkip = storySize+2;
+    canvasContext.textAlign = "center";
+    for(var i=0;i<winEndList.length;i++) {
+		printText(winEndList[i], lineX, lineY, storySize, "white");
+		lineY+=lineSkip;
+	}
+}
 
 function drawCredits() {
 	colorRect(0,0, canvas.width, canvas.height, "black")

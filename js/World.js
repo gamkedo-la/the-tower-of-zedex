@@ -99,7 +99,7 @@ function getTileIndexAtPixelCoord(pixelX,pixelY) {
   // first check whether the tile coords fall within valid bounds
   if(tileCol < 0 || tileCol >= ROOM_COLS ||
 	 tileRow < 0 || tileRow >= ROOM_ROWS) {
-	 document.getElementById("debugText").innerHTML = "out of bounds:"+pixelX+","+pixelY;
+	 //document.getElementById("debugText").innerHTML = "out of bounds:"+pixelX+","+pixelY;
 	 return undefined;
   }
   
@@ -114,12 +114,16 @@ function getTileIndexAtPixelCoord(pixelX,pixelY) {
 // }
 
 function loadLevel(level) {
-  roomGrid = level.slice();
-  if(gameState == "PLAY") {
-  		p1.x = 384;
-  		p1.y = 444;
-  		p1.myBitmap = playerFacingUp;
-		spawnEnemiesAndPlay();
+  if(level == undefined || currentLevel >= level.length) {
+  	gameState = "WINSCREEN";
+  } else {
+	  roomGrid = level.slice();
+	  if(gameState == "PLAY") {
+	  		p1.x = 384;
+	  		p1.y = 444;
+	  		p1.myBitmap = playerFacingUp;
+			spawnEnemiesAndPlay();
+	  }
   }
 }
 
