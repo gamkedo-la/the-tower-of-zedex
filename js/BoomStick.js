@@ -38,7 +38,7 @@ function boomStickClass(targetPlayer, damage) {
 	// }
 
     this.shootFrom = function(entityFiring){
-	    this.x = entityFiring.x;
+	    this.x = entityFiring.x+16;
 	    this.y = entityFiring.y;
 
 
