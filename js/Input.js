@@ -8,6 +8,7 @@ const KEY_LETTER_A = 65;
 const KEY_LETTER_S = 83;
 const KEY_LETTER_D = 68;
 const KEY_LETTER_X = 88;
+const KEY_LETTER_N = 78;
 const KEY_LETTER_P = 80;
 const KEY_SPACEBAR = 32;
 
@@ -90,6 +91,11 @@ function keyPressed(evt) {
     // The keys below are for PLAY state only.
     if (gameState != "PLAY") {
         return;
+    }
+
+    if(evt.keyCode == KEY_LETTER_N) {
+    	currentLevel += 1;
+	  	loadLevel(level[currentLevel]);
     }
 
     if(evt.keyCode == KEY_SPACEBAR || evt.key == " "){

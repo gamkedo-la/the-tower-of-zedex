@@ -137,6 +137,14 @@ function warriorClass() {
 		var attackX = attackCenterX - attackW/2;
 		var attackY = attackCenterY - attackH/2;
 
+		var tileIndexUnderSwordCenter = getTileIndexAtPixelCoord(attackCenterX,
+										attackCenterY);
+		if(tileIndexUnderSwordCenter != undefined) {
+			if(roomGrid[tileIndexUnderSwordCenter] == TILE_GRASS) {
+				roomGrid[tileIndexUnderSwordCenter] = TILE_GROUND;
+			}
+		}
+
 		// colorRect(attackX, attackY, attackW, attackH, "orange");
 		//colorRect(attackRect.left, attackRect.bottom, attackW, attackH, "orange");
 

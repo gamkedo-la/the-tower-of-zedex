@@ -121,7 +121,7 @@ function wallHuggerClass() {
 			if (this.walkWest) this.rotation = 270 * (Math.PI/180);
 		}
 		
-        colorRect(this.x, this.y, this.width, this.height);
+        //colorRect(this.x, this.y, this.width, this.height);
         drawBitmapCenteredAtLocationWithRotation(this.sprite,this.x,this.y,this.rotation);
         // unrotated, works great:
         // canvasContext.drawImage( this.sprite, this.x-16, this.y-16 ); // sprite is centered on its xy
