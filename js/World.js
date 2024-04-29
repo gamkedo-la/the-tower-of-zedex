@@ -116,6 +116,9 @@ function getTileIndexAtPixelCoord(pixelX,pixelY) {
 function loadLevel(level) {
   roomGrid = level.slice();
   if(gameState == "PLAY") {
+  		p1.x = 384;
+  		p1.y = 444;
+  		p1.myBitmap = playerFacingUp;
 		spawnEnemiesAndPlay();
   }
 }
