@@ -45,11 +45,17 @@ function warriorClass() {
 	this.isWalking = false;
 
 	// key controls used for this
-	this.setupControls = function(northKey,eastKey,southKey,westKey) {
+	this.setupControls = function(northKey,eastKey,southKey,westKey,
+									northKey2,eastKey2,southKey2,westKey2) {
 		this.controlKeyForNorth = northKey;
 		this.controlKeyForEast = eastKey;
 		this.controlKeyForSouth = southKey;
 		this.controlKeyForWest = westKey;
+
+		this.controlKeyForNorth2 = northKey2;
+		this.controlKeyForEast2 = eastKey2;
+		this.controlKeyForSouth2 = southKey2;
+		this.controlKeyForWest2 = westKey2;
 	}
 
 	this.init = function(whichGraphic,whichName) {

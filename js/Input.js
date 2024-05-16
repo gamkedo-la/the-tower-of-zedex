@@ -20,7 +20,8 @@ function initInput() {
 	document.addEventListener("keydown", keyPressed);
 	document.addEventListener("keyup", keyReleased);
 
-	p1.setupControls(KEY_UP_ARROW,KEY_RIGHT_ARROW,KEY_DOWN_ARROW,KEY_LEFT_ARROW);
+	p1.setupControls(KEY_UP_ARROW,KEY_RIGHT_ARROW,KEY_DOWN_ARROW,KEY_LEFT_ARROW,
+					 KEY_LETTER_W,KEY_LETTER_D,KEY_LETTER_S,KEY_LETTER_A);
 }
 
 function updateMousePos(evt) {
@@ -46,26 +47,32 @@ function mouseButtonPressed(evt) {
 }
 
 function setKeyHoldState(thisKey, thisPlayer, setTo) {
-	if(thisKey == thisPlayer.controlKeyForNorth) {
+	var keyUsedByGame = false;
+	if(thisKey == thisPlayer.controlKeyForNorth || thisKey == thisPlayer.controlKeyForNorth2) {
 		thisPlayer.keyHeld_North = setTo;
 		thisPlayer.facingDirection = "UP";
+		keyUsedByGame = true;
 	}
-	if(thisKey == thisPlayer.controlKeyForEast) {
+	if(thisKey == thisPlayer.controlKeyForEast || thisKey == thisPlayer.controlKeyForEast2) {
 		thisPlayer.keyHeld_East = setTo;
 		thisPlayer.facingDirection = "RIGHT";
+		keyUsedByGame = true;
 	}
-	if(thisKey == thisPlayer.controlKeyForSouth) {
+	if(thisKey == thisPlayer.controlKeyForSouth || thisKey == thisPlayer.controlKeyForSouth2) {
 		thisPlayer.keyHeld_South = setTo;
 		thisPlayer.facingDirection = "DOWN";
+		keyUsedByGame = true;
 	}
-	if(thisKey == thisPlayer.controlKeyForWest) {
+	if(thisKey == thisPlayer.controlKeyForWest || thisKey == thisPlayer.controlKeyForWest2) {
 		thisPlayer.keyHeld_West = setTo;
 		thisPlayer.facingDirection = "LEFT";
+		keyUsedByGame = true;
 	}
+	return keyUsedByGame;
 }
 
 function keyPressed(evt) {
-	setKeyHoldState(evt.keyCode, p1, true);
+	var keyUsedByGame = setKeyHoldState(evt.keyCode, p1, true);
 
 	if(gameState == "CREDITS") {
 		gameState = "TITLE";
@@ -77,19 +84,23 @@ function keyPressed(evt) {
             backgroundMusic.loopSong("backgroundMusic");
 			gameState = "PLAY";
 			loadLevel(level[currentLevel]);
+			keyUsedByGame = true;
 		}
 
 		if(evt.key == "c" || evt.key == "C") {
 			gameState = "CREDITS";
+			keyUsedByGame = true;
 		}
 
 	    if(evt.key == "e" || evt.key == "E") {
 			loadLevelEditor();
+			keyUsedByGame = true;
 		}
 	}
 
 	if(gameState == "EDITOR" && (evt.keyCode == KEY_LETTER_P || evt.key == "p" || evt.key == "P" || evt.key == "b" || evt.key == "B" )){
 		closeLevelEditor();
+		keyUsedByGame = true;
 	}
 
     // The keys below are for PLAY state only.
@@ -100,14 +111,17 @@ function keyPressed(evt) {
     if(evt.keyCode == KEY_LETTER_N) {
     	currentLevel += 1;
 	  	loadLevel(level[currentLevel]);
+	  	keyUsedByGame = true;
     }
 
     if(evt.keyCode == KEY_SPACEBAR || evt.key == " "){
 	    p1.swordAttack();
+	    keyUsedByGame = true;
     }
 
 	if(evt.keyCode == KEY_LETTER_X){
 		p1.boomStickShot();
+		keyUsedByGame = true;
 	}
     
 	if(evt.key == "1"){
@@ -117,6 +131,7 @@ function keyPressed(evt) {
 		if(hudDisplay.inventory[0] != INV_KEY && hudDisplay.inventory[0] != INV_MASTERKEY) {
 			hudDisplay.inventory[0] = 0;
 		}
+		keyUsedByGame = true;
 	}
 	if(evt.key == "2"){
 		console.log("Key 2 has been pressed")
@@ -124,6 +139,7 @@ function keyPressed(evt) {
 		if(hudDisplay.inventory[1] != INV_KEY && hudDisplay.inventory[1] != INV_MASTERKEY) {
 			hudDisplay.inventory[1] = 0;
 		}
+		keyUsedByGame = true;
 	}
 	if(evt.key == "3"){
 		console.log("Key 3 has been pressed")
@@ -131,6 +147,7 @@ function keyPressed(evt) {
 		if(hudDisplay.inventory[2] != INV_KEY && hudDisplay.inventory[2] != INV_MASTERKEY) {
 			hudDisplay.inventory[2] = 0;
 		}
+		keyUsedByGame = true;
 	}
 	if(evt.key == "4"){
 		console.log("Key 4 has been pressed")
@@ -138,6 +155,7 @@ function keyPressed(evt) {
 		if(hudDisplay.inventory[3] != INV_KEY && hudDisplay.inventory[3] != INV_MASTERKEY) {
 			hudDisplay.inventory[3] = 0;
 		}
+		keyUsedByGame = true;
 	}
 	if(evt.key == "5"){
 		console.log("Key 5 has been pressed")
@@ -145,6 +163,7 @@ function keyPressed(evt) {
 		if(hudDisplay.inventory[4] != INV_KEY && hudDisplay.inventory[4] != INV_MASTERKEY) {
 			hudDisplay.inventory[4] = 0;
 		}
+		keyUsedByGame = true;
 	}
 	if(evt.key == "6"){
 		console.log("Key 6 has been pressed")
@@ -152,6 +171,10 @@ function keyPressed(evt) {
 		if(hudDisplay.inventory[5] != INV_KEY && hudDisplay.inventory[5] != INV_MASTERKEY) {
 			hudDisplay.inventory[5] = 0;
 		}
+		keyUsedByGame = true;
+	}
+	if(keyUsedByGame) {
+		evt.preventDefault(); // avoids arrows or space scrolling browser page
 	}
 }
 
