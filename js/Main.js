@@ -201,8 +201,8 @@ function tileCollisionCheck(rect) {
 
   creditsList = [
 "Kyle Knutson: Project lead, core gameplay, environment art, level design, main pickups and inventory, animated character sprites (player, zombie, turrets), enemy AI, map editor, keys and ammo functionality, hazard tiles,", " ",
-"John Fortune: Item icons with integration (spell scroll, speed potion, shield potion, invisibility potion), title input fix"," ",
 "Marvin Chong: Level music, various feature programming (shop, freeze scroll, spike walls, turret), level editor quick loading"," ",
+"John Fortune: Item icons with integration (spell scroll, speed potion, shield potion, invisibility potion), title input fix"," ",
 "Christer \"McFunkypants\" Kaitila: Wall hugger, music integration, gamepad support, additional songs (menu, game over), player death"," ",
 "Randy Tan Shaoxian: Game event messaging (system, display, colors, hookups)"," ",
 "Vince McKeown: Player projectiles, additional level design, spiked walls"," ",
@@ -210,7 +210,7 @@ function tileCollisionCheck(rect) {
 "Victor Debone (javascripl): Input handler improvement, collision fixes"," ",
 "Patrick McKeown: Sounds (doorlock, enemy hit, hinge sounds, scroll)"," ",
 "Jason Timms: Treasure chest opening sound"," ",
-"Chris DeLeon: Grass cutting, win message, minor bug fixing",
+"Chris DeLeon: Grass cutting, win message, WASD support, minor bug fixing",
 " ",
 "== PRESS ANY KEY TO RETURN =="
   ];
