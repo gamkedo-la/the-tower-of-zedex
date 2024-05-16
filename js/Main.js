@@ -204,7 +204,7 @@ function tileCollisionCheck(rect) {
 "John Fortune: Item icons with integration (spell scroll, speed potion, shield potion, invisibility potion), title input fix"," ",
 "Christer \"McFunkypants\" Kaitila: Wall hugger, music integration, gamepad support, additional songs (menu, game over), player death"," ",
 "Randy Tan Shaoxian: Game event messaging (system, display, colors, hookups)"," ",
-"Marvin Chong: Level music"," ",
+"Marvin Chong: Level music, various feature programming (shop, freeze scroll, spike walls, turret), level editor quick loading"," ",
 "Vince McKeown: Player projectiles, additional level design, spiked walls"," ",
 "Hamza 'Hums' Sehavdic: Ghost sprite"," ",
 "Victor Debone (javascripl): Input handler improvement, collision fixes"," ",
@@ -243,7 +243,7 @@ function drawWinScreen() {
 function drawCredits() {
 	colorRect(0,0, canvas.width, canvas.height, "black")
 	var lineX = 60;
-    var lineY = 30;
+    var lineY = 25;
     var creditsSize = 19;
     var lineSkip = creditsSize+2;
     for(var i=0;i<creditsList.length;i++) {
